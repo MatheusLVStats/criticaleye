@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – Leito 05 · cuidados paliativos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+a{color:#1D4A8C}a:hover{color:#01234F}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:12px 14px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1D4A8C}
+.sub{margin:0;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3E5057;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lbl{font-size:11px;color:#55666D;font-weight:500}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.col{min-width:0;display:flex;flex-direction:column;gap:8px}
+.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:5px 14px;margin:0;align-items:baseline}
+.kv dt{font-size:11px;color:#55666D;font-weight:500}
+.kv dd{margin:0;font-size:13px;line-height:1.4}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 9px;border-radius:999px;background:#EEF3F9;border:1px solid #D3DCE0;color:#1B2A30}
+.chip.pal{background:#F2EFF9;border-color:#BDB2DE;color:#3A2C6B;font-weight:600}
+.dp{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:#E3EEF8;color:#01234F;font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:40px;box-sizing:border-box}
+.btn.ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#FFFFFF}
+.lnk{font:inherit;font-size:12px;display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:5px;border:1px solid #D3DCE0;background:#F6F9FA;color:#01234F;cursor:pointer;min-height:32px}
+.add{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px dashed #8FA5AD;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:32px}
+.alert{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:6px;border:1px solid #D3DCE0;background:#F6F9FA}
+.alert.pal{background:#F2EFF9;border-color:#BDB2DE}
+.alert.pal .at{color:#4B3A82}
+.at{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#01234F;display:flex;align-items:center;gap:6px}
+.av{font-size:13.5px;font-weight:600}
+.as{font-size:12px;color:#55666D}
+.bed{font:inherit;display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:108px;min-height:48px;padding:6px 10px;border-radius:6px;border:1px solid #D3DCE0;background:#FFFFFF;color:#1B2A30;cursor:pointer;text-align:left;flex:0 0 auto}
+.bed .n{font-weight:700;font-size:13px;display:flex;align-items:center;gap:5px}
+.bed .s{font-size:11px;color:#55666D}
+.bed.on{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF}
+.bed.on .s{color:#DAE8F6}
+.bed.lock{border-color:#E3B04B;background:#FFF9EC}
+.bed.empty{border-style:dashed;background:#F6F9FA}
+.pend{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #EFF3F5;font-size:13px}
+.st{flex:0 0 auto;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;background:#FFE8B8;color:#6E4300;white-space:nowrap}
+.st.ok{background:#E3EAEC;color:#3E5057}
+.st.pal{background:#E6E0F5;color:#4B3A82}
+.plan{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.4}
+.plan b{display:inline-block;min-width:92px;color:#01234F;font-weight:600}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700; letter-spacing: .01em">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Round do dia</span>
+</div>
+</div>
+<nav aria-label="Navegação entre dias" style="display: flex; align-items: center; gap: 8px">
+<button class="btn ghost" aria-label="Round do dia anterior (26/10)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+<div style="display: flex; flex-direction: column; align-items: center; min-width: 190px">
+<span style="font-size: 15px; font-weight: 600">Terça, 27/10/2026</span>
+<span style="font-size: 11.5px; color: #C6DDF2">Round de hoje · aberto às 07:40</span>
+</div>
+<button class="btn ghost" aria-label="Próximo dia" disabled style="opacity: .45"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #C6DDF2"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8EC5F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg>Salvo às 08:20</span>
+<button class="btn" style="background: #FFFFFF; border-color: #FFFFFF; color: #01234F"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>Imprimir leito</button>
+</div>
+</div>
+</header>
+
+<div style="background: #FFFFFF; border-bottom: 1px solid #D3DCE0">
+<nav aria-label="Leitos" style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 8px; overflow-x: auto">
+<button class="bed"><span class="n">01</span><span class="s">Maria L. · HIP</span></button>
+<button class="bed"><span class="n">02</span><span class="s">Carlos R. · TCE grave</span></button>
+<button class="bed"><span class="n">03</span><span class="s">Ana P. · PO tumor</span></button>
+<button class="bed"><span class="n">04</span><span class="s">João S. · HSA</span></button>
+<button class="bed on" aria-current="true"><span class="n">05</span><span class="s">Paulo T. · AVCi</span></button>
+<button class="bed"><span class="n">16</span><span class="s">Rita F. · HSDC</span></button>
+<button class="bed lock"><span class="n">17 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6E4300" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="s" style="color: #6E4300">Rotina editando</span></button>
+<button class="bed"><span class="n">18</span><span class="s">Sônia B. · alta hoje</span></button>
+<button class="bed empty"><span class="n">19</span><span class="s">Vago · adm. entra 28/10</span></button>
+<button class="bed"><span class="n">20</span><span class="s">Pedro A. · Guillain-Barré</span></button>
+</nav>
+</div>
+
+<main style="max-width: 1440px; width: 100%; margin: 0 auto; padding: 14px 16px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div class="row">
+<section class="card" style="flex: 4 1 300px">
+<div class="ch">
+<h2 class="ct">Identificação</h2>
+<span class="dp">D4 no CTI</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="flex: 0 0 auto; background: #1D4A8C; color: #FFFFFF; border-radius: 8px; padding: 6px 12px; text-align: center">
+<div style="font-size: 10.5px; letter-spacing: .08em; color: #D3E4F5">LEITO</div>
+<div style="font-size: 26px; font-weight: 700; line-height: 1">05</div>
+</div>
+<div style="display: flex; flex-direction: column; min-width: 0">
+<span style="font-size: 19px; font-weight: 700; letter-spacing: .01em">PAULO TAVARES</span>
+<span style="font-size: 12.5px; color: #55666D">67 anos · DN 02/08/1959 · Pront. 118204</span>
+</div>
+</div>
+<dl class="kv">
+<dt>Internação</dt><dd>23/10/2026</dd>
+<dt>Admissão CTI</dt><dd>23/10/2026</dd>
+<dt>Peso · altura</dt><dd>80 kg (estimado) · 1,72 m</dd>
+<dt>Origem</dt><dd>Emergência, depois centro cirúrgico</dd>
+<dt>Equipe</dt><dd>Neurocirurgia</dd>
+<dt>Antes da internação</dt><dd>Independente com alguma limitação</dd>
+</dl>
+</section>
+
+<section class="card" style="flex: 5 1 360px">
+<div class="ch">
+<h2 class="ct">Diagnósticos e história</h2>
+</div>
+<ol style="margin: 0; padding: 0 0 0 18px; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; line-height: 1.35">
+<li><strong>AVC isquêmico maligno de ACM D</strong> · 23/10 <span class="dp">D4 pós-ictus</span></li>
+<li>PO craniectomia descompressiva D · 23/10 <span class="dp">PO D4</span></li>
+<li>Pneumonia aspirativa · 24/10</li>
+</ol>
+<dl class="kv">
+<dt>Comorbidades</dt><dd>FA permanente sem anticoagulação · DM2 · IC com FE reduzida</dd>
+<dt>História</dt><dd>Encontrado em casa com hemiplegia E e rebaixamento, fora da janela de reperfusão. TC com infarto extenso de ACM D e desvio de linha média. Craniectomia no mesmo dia.</dd>
+</dl>
+</section>
+
+<section class="card" style="flex: 3 1 240px">
+<div class="ch">
+<h2 class="ct">Alertas</h2>
+</div>
+<div class="alert pal">
+<span class="at"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>Nível de suporte</span>
+<span class="av">Cuidados proporcionais</span>
+<span class="as">Não RCP · não escalonar · definido em 26/10</span>
+</div>
+<div class="alert">
+<span class="at">Alergia</span>
+<span class="av">Nega alergias</span>
+<span class="as">Informado pela filha</span>
+</div>
+</section>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 8 1 600px">
+<div class="ch">
+<h2 class="ct">Cuidados paliativos</h2>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+<span class="st pal">decisões registradas em 26/10</span>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Registrar</button>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center"><span class="lbl">Importar PDF:</span><button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Parecer da comissão de CP</button><button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Psicologia</button><button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Serviço social</button></div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px 28px">
+<div class="col" style="flex: 5 1 340px">
+<h3 class="sub">Discussão</h3>
+<span class="lbl">Preenchido a partir do parecer da comissão de CP e das evoluções da psicologia e do serviço social, conferidos pelo médico.</span>
+<dl class="kv">
+<dt>Comissão de CP</dt><dd>Parecer pedido em 24/10 · respondido em 25/10: elegível, acompanhamento em conjunto</dd>
+<dt>Reunião com a família</dt><dd>26/10 às 15:00 · filha e filho (responsáveis), rotina do CTI, comissão de CP e psicologia</dd>
+<dt>Entendimento</dt><dd>Família compreende a gravidade e o prognóstico neurológico reservado</dd>
+<dt>Valores do paciente</dt><dd>Segundo os filhos, não gostaria de viver dependente de aparelhos</dd>
+<dt>Diretivas antecipadas</dt><dd>Sem registro</dd>
+<dt>Psicologia</dt><dd>Acompanhando os filhos desde 25/10</dd>
+<dt>Serviço social</dt><dd>Filha é a responsável · visita estendida liberada</dd>
+<dt>Prontuário</dt><dd>Decisão registrada na evolução médica de 26/10</dd>
+</dl>
+<h3 class="sub" style="margin-top: 4px">Próximos passos</h3>
+<div style="display: flex; flex-direction: column">
+<div class="pend"><span class="st">aberta</span><span style="flex: 1">Nova reunião com a família<br><span class="lbl">29/10 · rotina e comissão de CP</span></span></div>
+<div class="pend" style="border-bottom: 0; color: #5F6F75"><span class="st ok">feita</span><span style="flex: 1; text-decoration: line-through">Liberar visita estendida<br><span class="lbl" style="text-decoration: none">Concluída 26/10</span></span></div>
+</div>
+</div>
+<div class="col" style="flex: 4 1 280px">
+<h3 class="sub">Decisões</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="chip pal">Não realizar RCP</span>
+<span class="chip pal">Não escalonar suporte</span>
+<span class="chip pal">Não iniciar aminas</span>
+<span class="chip pal">Não realizar hemodiálise</span>
+<span class="chip pal">Não escalonar antibiótico</span>
+</div>
+<dl class="kv">
+<dt>Em discussão</dt><dd>Extubação paliativa</dd>
+<dt>Mantidos</dt><dd>VM nos parâmetros atuais · dieta enteral · antibiótico atual até D7</dd>
+</dl>
+<h3 class="sub" style="margin-top: 4px">Controle de sintomas (24 h)</h3>
+<dl class="kv">
+<dt>Dor</dt><dd>Controlada · fentanil 50 mcg/h</dd>
+<dt>Desconforto respiratório</dt><dd>Leve</dd>
+<dt>Secreção</dt><dd>Moderada · aspiração 4x</dd>
+<dt>Agitação</dt><dd>RASS −1 a 0</dd>
+</dl>
+</div>
+</div>
+<span class="lbl">As decisões aparecem no alerta do topo, no mapa da unidade e na passagem de plantão. O registro oficial continua no prontuário.</span>
+</section>
+
+<div style="flex: 4 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<section class="card">
+<div class="ch">
+<h2 class="ct">Plano do dia</h2>
+<span class="lbl">Reescrito no round de 27/10</span>
+</div>
+<ul class="plan">
+<li><b>Conforto</b>Prioridade · analgesia conforme a dor · aspirar conforme necessidade</li>
+<li><b>Neuro</b>Sem TC de controle de rotina</li>
+<li><b>Respiratório</b>Manter VM sem escalonar · extubação paliativa em discussão</li>
+<li><b>Infecção</b>Ceftriaxona D3 de 7 · não escalonar</li>
+<li><b>Família</b>Visita estendida · psicologia acompanhando</li>
+</ul>
+</section>
+<section class="card">
+<div class="ch">
+<h2 class="ct">Família e destino</h2>
+</div>
+<dl class="kv">
+<dt>Última conversa</dt><dd>26/10 · reunião com a comissão de CP</dd>
+<dt>Destino</dt><dd>Em discussão com a família e a comissão</dd>
+</dl>
+</section>
+</div>
+</div>
+
+<footer style="display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 10px 2px 0; border-top: 1px solid #D3DCE0; font-size: 12px; color: #55666D">
+<span>{{hospital}} · {{unidade}} · Leito 05 · última edição às 08:20 por Bruno Lima (rotina)</span>
+<span>Documento interno com dados sensíveis. Descartar em fragmentadora.</span>
+</footer>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 1 · Neurológico'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – passagem de plantão</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:12px 14px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1D4A8C}
+.lbl{font-size:11.5px;color:#55666D;font-weight:500}
+.btn{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:40px;box-sizing:border-box}
+.btn.ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#FFFFFF}
+.btn.p{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF;font-weight:600}
+.seg{display:inline-flex;border:1px solid #C9D4D9;border-radius:6px;overflow:hidden;background:#FFFFFF}
+.seg button{font:inherit;font-size:13px;padding:7px 14px;border:0;border-right:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:38px}
+.seg button:last-child{border-right:0}
+.seg button.on{background:#1D4A8C;color:#FFFFFF;font-weight:600}
+.bd{display:grid;grid-template-columns:180px minmax(0,1.1fr) minmax(0,1fr);gap:8px 18px;padding:12px 14px;background:#FFFFFF;border:1px solid #D3DCE0;border-left:5px solid #C9D4D9;border-radius:8px;font-size:13px;line-height:1.45}
+.bd.i{border-left-color:#C0392B}
+.bd.a{border-left-color:#E3B04B}
+.bd.p{border-left-color:#8E7CC3}
+.bd.out{background:#F6F9FA;border-style:dashed;border-left-style:solid;color:#55666D}
+.bd.new{background:#F4FAF6;border-left-color:#3E8E5E}
+.who{display:flex;flex-direction:column;gap:3px}
+.who .n{font-size:12px;font-weight:700;letter-spacing:.05em;color:#1D4A8C}
+.who .nm{font-size:15px;font-weight:700}
+.who .dx{font-size:12px;color:#3E5057}
+.sx{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.03em;padding:2px 8px;border-radius:4px;background:#E3EAEC;color:#3E5057;margin-top:2px}
+.sx.i{background:#FDECEC;color:#8E1B1B;border:1px solid #E9A3A3}
+.sx.a{background:#FFF4DC;color:#6E4300;border:1px solid #E3B04B}
+.sx.p{background:#F2EFF9;color:#4B3A82;border:1px solid #BDB2DE}
+.sx.g{background:#E3F2E6;color:#1F5A2E;border:1px solid #A8D3B5}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.tg{font-size:11px;font-weight:600;padding:1px 7px;border-radius:4px;background:#EEF3F9;border:1px solid #D3DCE0;color:#2E4148}
+.tg.r{background:#FDECEC;border-color:#E9A3A3;color:#8E1B1B}
+.tg.a{background:#FFF4DC;border-color:#E3B04B;color:#6E4300}
+.tg.k{background:#2E4148;border-color:#2E4148;color:#FFFFFF}
+.tg.p{background:#F2EFF9;border-color:#BDB2DE;color:#4B3A82}
+.h{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#55666D;margin-bottom:2px}
+.pd{margin:0;padding:0 0 0 16px}
+.at{margin-top:6px;padding:6px 9px;border-radius:6px;background:#FFF9EC;border:1px solid #F0D08A;font-size:12.5px}
+.at b{color:#6E4300}
+.txt{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11.5px;line-height:1.55;white-space:pre-wrap;background:#FBFCFE;border:1px solid #D3DCE0;border-radius:6px;padding:10px 12px;margin:0;color:#1B2A30}
+.in{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #C9D4D9;border-radius:6px;min-height:42px;box-sizing:border-box;width:180px}
+@media (max-width: 900px){.bd{grid-template-columns:1fr}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Passagem de plantão</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center">
+<span style="font-size: 15px; font-weight: 600">Terça, 27/10/2026 · 19:00</span>
+<span style="font-size: 11.5px; color: #C6DDF2">Diurno para noturno · passado por Ana Costa (plantonista)</span>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copiar texto</button>
+<button class="btn" style="background: #FFFFFF; border-color: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>Imprimir</button>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1440px; width: 100%; margin: 0 auto; padding: 14px 16px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+<div class="seg" role="group" aria-label="Mostrar"><button class="{{clsTodos}}" onClick="{{verTodos}}">Todos os leitos (10)</button><button class="{{clsAt}}" onClick="{{verAt}}">Só instáveis e atenção (4)</button></div>
+<span class="lbl">Resumo, alertas e pendências vêm do round. A situação e "Atenção no plantão" são de quem passa.</span>
+</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<span class="sx i">2 instáveis</span><span class="sx a">2 atenção</span><span class="sx p">1 paliativo</span><span class="sx g">1 admissão</span><span class="sx">1 alta</span>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start">
+
+<div style="flex: 3 1 760px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+
+<sc-if value="{{todos}}" hint-placeholder-val="{{ true }}">
+<article class="bd">
+<div class="who"><span class="n">LEITO 01</span><span class="nm">Maria L.</span><span class="dx">71 anos · HIP talâmica E · D5</span><span class="sx">estável</span></div>
+<div>Sem intercorrências no plantão · VM em PSV, desmame em curso<div class="tags"><span class="tg">Leito de isolamento</span><span class="tg r">Alergia</span><span class="tg p">Reunião CP 28/10</span></div></div>
+<div><div class="h">Pendências</div><ul class="pd"><li>Reunião com a comissão de CP · 28/10</li></ul></div>
+</article>
+</sc-if>
+
+<article class="bd i">
+<div class="who"><span class="n">LEITO 02</span><span class="nm">Carlos R.</span><span class="dx">34 anos · TCE grave · D9</span><span class="sx i">instável</span></div>
+<div>Protocolo de ME aberto às 06:10 · 1º exame clínico e apneia compatíveis · DTC com fluxo residual<div class="tags"><span class="tg k">Protocolo de ME</span><span class="tg a">Sepse 26/10</span></div></div>
+<div><div class="h">Pendências</div><ul class="pd"><li>2º exame clínico (liberado desde 07:30)</li><li>EEG solicitado às 10:15</li></ul><div class="at"><b>Atenção no plantão:</b> manter PAM acima de 65 e Tax acima de 35 °C</div></div>
+</article>
+
+<sc-if value="{{todos}}" hint-placeholder-val="{{ true }}">
+<article class="bd">
+<div class="who"><span class="n">LEITO 03</span><span class="nm">Ana P.</span><span class="dx">52 anos · PO meningioma · D1</span><span class="sx">estável</span></div>
+<div>Ar ambiente · sem déficit novo</div>
+<div><div class="at"><b>Atenção no plantão:</b> TC de controle amanhã cedo</div></div>
+</article>
+</sc-if>
+
+<article class="bd a">
+<div class="who"><span class="n">LEITO 04</span><span class="nm">João S.</span><span class="dx">58 anos · HSA · D7</span><span class="sx a">atenção</span></div>
+<div>HSA Hunt-Hess 3 em janela de vasoespasmo · PAV em cefepime D2 · noradrenalina 3 ml/h, em redução<div class="tags"><span class="tg r">Alergia: dipirona</span><span class="tg a">Contato + resp.</span><span class="tg a">Sepse 25/10</span><span class="tg a">CVD D7 · rever</span></div></div>
+<div><div class="h">Pendências</div><ul class="pd"><li>Angio-TC de crânio de controle</li><li>Parecer da neurocirurgia sobre tempo de DVE</li></ul><div class="at"><b>Atenção no plantão:</b> piora neurológica ou PAS acima de 160, avisar a neurocirurgia</div></div>
+</article>
+
+<article class="bd p">
+<div class="who"><span class="n">LEITO 05</span><span class="nm">Paulo T.</span><span class="dx">67 anos · AVCi maligno · D4</span><span class="sx p">paliativo</span></div>
+<div>Cuidados proporcionais desde 26/10 · não RCP · não escalonar<div class="tags"><span class="tg p">Paliativo · não escalonar</span></div></div>
+<div><div class="h">Pendências</div><ul class="pd"><li>Nova reunião com a família · 29/10</li></ul><div class="at"><b>Atenção no plantão:</b> priorizar conforto; família com visita estendida</div></div>
+</article>
+
+<sc-if value="{{todos}}" hint-placeholder-val="{{ true }}">
+<article class="bd">
+<div class="who"><span class="n">LEITO 16</span><span class="nm">Rita F.</span><span class="dx">79 anos · PO HSDC · D2</span><span class="sx">estável</span></div>
+<div>CN · dreno subdural retirado<div class="tags"><span class="tg a">Sem atualização no round de hoje</span></div></div>
+<div><span class="lbl">Sem pendências</span></div>
+</article>
+</sc-if>
+
+<article class="bd i">
+<div class="who"><span class="n">LEITO 17</span><span class="nm">Luiz M.</span><span class="dx">45 anos · Estado de mal epiléptico · D3</span><span class="sx i">instável</span></div>
+<div>Crise às 15:40, cedeu · EEG contínuo · midazolam mantido<div class="tags"><span class="tg">VM</span><span class="tg">EEG</span></div></div>
+<div><div class="h">Pendências</div><ul class="pd"><li>Laudo do EEG das últimas 24 h</li></ul><div class="at"><b>Atenção no plantão:</b> nova crise, avisar a neurologia</div></div>
+</article>
+
+<sc-if value="{{todos}}" hint-placeholder-val="{{ true }}">
+<article class="bd out">
+<div class="who"><span class="n">LEITO 18</span><span class="nm">Sônia B.</span><span class="dx">61 anos · PO artrodese lombar</span><span class="sx">saiu hoje</span></div>
+<div>Alta para a enfermaria às 09:30 · não entra no round de 28/10</div>
+<div></div>
+</article>
+</sc-if>
+
+<article class="bd new">
+<div class="who"><span class="n">LEITO 19</span><span class="nm">Marcos A. P.</span><span class="dx">45 anos · admitido às 11:40</span><span class="sx g">admissão</span></div>
+<div>Meningoencefalite, provável herpética · ceftriaxona e aciclovir D2 · veio da clínica médica<div class="tags"><span class="tg">Entra no round de 28/10</span></div></div>
+<div><div class="h">Pendências</div><ul class="pd"><li>Completar o preenchimento do leito</li></ul><div class="at"><b>Atenção no plantão:</b> crise em 26/10, em levetiracetam</div></div>
+</article>
+
+<sc-if value="{{todos}}" hint-placeholder-val="{{ true }}">
+<article class="bd">
+<div class="who"><span class="n">LEITO 20</span><span class="nm">Pedro A.</span><span class="dx">38 anos · Guillain-Barré · D12</span><span class="sx">estável</span></div>
+<div>TQT + VM · imunoglobulina concluída<div class="tags"><span class="tg">Leito de isolamento</span><span class="tg a">Contato</span></div></div>
+<div><div class="h">Pendências</div><ul class="pd"><li>Desmame com a fisioterapia</li></ul></div>
+</article>
+</sc-if>
+
+<div class="card" style="flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Quem recebe confirma a passagem</span><span class="lbl">Fica registrado quem passou, quem recebeu e a hora.</span></div>
+<div style="display: flex; align-items: center; gap: 8px"><label for="pp-crm" class="lbl">CRM</label><input id="pp-crm" class="in" placeholder="ex.: 529876543"><button class="btn p">Confirmar recebimento</button></div>
+</div>
+
+</div>
+
+<aside class="card" style="flex: 2 1 380px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><h2 class="ct">Texto para copiar</h2><span class="lbl">um item por linha, sem símbolos</span></div>
+<pre class="txt">PASSAGEM DE PLANTÃO - CTI 1 POSTO 1 - 27/10/2026 19:00
+Passado por: Ana Costa (plantonista)
+
+LEITO 02 - CARLOS R. - 34 anos - D9
+Situação: instável
+TCE grave
+Protocolo de ME aberto às 06:10
+Pendências:
+Segundo exame clínico (liberado desde 07:30)
+EEG solicitado às 10:15
+Atenção: manter PAM acima de 65 e Tax acima de 35
+
+LEITO 04 - JOÃO S. - 58 anos - D7
+Situação: atenção
+HSA Hunt-Hess 3, janela de vasoespasmo
+PAV em cefepime - D2 (D0 25/10)
+Noradrenalina 3 ml/h (0,14 mcg/kg/min), em redução
+Alertas:
+Alergia a dipirona
+Isolamento de contato e respiratório
+CVD D7 (D0 20/10 - CC) - rever
+Pendências:
+Angio-TC de crânio de controle
+Parecer da neurocirurgia sobre tempo de DVE
+Atenção: piora neurológica ou PAS acima de 160, avisar a neurocirurgia
+
+LEITO 19 - ADMISSÃO 11:40 - MARCOS A. P. - 45 anos
+Meningoencefalite, provável herpética
+D2 (D0 25/10) ceftriaxona
+D2 (D0 25/10) aciclovir
+Atenção: crise em 26/10, em levetiracetam</pre>
+<span class="lbl">Continua com os demais leitos, na ordem escolhida (todos ou só instáveis e atenção). Mesmo formato da evolução padrão, para colar sem virar "?".</span>
+</aside>
+
+</div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":1720}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { todos: true };
+  }
+  renderVals() {
+    const t = this.state.todos;
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 1 · Neurológico',
+      todos: t,
+      clsTodos: t ? 'on' : '',
+      clsAt: t ? '' : 'on',
+      verTodos: () => this.setState({ todos: true }),
+      verAt: () => this.setState({ todos: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

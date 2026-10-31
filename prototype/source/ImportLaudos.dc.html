@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – laudos e pareceres</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:14px 16px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1D4A8C}
+.lbl{font-size:12px;color:#55666D;font-weight:500}
+.doc{font-size:11px;line-height:1.5;color:#2E4148;background:#FBFCFE;border:1px solid #E3E9EC;border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.doc .t{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-align:center;color:#1B2A30}
+.dg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px 10px}
+.dg div{display:flex;flex-direction:column;min-width:0}
+.dg span{font-size:9.5px;color:#7A8A90;text-transform:uppercase;letter-spacing:.03em}
+.dg b{font-weight:600;font-size:11px;overflow-wrap:anywhere}
+.doc p{margin:0}
+.dim{color:#8A9AA0}
+mark{background:#E3EEF8;color:#01234F;border-radius:3px;padding:0 2px;font-weight:600}
+.arrow{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3E5057}
+.res{border:1px solid #C3D6EA;background:#F2F6FB;border-radius:8px;padding:9px 11px;display:flex;flex-direction:column;gap:4px;font-size:13px;line-height:1.4}
+.res .k{font-size:11px;color:#55666D;font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+.rule{font-size:12.5px;color:#3E5057;line-height:1.45;border-top:1px solid #EFF3F5;padding-top:8px}
+.col{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:12px}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Terça, 27/10/2026</span>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1360px; width: 100%; margin: 0 auto; padding: 20px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; flex-direction: column; gap: 3px">
+<h1 style="margin: 0; font-size: 21px; font-weight: 700; color: #01234F">Laudos e pareceres · onde cada um entra no round</h1>
+<span class="lbl" style="font-size: 13px">O mesmo botão "Importar PDF" serve para todos. O app reconhece o tipo pelo título do documento e mostra o resultado para você conferir antes de salvar.</span>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start">
+
+<div class="col">
+<section class="card">
+<div class="ch"><h2 class="ct">Laudo de imagem</h2><span class="lbl">TC, RX, US, Doppler · leito 04</span></div>
+<div class="doc">
+<div class="dg">
+<div><span>Paciente</span><b>JOÃO DA SILVA</b></div>
+<div><span>Data do exame</span><b><mark>25/10/2026</mark></b></div>
+<div><span>Registro</span><b>300051234</b></div>
+<div><span>Médico solicitante</span><b>ANA COSTA</b></div>
+</div>
+<div class="t"><mark>TOMOGRAFIA COMPUTADORIZADA DE CRÂNIO</mark></div>
+<p class="dim">Estudo sem contraste venoso.</p>
+<p>Relatório:</p>
+<p><mark>Sem sinais de novo sangramento.</mark> Hemorragia subaracnóidea em reabsorção. <mark>Cateter de DVE frontal direito bem posicionado.</mark></p>
+<p><mark>Ventrículos de dimensões normais, sem hidrocefalia.</mark></p>
+<p class="dim">Laudado por: (radiologista) · CRM</p>
+</div>
+<div class="arrow">Entra em Imagens e outros exames</div>
+<div class="res"><span class="k">25/10 · TC de crânio</span><span>Sem novo sangramento, sem hidrocefalia, DVE bem posicionada</span></div>
+<div class="rule">Se o laudo tem "Impressão diagnóstica", o app usa ela como resumo. Se não tem, sugere as frases com achados e você ajusta.</div>
+</section>
+
+<section class="card">
+<div class="ch"><h2 class="ct">Ecocardiograma</h2><span class="lbl">laudo de exames de imagem · leito 04</span></div>
+<div class="doc">
+<div class="t"><mark>ECOCARDIOGRAMA TRANSTORÁCICO ADULTO</mark> · <mark>21/10/2026</mark></div>
+<p>Ao 30 mm · AE 35 mm · VEd 47 mm · VEs 30 mm · Septo 9 mm · PP 9 mm · <mark>FE (Teich) 63%</mark></p>
+<p><mark>Função sistólica global do VE preservada.</mark> VD normocontrátil. Disfunção diastólica tipo déficit de relaxamento. <mark>Pericárdio sem alterações.</mark></p>
+</div>
+<div class="arrow">Entra em Imagens e outros exames</div>
+<div class="res"><span class="k">21/10 · Eco TT</span><span>FE 63% · função sistólica do VE preservada · disfunção diastólica · sem derrame</span></div>
+</section>
+</div>
+
+<div class="col">
+<section class="card">
+<div class="ch"><h2 class="ct">Parecer</h2><span class="lbl">interconsulta · leito 05</span></div>
+<div class="doc">
+<div class="t">PARECER</div>
+<div class="dg">
+<div><span>Especialidade solicitante</span><b>CTI 1 · ROTINA</b></div>
+<div><span>Data da solicitação</span><b><mark>24/10/2026 10:15</mark></b></div>
+<div style="grid-column: span 2"><span>Motivo</span><b>AVCi maligno, prognóstico neurológico reservado. Solicito avaliação da comissão de cuidados paliativos.</b></div>
+<div><span>Especialidade resposta</span><b><mark>CUIDADOS PALIATIVOS</mark></b></div>
+<div><span>Data de resposta</span><b><mark>25/10/2026 14:40</mark></b></div>
+</div>
+<p><mark>Paciente elegível para acompanhamento pela especialidade.</mark> Acompanharemos em conjunto com a equipe assistente. <mark>Solicito agendamento de conferência familiar pelo Serviço Social.</mark></p>
+</div>
+<div class="arrow">Entra em Cuidados paliativos</div>
+<div class="res"><span class="k">Comissão de CP</span><span>Pedido em 24/10 · respondido em 25/10 · elegível, acompanhamento em conjunto</span></div>
+<div class="res"><span class="k">Nova pendência</span><span>Conferência familiar, agendar pelo Serviço Social</span></div>
+<div class="rule">A especialidade da resposta decide para onde vai. Parecer da <strong>neurocirurgia</strong> preenche o campo Neurocirurgia do Neurológico (em acompanhamento ou conduta conservadora, com a data da resposta). Parecer pedido e ainda sem resposta vira a pendência "aguardando parecer". Os demais entram numa linha de pareceres do leito.</div>
+</section>
+
+<section class="card">
+<div class="ch"><h2 class="ct">O que o app não guarda</h2></div>
+<div class="rule" style="border-top: 0; padding-top: 0">CPF, CNS, nome da mãe e assinaturas dos profissionais são ignorados na leitura. O PDF é lido no próprio computador e apagado da pasta de entrada depois que os dados vão para o round.</div>
+</section>
+</div>
+
+</div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":1160}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 1 · Neurológico'
+    };
+  }
+}
+</script>
+</body>
+</html>

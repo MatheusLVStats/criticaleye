@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – importar evolução anterior</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:14px 16px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1D4A8C}
+.sub{margin:6px 0 0;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3E5057;display:flex;align-items:center;gap:8px}
+.sub .to{font-weight:500;letter-spacing:0;text-transform:none;color:#55666D}
+.lbl{font-size:12px;color:#55666D;font-weight:500}
+.btn{font:inherit;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 16px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:44px;box-sizing:border-box}
+.btn.p{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF;font-weight:600}
+.lnk{font:inherit;font-size:12px;display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:5px;border:1px solid #D3DCE0;background:#F6F9FA;color:#01234F;cursor:pointer;min-height:32px}
+.doc{font-size:11.5px;line-height:1.5;color:#2E4148;background:#FBFCFE;border:1px solid #E3E9EC;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.doc .t{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-align:center;color:#1B2A30}
+.dg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px 12px}
+.dg div{display:flex;flex-direction:column;min-width:0}
+.dg span{font-size:10px;color:#7A8A90;text-transform:uppercase;letter-spacing:.03em}
+.dg b{font-weight:600;font-size:11.5px;overflow-wrap:anywhere}
+.fl{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:10.5px;font-weight:600;color:#3E5057;border-top:1px solid #E3E9EC;border-bottom:1px solid #E3E9EC;padding:4px 0}
+.dh{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#3E5057}
+.doc p{margin:0}
+.dim{color:#8A9AA0}
+.msk{color:#9AA8AD;letter-spacing:.1em}
+mark{background:#E3EEF8;color:#01234F;border-radius:3px;padding:0 2px;font-weight:600}
+.it{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid #EFF3F5;font-size:13px;line-height:1.4}
+.it .k{flex:0 0 132px;font-size:11.5px;color:#55666D;font-weight:500;padding-top:1px}
+.it .v{flex:1 1 auto;min-width:0}
+.x{font:inherit;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid transparent;background:transparent;color:#55666D;cursor:pointer}
+.x:hover{border-color:#D3DCE0;background:#F6F9FA}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.03em;padding:3px 8px;border-radius:4px;background:#E3EEF8;border:1px solid #C3D6EA;color:#01234F}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Quarta, 28/10/2026</span>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1300px; width: 100%; margin: 0 auto; padding: 20px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 3px">
+<h1 style="margin: 0; font-size: 21px; font-weight: 700; color: #01234F">Importar evolução anterior · Leito 19</h1>
+<span class="lbl" style="font-size: 13px">Admissão vinda de outro setor. O app leu a evolução do sistema do hospital e separou o que reconheceu. Tudo entra no round, menos o que você descartar.</span>
+</div>
+<span class="tag">Tipo reconhecido: evolução médica</span>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start">
+
+<section class="card" style="flex: 5 1 440px">
+<div class="ch"><h2 class="ct">Arquivo</h2><span class="lbl">evolucao_medica.pdf · 2 páginas</span></div>
+<div class="doc">
+<div class="t">EVOLUÇÃO MÉDICA</div>
+<div class="dg">
+<div style="grid-column: span 2"><span>Nome</span><b><mark>MARCOS ANTÔNIO PEREIRA</mark></b></div>
+<div><span>Nascimento</span><b><mark>03/05/1981</mark></b></div>
+<div><span>Sexo</span><b><mark>Masculino</mark></b></div>
+<div><span>Prontuário</span><b><mark>204517</mark></b></div>
+<div><span>CNS</span><b class="msk">•••••••••</b></div>
+<div><span>Data internação</span><b><mark>25/10/2026</mark></b></div>
+<div><span>Plantão</span><b>Noturno</b></div>
+<div><span>Data evolução</span><b>27/10/2026 05:40</b></div>
+<div style="grid-column: span 2"><span>Seção · leito</span><b><mark>ENFERMARIA CLÍNICA MÉDICA</mark> · 512</b></div>
+</div>
+<div class="fl"><span>AVC: NÃO</span><span>SEPSE: NÃO</span><span>IAM COM SUPRA: NÃO</span><span>TOMOGRAFIA: SIM</span><span>TROMBOLÍTICO: NÃO</span></div>
+<p># INTERNAÇÃO EM 25/10/2026 · 45 ANOS</p>
+<p># MIH: <mark>MENINGOENCEFALITE, PROVÁVEL ETIOLOGIA HERPÉTICA</mark></p>
+<p># <mark>CRISE EPILÉPTICA FOCAL COM GENERALIZAÇÃO (26/10)</mark></p>
+<p># HPP: <mark>DM2</mark>. NEGA TABAGISMO.</p>
+<p># ALERGIA: <mark>NEGA ALERGIAS MEDICAMENTOSAS E ALIMENTARES</mark></p>
+<p class="dh">Exames complementares</p>
+<p>--&gt; <mark>TC DE CRÂNIO (25/10): SEM ALTERAÇÕES AGUDAS</mark></p>
+<p>--&gt; <mark>LÍQUOR (25/10): 180 CÉLULAS (85% LINFÓCITOS), PROTEÍNA 98, GLICOSE 62</mark></p>
+<p>--&gt; LABORATÓRIOS: <mark>26/10: HB 12,1 / LEUC 11.300 / PQ 245 MIL / CR 0,9 / NA 138 / K 4,1</mark></p>
+<p class="dh">ATB atual</p>
+<p>- <mark>CEFTRIAXONA (25/10 - ATUAL) &gt; MENINGOENCEFALITE</mark></p>
+<p>- <mark>ACICLOVIR (25/10 - ATUAL) &gt; MENINGOENCEFALITE</mark></p>
+<p class="dh">Dispositivos</p>
+<p>--&gt; <mark>AVP MSD 25/10</mark> · --&gt; <mark>CVD 26/10</mark></p>
+<p class="dim"># AO EXAME: REBAIXAMENTO DO NÍVEL DE CONSCIÊNCIA, ECG 9, SEM DÉFICIT FOCAL…</p>
+<p class="dim"># CONDUTA: 1) SOLICITADA VAGA EM CTI 2) <mark>LEVETIRACETAM 500 MG 12/12H DESDE 26/10</mark> 3) …</p>
+<div class="fl"><span>INVASIVA: NÃO</span><span>NÃO INVASIVA: NÃO</span><span><mark>NÉVOA/CATETER O2: SIM</mark></span><span>AR AMBIENTE: NÃO</span></div>
+<p>HELENA PRADO (CRM/RJ 5299001)</p>
+</div>
+<span class="lbl">Em azul, o que o app reconheceu. CNS e CPF são ignorados. O arquivo é apagado da pasta de entrada assim que você levar os dados para o round.</span>
+</section>
+
+<section class="card" style="flex: 6 1 480px">
+<div class="ch"><h2 class="ct">O que o app encontrou</h2><span class="lbl">confira e descarte o que não servir</span></div>
+
+<h3 class="sub">Identificação</h3>
+<div class="it"><span class="k">Nome</span><span class="v">MARCOS ANTÔNIO PEREIRA</span><button class="x" aria-label="Descartar nome"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Nascimento · sexo</span><span class="v">03/05/1981 · 45 anos · masculino</span><button class="x" aria-label="Descartar nascimento e sexo"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Prontuário · internação</span><span class="v">204517 · 25/10/2026 · origem: enfermaria de clínica médica</span><button class="x" aria-label="Descartar prontuário e internação"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+
+<h3 class="sub">Diagnósticos e alertas</h3>
+<div class="it"><span class="k">Diagnósticos</span><span class="v">Meningoencefalite, provável herpética · 25/10<br>Crise epiléptica · 26/10</span><button class="x" aria-label="Descartar diagnósticos"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Comorbidades</span><span class="v">DM2</span><button class="x" aria-label="Descartar comorbidades"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Alergias</span><span class="v">Nega alergias <span class="lbl">· confirme com paciente ou família</span></span><button class="x" aria-label="Descartar alergias"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+
+<h3 class="sub">Antimicrobianos e medicações</h3>
+<div class="it"><span class="k">Ceftriaxona</span><span class="v">D3 (D0 25/10) · foco: meningoencefalite</span><button class="x" aria-label="Descartar ceftriaxona"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Aciclovir</span><span class="v">D3 (D0 25/10) · foco: meningoencefalite</span><button class="x" aria-label="Descartar aciclovir"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Anticonvulsivante</span><span class="v">Levetiracetam · desde 26/10 <span class="lbl">· vai para o Neurológico</span></span><button class="x" aria-label="Descartar levetiracetam"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+
+<h3 class="sub">Dispositivos e suporte</h3>
+<div class="it"><span class="k">Dispositivos</span><span class="v">D3 (D0 25/10 - enfermaria) AVP MSD<br>D2 (D0 26/10 - enfermaria) CVD</span><button class="x" aria-label="Descartar dispositivos"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Suporte</span><span class="v">CN <span class="lbl">· a vazão é digitada no leito</span></span><button class="x" aria-label="Descartar suporte"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+
+<h3 class="sub">Exames <span class="to">→ Imagens e Laboratório</span></h3>
+<div class="it"><span class="k">Imagem e líquor</span><span class="v">TC de crânio 25/10 · sem alterações agudas<br>Líquor 25/10 · 180 células (85% linfócitos), proteína 98, glicose 62</span><button class="x" aria-label="Descartar exames"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Laboratório 26/10</span><span class="v">Hb 12,1 · leuc 11.300 · plaq 245 mil · Cr 0,9 · Na 138 · K 4,1 <span class="lbl">· entra como valor anterior</span></span><button class="x" aria-label="Descartar laboratório"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding-top: 4px">
+<span class="lbl">Exame físico e conduta ficam no PDF. Dá para copiar o restante para "História".</span>
+<button class="lnk">Copiar para História</button>
+</div>
+</section>
+
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<span class="lbl">Antimicrobianos conferidos com a lista da CCIH. Datas de início tiradas do texto, editáveis no round.</span>
+<div style="display: flex; gap: 8px">
+<button class="btn">Cancelar</button>
+<button class="btn p">Levar para o round do Leito 19</button>
+</div>
+</div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":1320}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 1 · Neurológico'
+    };
+  }
+}
+</script>
+</body>
+</html>

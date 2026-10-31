@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – protocolo de morte encefálica</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:14px 16px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1D4A8C}
+.lbl{font-size:12px;color:#55666D;font-weight:500}
+.add{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px dashed #8FA5AD;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:32px}
+.st{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:#FFE8B8;color:#6E4300;white-space:nowrap}
+.st.ok{background:#E3EAEC;color:#3E5057}
+.st.b{background:#E3EEF8;color:#01234F}
+.rs{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 8px;border-radius:999px;border:1px solid #C3D6EA;background:#F2F6FB;color:#01234F;margin-left:4px;white-space:nowrap}
+.rs.w{border-color:#E3B04B;background:#FFF4DC;color:#6E4300}
+.stp{display:grid;grid-template-columns:100px 200px minmax(0,1fr);gap:8px 14px;align-items:baseline;padding:10px 0;border-bottom:1px solid #EFF3F5;font-size:13px;line-height:1.5}
+.stp:last-child{border-bottom:0}
+.stp .n{font-weight:600;color:#01234F}
+.seg{display:inline-flex;border:1px solid #C9D4D9;border-radius:6px;overflow:hidden;background:#FFFFFF}
+.seg button{font:inherit;font-size:13px;padding:7px 14px;border:0;border-right:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:38px}
+.seg button:last-child{border-right:0}
+.seg button.on{background:#1D4A8C;color:#FFFFFF;font-weight:600}
+.f{display:flex;flex-direction:column;gap:3px;min-width:0}
+.f label{font-size:11px;color:#55666D;font-weight:500}
+.in{font:inherit;font-size:13.5px;padding:6px 8px;border:1px solid #C9D4D9;border-radius:6px;min-height:38px;box-sizing:border-box;background:#FFFFFF;color:#1B2A30;width:100%}
+.in:focus{outline:2px solid #1D4A8C;outline-offset:0;border-color:#1D4A8C}
+@media (max-width: 760px){.stp{grid-template-columns:1fr}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Leito 02 · Terça, 27/10/2026</span>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1000px; width: 100%; margin: 0 auto; padding: 20px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 18px; font-weight: 700">LEITO 02 · CARLOS R. · 34 anos · TCE grave</span>
+<span class="lbl" style="font-size: 13px">Este quadro só aparece quando o protocolo é aberto, em Neurológico → "+ Protocolo de morte encefálica".</span>
+</div>
+
+<section class="card">
+<div class="ch">
+<h2 class="ct">Protocolo de morte encefálica</h2>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><span class="st">{{status}}</span><span class="lbl">aberto em 27/10 às 06:10</span></div>
+</div>
+
+<div class="stp" style="padding-top: 0"><span class="st ok">desligada</span><span class="n">Sedação</span><span>25/10 às 08:00 · midazolam e fentanil <span class="rs">46 h até a abertura do protocolo</span></span></div>
+
+<div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
+<span class="n" style="font-size: 13px; font-weight: 600; color: #01234F">Elegibilidade</span>
+<div class="seg" role="group" aria-label="Elegibilidade"><button class="{{clsSim}}" aria-pressed="{{eleg}}" onClick="{{setSim}}">Elegível</button><button class="{{clsNao}}" aria-pressed="{{naoEleg}}" onClick="{{setNao}}">Não elegível</button></div>
+</div>
+
+<sc-if value="{{naoEleg}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 10px 12px">
+<div class="f"><label for="me-mot">Motivo</label><select id="me-mot" class="in"><option></option><option>Causa da lesão não esclarecida</option><option>Sedação ou bloqueio neuromuscular recente</option><option>Tax ≤ 35 °C</option><option>Instabilidade hemodinâmica</option><option>SatO₂ ≤ 94%</option><option>Distúrbio metabólico grave</option><option>Tempo mínimo de observação não atingido</option><option>Outro</option></select></div>
+<div class="f"><label for="me-det">Detalhe</label><input id="me-det" class="in"></div>
+</div>
+<span class="lbl">O motivo fica no round e na passagem de plantão até o protocolo ser reaberto ou encerrado.</span>
+</sc-if>
+
+<sc-if value="{{eleg}}" hint-placeholder-val="{{ true }}">
+<div>
+<div class="stp"><span class="st ok">colhidos</span><span class="n">Exames laboratoriais</span><span>27/10 às 05:30 · resultados conferidos</span></div>
+<div class="stp"><span class="st ok">feito</span><span class="n">1º exame clínico</span><span>27/10 às 06:30 · médico 1 (intensivista) <span class="rs">compatível</span></span></div>
+<div class="stp"><span class="st ok">feito</span><span class="n">Teste de apneia</span><span>27/10 às 07:05 · sem movimentos respiratórios, PaCO₂ final 62 mmHg <span class="rs">compatível</span></span></div>
+<div class="stp"><span class="st">pendente</span><span class="n">2º exame clínico</span><span>Outro médico · liberado a partir de 07:30 (1 h após o 1º exame)</span></div>
+<div class="stp"><span class="st ok">feito</span><span class="n">Método gráfico</span><span>Doppler transcraniano · 27/10 às 09:40 <span class="rs w">fluxo residual</span></span></div>
+<div class="stp"><span class="st b">aguardando</span><span class="n">2º método gráfico</span><span>EEG · solicitado em 27/10 às 10:15</span></div>
+</div>
+<div><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Outro método gráfico</button></div>
+<span class="lbl">Resultados possíveis: compatível ou não compatível (no teste de apneia, quando houve movimento respiratório; no método gráfico, quando houve fluxo ou atividade residual).</span>
+</sc-if>
+
+<span class="lbl" style="border-top: 1px solid #EFF3F5; padding-top: 8px">Comunicação à família, notificações e termo de declaração de ME ficam com a CIHDOTT. Etapas conforme a Res. CFM 2.173/2017.</span>
+</section>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { eleg: true };
+  }
+  renderVals() {
+    const e = this.state.eleg;
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 1 · Neurológico',
+      eleg: e,
+      naoEleg: !e,
+      clsSim: e ? 'on' : '',
+      clsNao: e ? '' : 'on',
+      status: e ? 'em andamento' : 'não elegível',
+      setSim: () => this.setState({ eleg: true }),
+      setNao: () => this.setState({ eleg: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

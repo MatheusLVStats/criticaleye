@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – Leito 04 · visualização resumida</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:12px 14px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1D4A8C}
+.lbl{font-size:11.5px;color:#55666D;font-weight:500}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:5px 14px;margin:0;align-items:baseline}
+.kv dt{font-size:11px;color:#55666D;font-weight:500}
+.kv dd{margin:0;font-size:13px;line-height:1.4}
+.dp{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:#E3EEF8;color:#01234F;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dp.w{background:#FFE8B8;color:#6E4300}
+.btn{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:40px;box-sizing:border-box}
+.btn.ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#FFFFFF}
+.add{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px dashed #8FA5AD;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:32px}
+.bed{font:inherit;display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:108px;min-height:48px;padding:6px 10px;border-radius:6px;border:1px solid #D3DCE0;background:#FFFFFF;color:#1B2A30;cursor:pointer;text-align:left;flex:0 0 auto}
+.bed .n{font-weight:700;font-size:13px;display:flex;align-items:center;gap:5px}
+.bed .s{font-size:11px;color:#55666D}
+.bed.on{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF}
+.bed.on .s{color:#DAE8F6}
+.bed.lock{border-color:#E3B04B;background:#FFF9EC}
+.bed.empty{border-style:dashed;background:#F6F9FA}
+.ac{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:5px;border:1px solid #C3D6EA;background:#F2F6FB;color:#01234F}
+.ac.r{background:#FDECEC;border-color:#E9A3A3;color:#8E1B1B}
+.ac.a{background:#FFF4DC;border-color:#E3B04B;color:#6E4300}
+.dv{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:4px 10px;border-radius:999px;background:#EEF3F9;border:1px solid #D3DCE0}
+.dv b{font-weight:600}
+.dv.w{background:#FFF4DC;border-color:#E3B04B;color:#6E4300}
+.ln{display:flex;align-items:baseline;gap:10px;font-size:13px;line-height:1.4;padding:5px 0;border-bottom:1px solid #EFF3F5}
+.ln:last-child{border-bottom:0}
+.st{flex:0 0 auto;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;background:#FFE8B8;color:#6E4300;white-space:nowrap}
+.st.ok{background:#E3EAEC;color:#3E5057}
+.st.b{background:#E3EEF8;color:#01234F}
+.plan{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.4}
+.plan b{display:inline-block;min-width:92px;color:#01234F;font-weight:600}
+.seg{display:inline-flex;border:1px solid #C9D4D9;border-radius:6px;overflow:hidden;background:#FFFFFF}
+.seg button{font:inherit;font-size:12.5px;padding:6px 14px;border:0;border-right:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:36px}
+.seg button:last-child{border-right:0}
+.seg button.on{background:#1D4A8C;color:#FFFFFF;font-weight:600}
+.acc{display:flex;flex-direction:column;border:1px solid #D3DCE0;border-radius:8px;background:#FFFFFF;overflow:hidden}
+.ab{font:inherit;display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:10px 14px;border:0;border-bottom:1px solid #EFF3F5;background:#FFFFFF;color:#1B2A30;cursor:pointer;min-height:48px;box-sizing:border-box}
+.ab .t{flex:0 0 230px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#1D4A8C}
+.ab .r{flex:1 1 auto;min-width:0;font-size:13px;color:#3E5057;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ab:last-child{border-bottom:0}
+.ap{padding:6px 14px 14px 258px;border-bottom:1px solid #EFF3F5;background:#FBFCFE}
+@media (max-width: 760px){.ab .t{flex-basis:140px}.ap{padding-left:14px}}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Round do dia</span>
+</div>
+</div>
+<nav aria-label="Navegação entre dias" style="display: flex; align-items: center; gap: 8px">
+<button class="btn ghost" aria-label="Round do dia anterior (26/10)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+<div style="display: flex; flex-direction: column; align-items: center; min-width: 170px">
+<span style="font-size: 15px; font-weight: 600">Terça, 27/10/2026</span>
+<span style="font-size: 11.5px; color: #C6DDF2">Salvo às 08:12</span>
+</div>
+<button class="btn ghost" aria-label="Próximo dia" disabled style="opacity: .45"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar PDF</button>
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copiar evolução</button>
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Passagem de plantão</button>
+<button class="btn" style="background: #FFFFFF; border-color: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>Imprimir</button>
+</div>
+</div>
+</header>
+
+<div style="background: #FFFFFF; border-bottom: 1px solid #D3DCE0">
+<nav aria-label="Leitos" style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 8px; overflow-x: auto">
+<button class="bed"><span class="n">01</span><span class="s">Maria L. · HIP</span></button>
+<button class="bed"><span class="n">02</span><span class="s">Carlos R. · TCE grave</span></button>
+<button class="bed"><span class="n">03</span><span class="s">Ana P. · PO tumor</span></button>
+<button class="bed on" aria-current="true"><span class="n">04</span><span class="s">João S. · HSA</span></button>
+<button class="bed"><span class="n">05</span><span class="s">Paulo T. · AVCi</span></button>
+<button class="bed"><span class="n">16</span><span class="s">Rita F. · HSDC</span></button>
+<button class="bed lock"><span class="n">17</span><span class="s" style="color: #6E4300">Rotina editando</span></button>
+<button class="bed"><span class="n">18</span><span class="s">Sônia B. · alta hoje</span></button>
+<button class="bed empty"><span class="n">19</span><span class="s">Vago · adm. entra 28/10</span></button>
+<button class="bed"><span class="n">20</span><span class="s">Pedro A. · Guillain-Barré</span></button>
+</nav>
+</div>
+
+<main style="max-width: 1440px; width: 100%; margin: 0 auto; padding: 12px 16px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap">
+<span class="lbl">Visualização</span>
+<div class="seg" role="group" aria-label="Visualização"><button class="on" aria-pressed="true">Resumida</button><button aria-pressed="false">Completa</button></div>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 5 1 380px">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="flex: 0 0 auto; background: #1D4A8C; color: #FFFFFF; border-radius: 8px; padding: 6px 12px; text-align: center">
+<div style="font-size: 10.5px; letter-spacing: .08em; color: #D3E4F5">LEITO</div>
+<div style="font-size: 26px; font-weight: 700; line-height: 1">04</div>
+</div>
+<div style="display: flex; flex-direction: column; min-width: 0; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">JOÃO DA SILVA</span>
+<span style="font-size: 12.5px; color: #55666D">58 anos · Pront. 123456 · 72 kg · Neurocirurgia</span>
+</div>
+<span class="dp" style="margin-left: auto">D7 no CTI</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="ac r">Alergia: dipirona</span>
+<span class="ac a">Contato + respiratório</span>
+<span class="ac">Suporte pleno</span>
+</div>
+</section>
+
+<section class="card" style="flex: 7 1 460px">
+<div class="ch"><h2 class="ct">Diagnósticos</h2></div>
+<ol style="margin: 0; padding: 0 0 0 18px; display: flex; flex-direction: column; gap: 5px; font-size: 13.5px; line-height: 1.35">
+<li><strong>HSA aneurismática</strong> · AComA · ictus 20/10 <span class="dp">D7 pós-ictus</span></li>
+<li>PO embolização de aneurisma · 21/10 <span class="dp">PO D6</span></li>
+<li>PO DVE frontal D · 20/10 <span class="dp">PO D7</span></li>
+<li>Pneumonia associada à ventilação · 25/10</li>
+</ol>
+<span style="font-size: 12.5px; color: #3E5057"><strong style="font-weight: 600">Uso contínuo:</strong> losartana (suspensa na admissão) · sinvastatina (mantida)</span>
+</section>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 5 1 380px">
+<div class="ch"><h2 class="ct">Dispositivos</h2><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Dispositivo</button></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<span class="dv"><b>TOT</b> D7</span>
+<span class="dv"><b>CVC</b> jugular D · D7</span>
+<span class="dv"><b>PAI</b> radial E · D6</span>
+<span class="dv"><b>DVE</b> D7</span>
+<span class="dv w"><b>CVD</b> D7 · rever</span>
+<span class="dv"><b>SNE</b> D6</span>
+<span class="dv"><b>AVP</b> D1</span>
+</div>
+</section>
+
+<section class="card" style="flex: 7 1 460px">
+<div class="ch"><h2 class="ct">Antibióticos e culturas</h2><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Adicionar</button></div>
+<div>
+<div class="ln"><span class="dp">D2 de 7</span><span><strong>Cefepime</strong> 2 g 8/8h · desde 25/10</span></div>
+<div class="ln"><span class="st">positiva</span><span>Secreção traqueal 25/10 · <em>Klebsiella pneumoniae</em>, sensível a cefepime</span></div>
+<div class="ln"><span class="st b">parcial</span><span>Hemoculturas 25/10 · sem crescimento em 48 h</span></div>
+<div class="ln"><span class="st b">pendente</span><span>BAAR 2ª amostra · 27/10</span></div>
+<div class="ln"><span class="st">sepse</span><span>Protocolo aberto em 25/10 · foco pulmonar · em tratamento</span></div>
+</div>
+</section>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 7 1 460px">
+<div class="ch"><h2 class="ct">Plano do dia</h2></div>
+<ul class="plan">
+<li><b>Neuro</b>PAS &lt; 160 e PPC &gt; 60 · DTC hoje · nimodipino dia 7 de 21</li>
+<li><b>Respiratório</b>Manter PCV · reavaliar TRE em 24 h</li>
+<li><b>Infecção</b>Cefepime D2 de 7 · aguardar hemoculturas e 2ª BAAR</li>
+<li><b>Metabólico</b>Manter NaCl 3% · Na alvo 140–150 · repor K</li>
+</ul>
+</section>
+<section class="card" style="flex: 5 1 380px">
+<div class="ch"><h2 class="ct">Pendências</h2><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Pendência</button></div>
+<div>
+<div class="ln"><span class="st">aberta</span><span>Angio-TC de crânio de controle · rotina</span></div>
+<div class="ln"><span class="st">aberta</span><span>Parecer da neurocirurgia sobre tempo de DVE · plantonista</span></div>
+</div>
+</section>
+</div>
+
+<section aria-labelledby="mais" style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap">
+<h2 id="mais" class="ct">Mais seções</h2>
+<span class="lbl">Fechadas por padrão, com uma linha de resumo. Um clique abre.</span>
+</div>
+<div class="acc">
+<button class="ab" onClick="{{toggleN}}" aria-expanded="{{nOpen}}"><span class="t">Neurológico</span><span class="r">ECG 8T · RASS −2 · PPC 78 · nimodipino dia 7 de 21 · janela de vasoespasmo</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<sc-if value="{{nOpen}}" hint-placeholder-val="{{ true }}">
+<div class="ap">
+<dl class="kv" style="grid-template-columns: max-content minmax(0, 1fr) max-content minmax(0, 1fr)">
+<dt>Pupilas</dt><dd>Isocóricas, 3 mm, fotorreagentes</dd>
+<dt>Déficit</dt><dd>Hemiparesia E, grau 3</dd>
+<dt>PIC</dt><dd>8–14 mmHg</dd>
+<dt>DVE</dt><dd>15 cmH₂O · 180 ml/24 h</dd>
+<dt>Alvos</dt><dd>PAS &lt; 160 · PPC &gt; 60 · Na 140–150</dd>
+<dt>Última TC</dt><dd>25/10 · sem novo sangramento</dd>
+<dt>Neurocirurgia</dt><dd>Em acompanhamento desde 20/10</dd>
+</dl>
+<div style="margin-top: 8px"><button class="add" title="Abre o quadro do protocolo neste leito"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Protocolo de morte encefálica</button></div>
+</div>
+</sc-if>
+<button class="ab"><span class="t">Hemodinâmica e infusões</span><span class="r">Noradrenalina 0,12 mcg/kg/min · fentanil · midazolam · dexmedetomidina</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button class="ab"><span class="t">Respiratório</span><span class="r">TOT + VM D7 · PCV, PEEP 8, FiO₂ 35% · P/F 263 &gt; 297</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button class="ab" onClick="{{toggleE}}" aria-expanded="{{eOpen}}"><span class="t">Últimas 24 h pela enfermagem</span><span class="r">Tax máx 37,8 °C (1 pico) · BH +640 ml · diurese 1,2 ml/kg/h · glicemia 132–178</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<sc-if value="{{eOpen}}" hint-placeholder-val="{{ false }}">
+<div class="ap">
+<dl class="kv" style="grid-template-columns: max-content minmax(0, 1fr) max-content minmax(0, 1fr)">
+<dt>PAS / PAD</dt><dd>118–152 / 60–88 mmHg</dd>
+<dt>FC</dt><dd>72–98 bpm</dd>
+<dt>Ganhos</dt><dd>2.900 &gt; 2.920 ml</dd>
+<dt>Perdas</dt><dd>2.160 &gt; 2.280 ml</dd>
+<dt>Acumulado</dt><dd>+2.850 ml desde 20/10</dd>
+<dt>Evacuação</dt><dd>26/10 · há 1 dia</dd>
+</dl>
+</div>
+</sc-if>
+<button class="ab"><span class="t">Laboratório</span><span class="r">26/10 &gt; 27/10 · Hb 9,8 &gt; 9,4 · Na 144 &gt; 147 · K 3,8 &gt; 3,4 · PCR 18,4 &gt; 12,1</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button class="ab"><span class="t">Imagens e outros exames</span><span class="r">DTC 26/10: vasoespasmo leve · Angio-TC de crânio pedida</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button class="ab"><span class="t">Profilaxias</span><span class="r">TEV mecânica · omeprazol 40 mg/dia</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button class="ab"><span class="t">Nutrição e TGI</span><span class="r">Enteral 50 ml/h · 100% da meta · sem distensão</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button class="ab"><span class="t">Pele</span><span class="r">Sem lesão por pressão · Braden 12</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+<button class="ab"><span class="t">Família e cuidados paliativos</span><span class="r">Conversa em 26/10 com a esposa · sem limitação de suporte</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+</div>
+</section>
+
+<footer style="display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 10px 2px 0; border-top: 1px solid #D3DCE0; font-size: 12px; color: #55666D">
+<span>{{hospital}} · {{unidade}} · Posto 1 · Leito 04 · última edição às 08:12 por Ana Costa (plantonista)</span>
+<span>Documento interno com dados sensíveis. Descartar em fragmentadora.</span>
+</footer>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":1560}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { nOpen: true, eOpen: false };
+  }
+  renderVals() {
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 1 · Neurológico',
+      nOpen: this.state.nOpen,
+      eOpen: this.state.eOpen,
+      toggleN: () => this.setState({ nOpen: !this.state.nOpen }),
+      toggleE: () => this.setState({ eOpen: !this.state.eOpen })
+    };
+  }
+}
+</script>
+</body>
+</html>

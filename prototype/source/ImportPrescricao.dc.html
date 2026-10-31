@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – importar prescrição</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EFEB;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:14px 16px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1B7353}
+.sub{margin:6px 0 0;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3E5057;display:flex;align-items:center;gap:8px}
+.sub .to{font-weight:500;letter-spacing:0;text-transform:none;color:#55666D}
+.lbl{font-size:12px;color:#55666D;font-weight:500}
+.btn{font:inherit;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 16px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#0E4D3A;cursor:pointer;min-height:44px;box-sizing:border-box}
+.btn.p{background:#1B7353;border-color:#1B7353;color:#FFFFFF;font-weight:600}
+.doc{font-size:11.5px;line-height:1.45;color:#2E4148;background:#FBFCFC;border:1px solid #E3E9EC;border-radius:6px;padding:12px 14px;display:flex;flex-direction:column;gap:9px}
+.doc .t{font-size:12.5px;font-weight:700;letter-spacing:.04em;text-align:center;color:#1B2A30}
+.dg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px 12px}
+.dg div{display:flex;flex-direction:column;min-width:0}
+.dg span{font-size:10px;color:#7A8A90;text-transform:uppercase;letter-spacing:.03em}
+.dg b{font-weight:600;font-size:11.5px;overflow-wrap:anywhere}
+.pt{width:100%;border-collapse:collapse;font-size:11px}
+.pt th{text-align:left;font-weight:600;color:#7A8A90;font-size:9.5px;text-transform:uppercase;letter-spacing:.03em;padding:3px 4px;border-bottom:1px solid #D3DCE0}
+.pt td{padding:4px;border-bottom:1px solid #EFF3F5;vertical-align:top}
+.pt td:first-child{font-weight:700;color:#55666D;width:14px}
+.pt td:nth-child(3),.pt td:nth-child(5),.pt td:nth-child(6){white-space:nowrap}
+.pt tr.dim td{color:#8A9AA0}
+mark{background:#E2F2EA;color:#0E4D3A;border-radius:3px;padding:0 2px;font-weight:600}
+.it{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid #EFF3F5;font-size:13px;line-height:1.4}
+.it .k{flex:0 0 138px;font-size:11.5px;color:#55666D;font-weight:500;padding-top:1px}
+.it .v{flex:1 1 auto;min-width:0}
+.x{font:inherit;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;border:1px solid transparent;background:transparent;color:#55666D;cursor:pointer}
+.x:hover{border-color:#D3DCE0;background:#F6F9FA}
+.ok{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:#E2F2EA;color:#0E4D3A;white-space:nowrap}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.03em;padding:3px 8px;border-radius:4px;background:#E2F2EA;border:1px solid #BFDCCB;color:#0E4D3A}
+.off{display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:#55666D;background:#F6F9FA;border:1px dashed #C9D4D9;border-radius:6px;padding:8px 10px;line-height:1.45}
+.ck{display:flex;align-items:center;gap:8px;min-height:32px}
+.ck input{width:18px;height:18px;margin:0}
+.d0{display:flex;align-items:center;gap:8px;margin-top:6px}
+.d0 label{font-size:11.5px;color:#55666D;font-weight:500}
+.in{font:inherit;font-size:13px;padding:5px 8px;border:1px solid #C9D4D9;border-radius:6px;min-height:34px;box-sizing:border-box;width:130px;color:#1B2A30;background:#FFFFFF}
+.in:focus{outline:2px solid #1B7353;outline-offset:0;border-color:#1B7353}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #0E4D3A; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C8E8D8">{{unidade}} · Quarta, 28/10/2026</span>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1300px; width: 100%; margin: 0 auto; padding: 20px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 3px">
+<h1 style="margin: 0; font-size: 21px; font-weight: 700; color: #0E4D3A">Importar prescrição · Leito 06</h1>
+<span class="lbl" style="font-size: 13px">O app lê a prescrição do dia e leva para o round só o que tem lugar nele. A posologia dos antibióticos fica no PDF.</span>
+</div>
+<span class="tag">Tipo reconhecido: prescrição</span>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start">
+
+<section class="card" style="flex: 6 1 520px">
+<div class="ch"><h2 class="ct">Arquivo</h2><span class="lbl">prescricao.pdf · 2 páginas</span></div>
+<div class="doc">
+<div class="t">PRESCRIÇÃO</div>
+<div class="dg">
+<div style="grid-column: span 2"><span>Nome</span><b>SEBASTIÃO FERREIRA DIAS</b></div>
+<div><span>Idade · peso</span><b>68 · <mark>78</mark></b></div>
+<div><span>Prontuário</span><b>215338</b></div>
+<div style="grid-column: span 2"><span>Enfermaria / leito</span><b>CTI 2 / LEITO 6</b></div>
+<div style="grid-column: span 2"><span>Validade</span><b><mark>27/10/2026 19:00 a 28/10/2026 18:59</mark></b></div>
+</div>
+<p style="margin: 0"><b>Alergias:</b> <mark>Paciente nega alergias</mark></p>
+<table class="pt">
+<thead><tr><th></th><th>Medicamento</th><th>Dose</th><th>Orientação</th><th>Via</th><th>Posologia</th></tr></thead>
+<tbody>
+<tr><td>A</td><td><mark>DIETA ZERO</mark></td><td></td><td>Jejum</td><td></td><td></td></tr>
+<tr><td>B</td><td><mark>NORADRENALINA 20 ML + SG5% 80 ML</mark> EM BI</td><td>20 ml</td><td></td><td>EV</td><td>Contínuo</td></tr>
+<tr><td>C</td><td><mark>FENTANILA 60 ML SEM DILUIÇÃO</mark> EM BI</td><td>60 ml</td><td></td><td>EV</td><td>Contínuo</td></tr>
+<tr><td>D</td><td><mark>PROPOFOL 1% 100 ML SEM DILUIÇÃO</mark> EM BI</td><td>100 ml</td><td></td><td>EV</td><td>Contínuo</td></tr>
+<tr><td>E</td><td><mark>PIPERACILINA + TAZOBACTAM</mark> 4 G + 0,5 G · <mark>D (2 / 7)</mark></td><td>4,5 g</td><td>Justificativa: <mark>peritonite fecal</mark></td><td>EV</td><td>6/6h</td></tr>
+<tr><td>F</td><td><mark>HIDROCORTISONA</mark> SUCCINATO 100 MG</td><td>50 mg</td><td></td><td>EV</td><td>6/6h</td></tr>
+<tr><td>G</td><td><mark>ENOXAPARINA 40 MG</mark> SERINGA PREENCHIDA</td><td>40 mg</td><td></td><td>SC</td><td>24/24h</td></tr>
+<tr><td>H</td><td><mark>OMEPRAZOL 40 MG</mark> P/ SOL. INJ.</td><td>40 mg</td><td></td><td>EV</td><td>24/24h</td></tr>
+<tr class="dim"><td>I</td><td>DIPIRONA SÓDICA 500 MG/ML</td><td>1 g</td><td></td><td>IV</td><td>6/6h</td></tr>
+<tr class="dim"><td>J</td><td>ONDANSETRONA 2 MG/ML</td><td>8 mg</td><td>Se náusea</td><td>EV</td><td>8/8h SOS</td></tr>
+<tr><td>K</td><td><mark>HGT</mark> HEMOGLICOTESTE</td><td></td><td><mark>4/4h, insulina regular conforme esquema</mark></td><td></td><td></td></tr>
+<tr class="dim"><td>L</td><td>CUIDADOS GERAIS</td><td></td><td>Cabeceira elevada 30°</td><td></td><td></td></tr>
+<tr class="dim"><td>M</td><td>SINAIS VITAIS</td><td></td><td>1/1h</td><td></td><td></td></tr>
+</tbody>
+</table>
+</div>
+<span class="lbl">Em verde, o que o app reconheceu. Em cinza, o que fica só no PDF.</span>
+</section>
+
+<section class="card" style="flex: 5 1 440px">
+<div class="ch"><h2 class="ct">O que o app encontrou</h2><span class="lbl">confira e descarte o que não servir</span></div>
+
+<h3 class="sub">Identificação <span class="to">→ Peso e alertas</span></h3>
+<div class="it"><span class="k">Peso</span><span class="v">78 kg <span class="lbl">· usado no cálculo das doses</span></span><button class="x" aria-label="Descartar peso"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Alergias</span><span class="v">Nega alergias <span class="lbl">· confirme com paciente ou família</span></span><button class="x" aria-label="Descartar alergias"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+
+<h3 class="sub">Antimicrobiano <span class="to">→ Infecção</span></h3>
+<div class="it"><span class="k">Piperacilina-tazobactam</span><span class="v">D1 (D0 27/10) · foco: peritonite fecal · previsto 7 dias<br><span class="lbl">Na prescrição: D (2 / 7). Se a 1ª dose foi feita antes da prescrição, como dose imediata ou de ataque, corrija o D0.</span><span class="d0"><label for="p-d0">D0</label><input id="p-d0" class="in" value="27/10/2026"></span></span><button class="x" aria-label="Descartar antimicrobiano"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+
+<h3 class="sub">Infusões contínuas <span class="to">→ Hemodinâmica e infusões</span></h3>
+<div class="it"><span class="k">Noradrenalina</span><span class="v">20 ml + SG5% 80 ml = 200 mcg/ml <span class="ok">padrão da unidade</span></span><button class="x" aria-label="Descartar noradrenalina"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Fentanil</span><span class="v">Sem diluição = 50 mcg/ml <span class="ok">padrão da unidade</span></span><button class="x" aria-label="Descartar fentanil"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Propofol</span><span class="v">1% sem diluição = 10 mg/ml <span class="ok">padrão da unidade</span></span><button class="x" aria-label="Descartar propofol"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Corticoide</span><span class="v">Hidrocortisona 50 mg 6/6h</span><button class="x" aria-label="Descartar corticoide"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<span class="lbl">A prescrição não traz a vazão: ela é digitada no leito, como está na bomba, e o app calcula a dose.</span>
+
+<h3 class="sub">Profilaxias, nutrição e glicemia</h3>
+<div class="it"><span class="k">TEV</span><span class="v">Enoxaparina 40 mg SC 1x/dia</span><button class="x" aria-label="Descartar profilaxia de TEV"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">LAMG</span><span class="v">Omeprazol 40 mg EV 1x/dia</span><button class="x" aria-label="Descartar profilaxia de LAMG"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Dieta</span><span class="v">Zero</span><button class="x" aria-label="Descartar dieta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="it"><span class="k">Glicemia</span><span class="v">HGT 4/4h · insulina regular conforme esquema</span><button class="x" aria-label="Descartar glicemia"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+
+<div class="off">
+<span>Fica só no PDF. Marque se quiser levar como observação:</span>
+<label class="ck"><input type="checkbox">Dipirona 1 g 6/6h</label>
+<label class="ck"><input type="checkbox">Ondansetrona 8 mg 8/8h, se náusea</label>
+<span>Cuidados gerais e sinais vitais não entram no round.</span>
+</div>
+</section>
+
+</div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<span class="lbl">Na importação seguinte, o app só mostra o que mudou. O D0 conferido fica no round: se a prescrição de outro dia contar diferente, o app só avisa.</span>
+<div style="display: flex; gap: 8px">
+<button class="btn">Cancelar</button>
+<button class="btn p">Levar para o round do Leito 06</button>
+</div>
+</div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 2 · Pós-operatório"},"$preview":{"width":1366,"height":1380}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 2 · Pós-operatório'
+    };
+  }
+}
+</script>
+</body>
+</html>

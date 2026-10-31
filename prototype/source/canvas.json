@@ -1,0 +1,189 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Abertura.dc.html": {
+      "expand": "fill",
+      "h": 1150,
+      "title": "CTI 1 · abrir o round do dia (cópia do anterior)",
+      "w": 1366,
+      "x": 4338,
+      "y": 980
+    },
+    "Branco.dc.html": {
+      "expand": "fill",
+      "h": 2540,
+      "is_interactive": true,
+      "title": "CTI 1 · leito em branco (preenchimento)",
+      "w": 1366,
+      "x": 2892,
+      "y": 0
+    },
+    "Cti2.dc.html": {
+      "expand": "fill",
+      "h": 2520,
+      "is_interactive": true,
+      "title": "CTI 2 · admissão (leito em branco)",
+      "w": 1366,
+      "x": 5784,
+      "y": 0
+    },
+    "Entrada.dc.html": {
+      "expand": "fill",
+      "h": 1040,
+      "title": "Entrada · CRM, papel e posto (ou ADM)",
+      "w": 1366,
+      "x": 4338,
+      "y": 0,
+      "is_interactive": true
+    },
+    "Enxuta.dc.html": {
+      "expand": "fill",
+      "h": 1560,
+      "is_interactive": true,
+      "title": "CTI 1 · tela do leito resumida (proposta para o piloto)",
+      "w": 1366,
+      "x": 0,
+      "y": 2800
+    },
+    "Evolucao.dc.html": {
+      "expand": "fill",
+      "h": 2520,
+      "is_interactive": true,
+      "title": "Copiar evolução (padrão, sem exame físico)",
+      "w": 1366,
+      "x": 1446,
+      "y": 2800
+    },
+    "ImportEvol.dc.html": {
+      "expand": "fill",
+      "h": 1240,
+      "title": "Importar evolução anterior (admissão de outro setor)",
+      "w": 1366,
+      "x": 2892,
+      "y": 2800
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 2700,
+      "is_interactive": true,
+      "title": "CTI 1 · tela do leito completa",
+      "w": 1366,
+      "x": 0,
+      "y": 0
+    },
+    "Mapa.dc.html": {
+      "expand": "fill",
+      "h": 1040,
+      "title": "CTI 1 · mapa do posto",
+      "w": 1366,
+      "x": 1366,
+      "y": 0
+    },
+    "Paliativos.dc.html": {
+      "expand": "fill",
+      "h": 1080,
+      "title": "CTI 1 · leito 05, cuidados paliativos (exemplo)",
+      "w": 1366,
+      "x": 1446,
+      "y": 1120
+    },
+    "ProtocoloME.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "title": "Protocolo de morte encefálica · parte do CTI (exemplo)",
+      "w": 1366,
+      "x": 4338,
+      "y": 2800
+    },
+    "ConectarPasta.dc.html": {
+      "expand": "fill",
+      "h": 820,
+      "title": "Primeira vez no perfil do Windows · conectar a pasta",
+      "w": 1366,
+      "x": 5784,
+      "y": 2800
+    },
+    "Adm.dc.html": {
+      "expand": "fill",
+      "h": 1320,
+      "title": "Entrada ADM · lançamento de exames e últimas 24 h",
+      "w": 1366,
+      "x": 0,
+      "y": 4440
+    },
+    "Passagem.dc.html": {
+      "expand": "fill",
+      "h": 1720,
+      "title": "Passagem de plantão (posto 1)",
+      "w": 1366,
+      "x": 2892,
+      "y": 4060,
+      "is_interactive": true
+    },
+    "Impressao.dc.html": {
+      "expand": "fill",
+      "h": 980,
+      "title": "Prévia de impressão (A4, preto e branco)",
+      "w": 1366,
+      "x": 4338,
+      "y": 3780
+    },
+    "ImportRelato.dc.html": {
+      "expand": "fill",
+      "h": 1080,
+      "title": "CTI 2 · importar relato operatório (exemplo)",
+      "w": 1366,
+      "x": 7230,
+      "y": 0
+    },
+    "ImportPrescricao.dc.html": {
+      "expand": "fill",
+      "h": 1220,
+      "title": "CTI 2 · importar prescrição (exemplo)",
+      "w": 1366,
+      "x": 7230,
+      "y": 1160
+    },
+    "ImportLaudos.dc.html": {
+      "expand": "fill",
+      "h": 920,
+      "title": "Laudos e pareceres · onde cada um entra no round",
+      "w": 1366,
+      "x": 7230,
+      "y": 2460
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-27T16:15:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {},
+  "order": [
+    "ConectarPasta.dc.html",
+    "Entrada.dc.html",
+    "Adm.dc.html",
+    "Enxuta.dc.html",
+    "Main.dc.html",
+    "Impressao.dc.html",
+    "Mapa.dc.html",
+    "Paliativos.dc.html",
+    "Branco.dc.html",
+    "Abertura.dc.html",
+    "Cti2.dc.html",
+    "Passagem.dc.html",
+    "Evolucao.dc.html",
+    "ImportEvol.dc.html",
+    "ImportRelato.dc.html",
+    "ImportPrescricao.dc.html",
+    "ImportLaudos.dc.html",
+    "ProtocoloME.dc.html"
+  ],
+  "pages": [],
+  "title": "CriticalEye – prévia do app"
+}

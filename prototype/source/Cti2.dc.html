@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – CTI 2 · Leito 06 · admissão</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EFEB;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+a{color:#1B7353}a:hover{color:#0E4D3A}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:12px 14px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1B7353}
+.sub{margin:0;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3E5057;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lbl{font-size:11px;color:#55666D;font-weight:500}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.col{min-width:0;display:flex;flex-direction:column;gap:8px}
+.dp{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:#E2F2EA;color:#0E4D3A;font-variant-numeric:tabular-nums;white-space:nowrap}
+.btn{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#0E4D3A;cursor:pointer;min-height:40px;box-sizing:border-box}
+.btn.p{background:#1B7353;border-color:#1B7353;color:#FFFFFF}
+.btn.ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#FFFFFF}
+.btn.sm{min-height:34px;padding:6px 12px;font-size:12.5px}
+.lnk{font:inherit;font-size:12px;display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:5px;border:1px solid #D3DCE0;background:#F6F9FA;color:#0E4D3A;cursor:pointer;min-height:32px}
+.add{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px dashed #8FA5AD;background:#FFFFFF;color:#0E4D3A;cursor:pointer;min-height:32px}
+.acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.bed{font:inherit;display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:108px;min-height:48px;padding:6px 10px;border-radius:6px;border:1px solid #D3DCE0;background:#FFFFFF;color:#1B2A30;cursor:pointer;text-align:left;flex:0 0 auto}
+.bed .n{font-weight:700;font-size:13px;display:flex;align-items:center;gap:5px}
+.bed .s{font-size:11px;color:#55666D}
+.bed.on{background:#1B7353;border-color:#1B7353;color:#FFFFFF}
+.bed.on .s{color:#DAF0E4}
+.bed.lock{border-color:#E3B04B;background:#FFF9EC}
+.bed.empty{border-style:dashed;background:#F6F9FA}
+.f{display:flex;flex-direction:column;gap:3px;min-width:0}
+.f label,.fl{font-size:11px;color:#55666D;font-weight:500}
+.in{font:inherit;font-size:13.5px;padding:6px 8px;border:1px solid #C9D4D9;border-radius:6px;min-height:36px;box-sizing:border-box;background:#FFFFFF;color:#1B2A30;width:100%}
+.in:focus{outline:2px solid #1B7353;outline-offset:0;border-color:#1B7353}
+.in::placeholder{color:#8A9AA0}
+.in.auto{background:#F1F8F4;border-color:#E3E9EC;color:#0E4D3A;font-weight:600;display:flex;align-items:center;font-variant-numeric:tabular-nums}
+textarea.in{min-height:60px;resize:vertical;line-height:1.4}
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 12px}
+.fg.s{grid-template-columns:repeat(auto-fill,minmax(112px,1fr))}
+.w2{grid-column:span 2}
+.seg{display:inline-flex;border:1px solid #C9D4D9;border-radius:6px;overflow:hidden;align-self:flex-start}
+.seg button{font:inherit;font-size:12.5px;padding:6px 12px;border:0;border-right:1px solid #C9D4D9;background:#FFFFFF;color:#0E4D3A;cursor:pointer;min-height:34px}
+.seg button:last-child{border-right:0}
+.addrow{border:1px solid #BFDCCB;background:#F1F8F4;border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.badge{flex:0 0 auto;background:#1B7353;color:#FFFFFF;border-radius:8px;padding:6px 12px;text-align:center}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;font-weight:500;color:#55666D;font-size:11px;padding:3px 6px;border-bottom:1px solid #E3E9EC;white-space:nowrap}
+.tbl td{padding:5px 6px;border-bottom:1px solid #EFF3F5;vertical-align:middle}
+.tbl tr.g td{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3E5057;background:#F6F9FA;padding-top:6px}
+.tbl tr.t td{font-weight:600;border-bottom:1px solid #D3DCE0}
+.bhx td+td{text-align:right;white-space:nowrap;width:120px}
+.bhx .in{text-align:right;width:110px}
+.bhb{display:flex;flex-direction:column;gap:2px;padding:7px 12px;border-radius:6px;background:#E2F2EA;border:1px solid #BFDCCB;font-size:14px;font-variant-numeric:tabular-nums;flex:1 1 150px;min-height:52px;box-sizing:border-box}
+.menu{display:flex;flex-direction:column;border:1px solid #C9D4D9;border-radius:8px;background:#FFFFFF;box-shadow:0 6px 18px rgba(14,77,58,.16);overflow:hidden}
+.menu button{font:inherit;font-size:13px;text-align:left;padding:9px 12px;border:0;border-bottom:1px solid #EFF3F5;background:#FFFFFF;color:#1B2A30;cursor:pointer;min-height:38px}
+.menu button:last-child{border-bottom:0}
+.menu small{display:block;font-size:11px;color:#55666D}
+.pl{display:grid;grid-template-columns:96px minmax(0,1fr);gap:6px 10px;align-items:center}
+.pl span{font-size:12.5px;font-weight:600;color:#0E4D3A}
+.tgl{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;border:1px dashed #8FA5AD;background:#FFFFFF;color:#0E4D3A;cursor:pointer;min-height:34px}
+.tgl.on{border-style:solid;background:#1B7353;border-color:#1B7353;color:#FFFFFF}
+.hid{display:none !important}
+.rtag{display:inline-block;font-size:10.5px;font-weight:600;padding:1px 6px;border-radius:4px;background:#FFF4DC;border:1px solid #E3B04B;color:#6E4300;margin-left:6px;white-space:nowrap}
+.dvi{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid #EFF3F5;font-size:13px}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #0E4D3A; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700; letter-spacing: .01em">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C8E8D8">{{unidade}} · Round do dia</span>
+</div>
+</div>
+<nav aria-label="Navegação entre dias" style="display: flex; align-items: center; gap: 8px">
+<button class="btn ghost" aria-label="Round do dia anterior (27/10)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+<div style="display: flex; flex-direction: column; align-items: center; min-width: 190px">
+<span style="font-size: 15px; font-weight: 600">Quarta, 28/10/2026</span>
+<span style="font-size: 11.5px; color: #C8E8D8">Round de hoje · aberto às 07:35</span>
+</div>
+<button class="btn ghost" aria-label="Próximo dia" disabled style="opacity: .45"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #C8E8D8"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8FD9B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg>Salvo às 07:52</span>
+<button class="btn" style="background: #FFFFFF; border-color: #FFFFFF; color: #0E4D3A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>Imprimir leito</button>
+</div>
+</div>
+</header>
+
+<div style="background: #FFFFFF; border-bottom: 1px solid #D3DCE0">
+<nav aria-label="Leitos" style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 8px; overflow-x: auto">
+<button class="bed"><span class="n">01</span><span class="s">Antônio C. · PO gastrectomia</span></button>
+<button class="bed"><span class="n">02</span><span class="s">Lúcia M. · PO colectomia</span></button>
+<button class="bed empty"><span class="n">03</span><span class="s">Vago</span></button>
+<button class="bed"><span class="n">04</span><span class="s">José R. · PO Whipple</span></button>
+<button class="bed"><span class="n">05</span><span class="s">Marta S. · PO laparotomia</span></button>
+<button class="bed on" aria-current="true"><span class="n">06</span><span class="s">Novo · preenchendo</span></button>
+<button class="bed"><span class="n">07</span><span class="s">Carla D. · PO esofagectomia</span></button>
+<button class="bed"><span class="n">08</span><span class="s">Rui P. · PO hepatectomia</span></button>
+<button class="bed empty"><span class="n">09</span><span class="s">Vago</span></button>
+<button class="bed"><span class="n">10</span><span class="s">Davi L. · PO trauma abdominal</span></button>
+</nav>
+</div>
+
+<main style="max-width: 1440px; width: 100%; margin: 0 auto; padding: 14px 16px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; font-size: 12.5px; color: #3E5057; background: #E2F2EA; border: 1px solid #BFDCCB; border-radius: 6px; padding: 7px 12px">
+<span><strong>Leito 06 · primeiro preenchimento.</strong> Admitido do centro cirúrgico em 27/10 às 15:20. Salva a cada alteração; o que ficar em branco não sai na impressão.</span>
+<div class="acts">
+<span class="lbl">Começar por um PDF · apagado depois de importado</span>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Evolução anterior</button>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Relato operatório</button>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Prescrição</button>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Laboratório</button>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Laudo de imagem</button>
+</div>
+</div>
+
+<div class="card" style="flex-direction: row; align-items: center; flex-wrap: wrap; gap: 8px 12px; padding: 10px 14px">
+<span class="sub">Seções deste leito</span>
+<sc-if value="{{cirOn}}" hint-placeholder-val="{{ false }}">
+<button class="tgl on" aria-pressed="true" onClick="{{toggleCir}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Cirurgia e pós-operatório</button>
+</sc-if>
+
+<sc-if value="{{idosoOn}}" hint-placeholder-val="{{ false }}">
+<section class="card">
+<div class="ch"><h2 class="ct">Protocolo do idoso · fratura de fêmur</h2><span class="lbl">Ortopedia · segue o protocolo do hospital</span></div>
+<div class="fg">
+<div class="f w2"><label for="i-fx">Fratura ou chegada ao hospital</label><input id="i-fx" class="in" placeholder="dd/mm hh:mm" value="{{fxData}}" onChange="{{onFx}}"></div>
+<div class="f w2"><label for="i-cir">Cirurgia</label><input id="i-cir" class="in" placeholder="dd/mm hh:mm" value="{{fxCir}}" onChange="{{onFxCir}}"></div>
+<div class="f"><span class="fl">Tempo até a cirurgia</span><div class="in auto">{{fxTempo}}</div></div>
+<div class="f"><label for="i-tipo">Cirurgia feita</label><select id="i-tipo" class="in"><option></option><option>Artroplastia</option><option>Osteossíntese</option></select></div>
+<div class="f"><label for="i-anal">Analgesia</label><select id="i-anal" class="in"><option></option><option>Analgésico simples</option><option>Bloqueio de nervo</option><option>Opioide</option></select></div>
+<div class="f"><label for="i-del">Delirium</label><select id="i-del" class="in"><option></option><option>Sem delirium</option><option>Com delirium</option></select></div>
+<div class="f w2"><label for="i-mob">Fisioterapia ou primeira saída do leito</label><input id="i-mob" class="in" placeholder="dd/mm"></div>
+</div>
+<div class="acts"><span class="lbl">Avaliações:</span><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Geriatria</button><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Fisioterapia</button><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Nutrição</button><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Serviço social</button></div>
+<span class="lbl">Tromboprofilaxia fica em Profilaxias. A meta de tempo até a cirurgia é a do protocolo do hospital; as diretrizes do Ministério da Saúde recomendam não passar de 48 h.</span>
+</section>
+</sc-if>
+<sc-if value="{{cirOff}}" hint-placeholder-val="{{ true }}">
+<button class="tgl" aria-pressed="false" onClick="{{toggleCir}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Cirurgia e pós-operatório</button>
+</sc-if>
+<sc-if value="{{neuroOn}}" hint-placeholder-val="{{ false }}">
+<button class="tgl on" aria-pressed="true" onClick="{{toggleNeuro}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Neurológico</button>
+</sc-if>
+<sc-if value="{{neuroOff}}" hint-placeholder-val="{{ true }}">
+<button class="tgl" aria-pressed="false" onClick="{{toggleNeuro}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Neurológico</button>
+</sc-if>
+<sc-if value="{{idosoOn}}" hint-placeholder-val="{{ false }}">
+<button class="tgl on" aria-pressed="true" onClick="{{toggleIdoso}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Protocolo do idoso (fratura de fêmur)</button>
+</sc-if>
+<sc-if value="{{idosoOff}}" hint-placeholder-val="{{ true }}">
+<button class="tgl" aria-pressed="false" onClick="{{toggleIdoso}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Protocolo do idoso (fratura de fêmur)</button>
+</sc-if>
+<span class="lbl">No CTI 2 a cirurgia vem ligada e o neurológico desligado. Paciente neurológico por falta de vaga no CTI 1: ligue o neurológico e, se não for cirúrgico, desligue a cirurgia.</span>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 5 1 400px">
+<div class="ch">
+<h2 class="ct">Identificação</h2>
+<span class="dp">D1 no CTI</span>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-end">
+<div class="badge">
+<div style="font-size: 10.5px; letter-spacing: .08em; color: #D2ECDF">LEITO</div>
+<div style="font-size: 26px; font-weight: 700; line-height: 1">06</div>
+</div>
+<div class="f" style="flex: 1">
+<label for="b-nome">Nome completo</label>
+<input id="b-nome" class="in" style="font-size: 15px; font-weight: 600; min-height: 40px">
+</div>
+</div>
+<div class="fg">
+<div class="f"><label for="b-dn">Data de nascimento</label><input id="b-dn" class="in" placeholder="dd/mm/aaaa" value="{{dn}}" onChange="{{onDn}}"></div>
+<div class="f"><span class="fl">Idade</span><div class="in auto">{{idade}}</div></div>
+<div class="f"><label for="b-sexo">Sexo</label><select id="b-sexo" class="in" value="{{sexo}}" onChange="{{onSexo}}"><option></option><option value="F">Feminino</option><option value="M">Masculino</option></select></div>
+<div class="f"><label for="b-pront">Prontuário</label><input id="b-pront" class="in"></div>
+<div class="f"><label for="b-ih">Internação hospitalar</label><input id="b-ih" class="in" placeholder="dd/mm/aaaa"></div>
+<div class="f"><label for="b-cti">Admissão no CTI</label><input id="b-cti" class="in" value="27/10/2026"></div>
+<div class="f"><label for="b-orig">Origem</label><select id="b-orig" class="in"><option></option><option>Emergência</option><option>Centro cirúrgico</option><option>Enfermaria</option><option>Outro hospital</option></select></div>
+<div class="f"><label for="b-peso">Peso (kg)</label><input id="b-peso" class="in" value="{{peso}}" onChange="{{onPeso}}"></div>
+<div class="f"><span class="fl">Peso</span><div class="seg" role="group" aria-label="Tipo de peso"><button>Real</button><button>Estimado</button></div></div>
+<div class="f"><label for="b-alt">Altura (m)</label><input id="b-alt" class="in"></div>
+<div class="f"><label for="b-eq">Equipe</label><select id="b-eq" class="in"><option></option><option>Cirurgia geral</option><option>Coloproctologia</option><option>Cirurgia oncológica</option><option>Urologia</option><option>Outra</option></select></div>
+<div class="f"><label for="b-asa">ASA</label><select id="b-asa" class="in"><option></option><option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option></select></div>
+<div class="f"><label for="b-ecog">ECOG prévio</label><select id="b-ecog" class="in"><option></option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>
+</div>
+</section>
+
+<section class="card" style="flex: 5 1 380px">
+<div class="ch">
+<h2 class="ct">Diagnósticos e história</h2>
+<button class="add" onClick="{{toggleDx}}" aria-expanded="{{dxOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Diagnóstico</button>
+</div>
+<sc-if value="{{dxOpen}}" hint-placeholder-val="{{ false }}">
+<div class="addrow">
+<div class="fg">
+<div class="f w2"><label for="b-dx">Diagnóstico ou procedimento</label><input id="b-dx" class="in"></div>
+<div class="f"><label for="b-dxd">Data</label><input id="b-dxd" class="in" placeholder="dd/mm/aaaa"></div>
+<div class="f"><label for="b-dxc">Contar dias como</label><select id="b-dxc" class="in"><option></option><option>Pós-ictus</option><option>Pós-operatório</option><option>Dia de doença</option></select></div>
+</div>
+<div class="acts"><button class="btn p sm" onClick="{{toggleDx}}">Adicionar</button><button class="btn sm" onClick="{{toggleDx}}">Cancelar</button></div>
+</div>
+</sc-if>
+<div class="f"><label for="b-hda">História</label><textarea id="b-hda" class="in" rows="3"></textarea></div>
+<div class="fg">
+<div class="f w2"><label for="b-com">Comorbidades</label><input id="b-com" class="in"></div>
+<div class="f w2"><label for="b-muc">Uso contínuo</label><input id="b-muc" class="in"></div>
+</div>
+</section>
+
+<section class="card" style="flex: 3 1 240px">
+<div class="ch">
+<h2 class="ct">Alertas</h2>
+</div>
+<div class="f"><label for="b-sup">Nível de suporte</label><select id="b-sup" class="in"><option></option><option>Pleno</option><option>Cuidados proporcionais</option><option>Conforto exclusivo</option></select></div>
+<div class="acts">
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Alergia</button>
+<button class="add" onClick="{{toggleIso}}" aria-expanded="{{isoOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Isolamento</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Anticoagulação</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Situação especial</button>
+</div>
+<sc-if value="{{isoOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="group" aria-label="Tipo de isolamento">
+<button>Contato<small>MRSA, ERC/KPC, VRE, C. difficile, outro</small></button>
+<button>Gotículas<small>Influenza, VSR, meningococo, outro</small></button>
+<button>Aerossóis (respiratório)<small>Tuberculose, COVID-19, varicela, sarampo, outro</small></button>
+</div>
+<span class="lbl">Depois: motivo, data de início, exame que confirma e critério de liberação da CCIH.</span>
+</sc-if>
+</section>
+</div>
+
+<sc-if value="{{cirOn}}" hint-placeholder-val="{{ true }}">
+<section class="card">
+<div class="ch">
+<h2 class="ct">Cirurgia e pós-operatório</h2>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar relato operatório</button>
+</div>
+<div class="fg">
+<div class="f w2"><label for="c-cir">Cirurgia realizada</label><input id="c-cir" class="in"></div>
+<div class="f"><label for="c-data">Data da cirurgia</label><input id="c-data" class="in" placeholder="dd/mm/aaaa" value="{{cirData}}" onChange="{{onCirData}}"></div>
+<div class="f"><span class="fl">Pós-operatório</span><div class="in auto">{{po}}</div></div>
+<div class="f"><label for="c-car">Caráter</label><select id="c-car" class="in"><option></option><option>Eletiva</option><option>Urgência</option></select></div>
+<div class="f"><label for="c-eq">Equipe cirúrgica</label><input id="c-eq" class="in"></div>
+<div class="f w2"><label for="c-intra">Intercorrências no intraoperatório</label><input id="c-intra" class="in"></div>
+<div class="f w2"><label for="c-fer">Ferida operatória</label><input id="c-fer" class="in"></div>
+<div class="f"><label for="c-an">Anestesia</label><select id="c-an" class="in"><option></option><option>Geral</option><option>Raquianestesia</option><option>Peridural</option><option>Bloqueio periférico</option><option>Sedação</option><option>Local</option></select></div>
+<div class="f"><label for="c-ct">Contaminação</label><select id="c-ct" class="in"><option></option><option>Limpa</option><option>Potencialmente contaminada</option><option>Contaminada</option><option>Infectada</option></select></div>
+<div class="f"><label for="c-hp">Histopatológico</label><select id="c-hp" class="in"><option></option><option>Não enviado</option><option>Enviado, aguardando</option><option>Resultado disponível</option></select></div>
+</div>
+<div class="acts">
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Dreno</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Ostomia</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Analgesia peridural</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Reabordagem</button>
+<button class="add" onClick="{{toggleVasc}}" aria-expanded="{{vascOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Cirurgia vascular</button>
+</div>
+<span class="lbl">O débito de drenos e ostomias entra direto nas perdas do balanço hídrico.</span>
+<sc-if value="{{vascOpen}}" hint-placeholder-val="{{ true }}">
+<div class="addrow">
+<span class="sub">Cirurgia vascular · angioplastia, stent, reconstrução arterial</span>
+<div class="fg">
+<div class="f"><label for="v-atq">Ataque de AAS + clopidogrel</label><select id="v-atq" class="in"><option></option><option>Feito</option><option>Não feito</option></select></div>
+<div class="f"><label for="v-onde">Onde</label><select id="v-onde" class="in"><option></option><option>Centro cirúrgico</option><option>CTI</option></select></div>
+<div class="f"><label for="v-hora">Hora <span class="lbl">(opcional)</span></label><input id="v-hora" class="in" placeholder="hh:mm"></div>
+<div class="f"><label for="v-aas">AAS (mg)</label><input id="v-aas" class="in" placeholder="ex.: 200"></div>
+<div class="f"><label for="v-clo">Clopidogrel (mg)</label><input id="v-clo" class="in" placeholder="ex.: 300"></div>
+<div class="f w2"><label for="v-pos">Antitrombótico depois da cirurgia</label><select id="v-pos" class="in"><option></option><option>Anticoagulação plena</option><option>Anticoagulação profilática</option><option>Antiagregação simples</option><option>Antiagregação dupla</option><option>Nenhum por enquanto</option></select></div>
+<div class="f w2"><label for="v-perf">Perfusão do membro</label><input id="v-perf" class="in" placeholder="pulsos, cor, temperatura e hora"></div>
+</div>
+<span class="lbl">O antitrombótico é o definido pela cirurgia vascular. O ataque de AAS + clopidogrel e o antitrombótico aparecem na faixa de alertas e na passagem de plantão.</span>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<div class="row">
+<section class="card" style="flex: 5 1 380px">
+<div class="ch">
+<h2 class="ct">Dispositivos</h2>
+<button class="add" onClick="{{toggleDev}}" aria-expanded="{{devOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Dispositivo</button>
+</div>
+<sc-if value="{{devOpen}}" hint-placeholder-val="{{ true }}">
+<div class="addrow">
+<div class="fg">
+<div class="f"><label for="b-dvt">Tipo</label><select id="b-dvt" class="in" value="{{dvt}}" onChange="{{onDvt}}"><option></option><optgroup label="Via aérea"><option>TOT</option><option>TQT</option></optgroup><optgroup label="Vascular"><option>CVC</option><option>PICC</option><option>PAI</option><option>Acesso periférico</option><option>CDL (cateter de diálise)</option></optgroup><optgroup label="Neuro"><option>DVE</option><option>Cateter de PIC</option><option>DVP/DLP</option></optgroup><optgroup label="Drenos"><option>Hemovac</option><option>Dreno de cavidade</option><option>Dreno tubular/laminar</option><option>Dreno torácico</option></optgroup><optgroup label="Urinário e digestivo"><option>CVD</option><option>SNE/SNG</option><option>SNG em sifonagem</option><option>Ostomia</option></optgroup><option>Outro (digitar)</option></select></div>
+<sc-if value="{{sVen}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-dvs">Sítio</label><select id="b-dvs" class="in" value="{{dvs}}" onChange="{{onDvs}}"><option></option><option>VSCD</option><option>VSCE</option><option>VJID</option><option>VJIE</option><option>VFD</option><option>VFE</option></select></div></sc-if>
+<sc-if value="{{sPicc}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-dvs">Sítio</label><select id="b-dvs" class="in" value="{{dvs}}" onChange="{{onDvs}}"><option></option><option>Basílica D</option><option>Basílica E</option><option>Braquial D</option><option>Braquial E</option><option>Cefálica D</option><option>Cefálica E</option></select></div></sc-if>
+<sc-if value="{{sArt}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-dvs">Sítio</label><select id="b-dvs" class="in" value="{{dvs}}" onChange="{{onDvs}}"><option></option><option>Radial D</option><option>Radial E</option><option>Braquial D</option><option>Braquial E</option><option>Axilar D</option><option>Axilar E</option><option>Femoral D</option><option>Femoral E</option><option>Pediosa D</option><option>Pediosa E</option></select></div></sc-if>
+<sc-if value="{{sTor}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-dvs">Sítio torácico</label><select id="b-dvs" class="in" value="{{dvs}}" onChange="{{onDvs}}"><option></option><option>Hemitórax D</option><option>Hemitórax E</option><option>Anterior</option><option>Posterior</option><option>Basal</option><option>Apical</option></select></div><div class="f"><label for="b-dvm">Montagem</label><select id="b-dvm" class="in" value="{{dvm}}" onChange="{{onDvm}}"><option></option><option>Selo d'água</option><option>Pigtail</option><option>Aspiração contínua</option><option>Bolsa/gravidade</option></select></div></sc-if>
+<sc-if value="{{sAbd}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-dvs">Região</label><select id="b-dvs" class="in" value="{{dvs}}" onChange="{{onDvs}}"><option></option><optgroup label="Regiões do abdome"><option>Hipocôndrio D</option><option>Epigástrio</option><option>Hipocôndrio E</option><option>Flanco D</option><option>Mesogástrio</option><option>Flanco E</option><option>Fossa ilíaca D</option><option>Hipogástrio</option><option>Fossa ilíaca E</option></optgroup><optgroup label="Posição cirúrgica"><option>Subhepático</option><option>Subfrênico D</option><option>Subfrênico E</option><option>Pélvico/fundo de saco</option><option>Leito cirúrgico</option><option>Parietocólica D</option><option>Parietocólica E</option></optgroup></select></div></sc-if>
+<sc-if value="{{sDve}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-dvs">Altura da coluna (cmH₂O)</label><input id="b-dvs" class="in" value="{{dvs}}" onChange="{{onDvs}}"></div></sc-if>
+<sc-if value="{{sOutro}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-dvo">Nome do dispositivo</label><input id="b-dvo" class="in" value="{{dvo}}" onChange="{{onDvo}}"></div></sc-if>
+<sc-if value="{{sTxt}}" hint-placeholder-val="{{ true }}"><div class="f"><label for="b-dvs">Sítio</label><input id="b-dvs" class="in" value="{{dvs}}" onChange="{{onDvs}}"></div></sc-if>
+<div class="f"><label for="b-dvd">Data de inserção</label><input id="b-dvd" class="in" placeholder="dd/mm/aaaa" value="{{devData}}" onChange="{{onDevData}}"></div>
+<div class="f"><label for="b-dvl">Local</label><select id="b-dvl" class="in" value="{{dvl}}" onChange="{{onDvl}}"><option></option><option>Emergência</option><option>Centro cirúrgico</option><option>CTI</option><option>Enfermaria</option><option>Outro hospital</option></select></div>
+<div class="f"><span class="fl">Dias</span><div class="in auto">{{devDias}}</div></div>
+</div>
+<div class="acts"><button class="btn p sm" onClick="{{addDev}}">Adicionar</button><button class="btn sm" onClick="{{toggleDev}}">Cancelar</button></div>
+</div>
+</sc-if>
+<div>
+<span class="lbl {{semDev}}">Nenhum dispositivo ainda.</span>
+<div class="dvi {{dc1}}"><span>{{dt1}}</span><button class="lnk" onClick="{{rm1}}">Retirar</button></div>
+<div class="dvi {{dc2}}"><span>{{dt2}}</span><button class="lnk" onClick="{{rm2}}">Retirar</button></div>
+<div class="dvi {{dc3}}"><span>{{dt3}}</span><button class="lnk" onClick="{{rm3}}">Retirar</button></div>
+<div class="dvi {{dc4}}"><span>{{dt4}}</span><button class="lnk" onClick="{{rm4}}">Retirar</button></div>
+<div class="dvi {{dc5}}"><span>{{dt5}}</span><button class="lnk" onClick="{{rm5}}">Retirar</button></div>
+<div class="dvi {{dc6}}"><span>{{dt6}}</span><button class="lnk" onClick="{{rm6}}">Retirar</button></div>
+</div>
+<span class="lbl">Os dias são contados a partir da data de inserção e acompanham o paciente nos rounds seguintes. Drenos, DVE, SNG em sifonagem e ostomias entram sozinhos nas perdas do balanço.</span>
+</section>
+</div>
+
+<sc-if value="{{neuroOn}}" hint-placeholder-val="{{ false }}">
+<section class="card">
+<div class="ch">
+<h2 class="ct">Neurológico</h2>
+<button class="add" title="Abre o quadro do protocolo neste leito"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Protocolo de morte encefálica</button>
+</div>
+<div class="fg">
+<div class="f"><label for="b-ecg">Glasgow</label><input id="b-ecg" class="in"></div>
+<div class="f"><label for="b-rass">RASS</label><select id="b-rass" class="in"><option></option><option>+4</option><option>+3</option><option>+2</option><option>+1</option><option>0</option><option>−1</option><option>−2</option><option>−3</option><option>−4</option><option>−5</option></select></div>
+<div class="f"><label for="b-mrass">Meta de RASS</label><input id="b-mrass" class="in"></div>
+<div class="f"><label for="b-antes">Antes da internação</label><select id="b-antes" class="in"><option></option><option>Independente</option><option>Independente com alguma limitação</option><option>Precisava de ajuda no dia a dia</option><option>Acamado</option></select></div>
+<div class="f"><label for="b-pup">Pupilas</label><input id="b-pup" class="in"></div>
+<div class="f w2"><label for="b-def">Déficit focal</label><input id="b-def" class="in"></div>
+<div class="f w2"><label for="b-alv">Alvos do dia</label><input id="b-alv" class="in"></div>
+<div class="f w2"><label for="b-res">Restrições</label><input id="b-res" class="in"></div>
+<div class="f w2"><label for="b-nc">Neurocirurgia</label><select id="b-nc" class="in" onChange="{{onNc}}"><option></option><option>Em acompanhamento</option><option>Em acompanhamento, conduta conservadora</option><option>Alta da neurocirurgia</option><option>Não acompanhado pela neurocirurgia</option></select></div>
+<sc-if value="{{ncData}}" hint-placeholder-val="{{ false }}">
+<div class="f"><label for="b-ncd">{{ncLbl}}</label><input id="b-ncd" class="in" placeholder="dd/mm"></div>
+</sc-if>
+</div>
+<div class="acts">
+<button class="add" onClick="{{toggleEsc}}" aria-expanded="{{escOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Escala de gravidade</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>PIC / DVE</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Medicação neuro</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Última TC</button>
+</div>
+<sc-if value="{{escOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="group" aria-label="Escolher escala">
+<button>Hunt-Hess e WFNS<small>HSA · digitar o valor ou calcular</small></button>
+<button>Fisher modificada<small>HSA · digitar o valor ou calcular</small></button>
+<button>ICH score<small>HIP · digitar o valor ou calcular</small></button>
+<button>NIHSS<small>AVC · digitar o valor ou calcular</small></button>
+<button>Marshall<small>TCE · digitar o valor</small></button>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<div class="row">
+<section class="card" style="flex: 6 1 440px">
+<div class="ch">
+<h2 class="ct">Hemodinâmica e infusões</h2>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Infusão</button>
+</div>
+<div style="overflow-x: auto">
+<table class="tbl">
+<thead><tr><th>Droga</th><th>Concentração final</th><th>Vazão (ml/h)</th><th>Dose</th></tr></thead>
+<tbody>
+<tr>
+<td><select class="in" aria-label="Droga" style="min-width: 150px" value="{{droga}}" onChange="{{onDroga}}"><option>Noradrenalina</option><option>Vasopressina</option><option>Dobutamina</option><option>Dopamina</option><option>Nitroprussiato</option><option>Nitroglicerina</option><option>Amiodarona</option><option>Fentanil</option><option>Morfina</option><option>Midazolam</option><option>Propofol</option><option>Dexmedetomidina</option><option>Cisatracúrio</option><option>Rocurônio</option></select></td>
+<td style="white-space: nowrap"><input class="in" aria-label="Concentração final" style="width: 80px" value="{{concV}}" onChange="{{onConc}}"> <span class="lbl">{{concU}}</span></td>
+<td><input class="in" aria-label="Vazão em ml/h" style="width: 90px" value="{{vaz}}" onChange="{{onVaz}}"></td>
+<td style="font-weight: 700; white-space: nowrap; min-width: 120px">{{dose}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fg">
+<div class="f w2"><span class="lbl">Concentração já vem pela droga, como o padrão do CTI. Se a diluição de hoje for outra, é só mudar.</span></div>
+<div class="f w2"><label for="b-hem">Observação hemodinâmica</label><input id="b-hem" class="in"></div>
+</div>
+</section>
+
+<section class="card" style="flex: 6 1 440px">
+<div class="ch">
+<h2 class="ct">Respiratório</h2>
+</div>
+<div class="fg s">
+<div class="f w2"><label for="b-sv">Suporte</label><select id="b-sv" class="in" value="{{sv}}" onChange="{{onSv}}"><option></option><option>Ar ambiente</option><option>CN</option><option>Máscara</option><option>Macronebulização</option><option>CNAF</option><option>VNI</option><option>TOT + VM</option><option>TQT + VM</option></select></div>
+<sc-if value="{{vO2}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-o2">Vazão de O₂ (l/min)</label><input id="b-o2" class="in"></div></sc-if>
+<sc-if value="{{vCnaf}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-fl">Fluxo (l/min)</label><input id="b-fl" class="in"></div><div class="f"><label for="b-fio2">FiO₂ (%)</label><input id="b-fio2" class="in"></div></sc-if>
+<sc-if value="{{vMod}}" hint-placeholder-val="{{ true }}">
+<div class="f"><label for="b-mod">Modo</label><select id="b-mod" class="in" value="{{mod}}" onChange="{{onMod}}"><option></option><option>VCV</option><option>PCV</option><option>PSV</option><option>CPAP</option></select></div>
+<sc-if value="{{vPi}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-pi">Pinsp</label><input id="b-pi" class="in"></div></sc-if>
+<sc-if value="{{vPs}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="b-ps">Psup</label><input id="b-ps" class="in"></div></sc-if>
+<div class="f"><label for="b-peep">PEEP</label><input id="b-peep" class="in"></div>
+<div class="f"><label for="b-fio">FiO₂ (%)</label><input id="b-fio" class="in"></div>
+<sc-if value="{{vVc}}" hint-placeholder-val="{{ true }}"><div class="f"><label for="b-frv">FR</label><input id="b-frv" class="in"></div>
+<div class="f"><label for="b-vc">VC (ml)</label><input id="b-vc" class="in"></div></sc-if>
+</sc-if>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap">
+<span class="sub">Gasometria arterial</span>
+<div class="acts">
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar PDF</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Digitar</button>
+</div>
+</div>
+<span class="lbl">No primeiro dia só existe o valor atual. A partir de amanhã aparece dia anterior &gt; dia atual.</span>
+</section>
+</div>
+
+<section class="card">
+<div class="ch">
+<h2 class="ct">Últimas 24 h pela enfermagem</h2>
+<span class="lbl">Desde a admissão: 27/10 15:20 a 28/10 07:00 · 15 h 40 min</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px 28px">
+<div class="col" style="flex: 6 1 440px">
+<h3 class="sub">Sinais vitais e controles</h3>
+<div class="fg s">
+<div class="f"><label for="b-tax">Tax máx (°C)</label><input id="b-tax" class="in"></div>
+<div class="f"><label for="b-pic">Nº de picos</label><input id="b-pic" class="in"></div>
+<div class="f"><label for="b-pas">PAS (faixa)</label><input id="b-pas" class="in"></div>
+<div class="f"><label for="b-pad">PAD (faixa)</label><input id="b-pad" class="in"></div>
+<div class="f"><label for="b-pam">PAM (faixa)</label><input id="b-pam" class="in"></div>
+<div class="f"><label for="b-fc">FC (faixa)</label><input id="b-fc" class="in"></div>
+<div class="f"><label for="b-fr">FR (faixa)</label><input id="b-fr" class="in"></div>
+<div class="f"><label for="b-sat">SatO₂ (faixa)</label><input id="b-sat" class="in"></div>
+<div class="f"><label for="b-gli">Glicemia (faixa)</label><input id="b-gli" class="in"></div>
+<div class="f"><label for="b-ins">Insulina (UI)</label><input id="b-ins" class="in"></div>
+<div class="f"><label for="b-dor">Dor</label><select id="b-dor" class="in"><option></option><option>Sem dor</option><option>Dor controlada</option><option>Dor não controlada</option></select></div>
+<div class="f"><label for="b-evn">Evacuações em 24 h</label><input id="b-evn" class="in" placeholder="nº"></div>
+<div class="f"><label for="b-evac">Última evacuação</label><input id="b-evac" class="in" placeholder="dd/mm"></div>
+<div class="f"><span class="fl">Dias sem evacuar</span><div class="in auto"></div></div>
+</div>
+<div class="f"><label for="b-int">Intercorrências</label><input id="b-int" class="in"></div>
+</div>
+<div class="col" style="flex: 5 1 380px">
+<h3 class="sub">Balanço hídrico <span class="lbl" style="text-transform: none; letter-spacing: 0">ml</span></h3>
+<table class="tbl bhx">
+<tbody>
+<tr class="g"><td colspan="2">Ganhos</td></tr>
+<tr class="t"><td><label for="b-g1">Total de ganhos</label> <span class="lbl">(da folha da enfermagem)</span></td><td><input id="b-g1" class="in" value="{{g1}}" onChange="{{onG1}}"></td></tr>
+<tr class="g"><td colspan="2">Perdas</td></tr>
+<tr><td><label for="b-p1">Diurese</label> <span class="lbl">{{mlkgh}}</span></td><td><input id="b-p1" class="in" value="{{p1}}" onChange="{{onP1}}"></td></tr>
+<tr class="{{rc1}}"><td><label for="b-r1">{{rn1}}</label> <span class="lbl">ontem: {{ro1}}</span></td><td><input id="b-r1" class="in" value="{{rv1}}" onChange="{{onR1}}"></td></tr>
+<tr class="{{rc2}}"><td><label for="b-r2">{{rn2}}</label> <span class="lbl">ontem: {{ro2}}</span></td><td><input id="b-r2" class="in" value="{{rv2}}" onChange="{{onR2}}"></td></tr>
+<tr class="{{rc3}}"><td><label for="b-r3">{{rn3}}</label> <span class="lbl">ontem: {{ro3}}</span></td><td><input id="b-r3" class="in" value="{{rv3}}" onChange="{{onR3}}"></td></tr>
+<tr class="{{rc4}}"><td><label for="b-r4">{{rn4}}</label> <span class="lbl">ontem: {{ro4}}</span></td><td><input id="b-r4" class="in" value="{{rv4}}" onChange="{{onR4}}"></td></tr>
+<tr><td><label for="b-p3">HD (UF)</label></td><td><input id="b-p3" class="in" value="{{p3}}" onChange="{{onP3}}"></td></tr>
+<tr><td colspan="2" style="text-align: left"><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Outra perda (SNG, vômito)</button></td></tr>
+<tr class="t"><td>Total de perdas</td><td>{{totP}}</td></tr>
+</tbody>
+</table>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<div class="bhb"><span class="lbl">Balanço do período</span><strong>{{bh}}</strong></div>
+<div class="bhb"><span class="lbl">Acumulado desde 27/10</span><strong>{{bh}}</strong></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="card">
+<div class="ch">
+<h2 class="ct">Infecção</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px 28px">
+<div class="col" style="flex: 2 1 440px">
+<h3 class="sub">Antibióticos</h3>
+<div class="acts">
+<button class="add" onClick="{{toggleAtb}}" aria-expanded="{{atbOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Antibiótico</button>
+<button class="lnk">Importar prescrição</button>
+</div>
+<sc-if value="{{atbOpen}}" hint-placeholder-val="{{ true }}">
+<div class="addrow">
+<div class="fg">
+<div class="f w2"><label for="a-nome">Antimicrobiano</label><select id="a-nome" class="in" value="{{atbNome}}" onChange="{{onAtbNome}}"><option></option><optgroup label="Penicilinas"><option>Amoxicilina-clavulanato</option><option>Ampicilina</option><option>Ampicilina-sulbactam</option><option>Piperacilina-tazobactam</option></optgroup><optgroup label="Cefalosporinas"><option>Cefazolina</option><option>Cefuroxima</option><option>Ceftriaxona</option><option>Cefepime</option><option>Ceftazidima-avibactam</option></optgroup><optgroup label="Carbapenêmicos e monobactâmico"><option>Meropenem</option><option>Ertapenem</option><option>Aztreonam</option></optgroup><optgroup label="Gram-positivos"><option>Vancomicina</option><option>Teicoplanina</option><option>Linezolida</option><option>Daptomicina</option></optgroup><optgroup label="Aminoglicosídeos e polimixina"><option>Amicacina</option><option>Gentamicina</option><option>Polimixina B</option></optgroup><optgroup label="Quinolonas"><option>Ciprofloxacino</option><option>Levofloxacino</option></optgroup><optgroup label="Outros antibióticos"><option>Azitromicina</option><option>Clindamicina</option><option>Metronidazol</option><option>Sulfametoxazol-trimetoprim</option><option>Tigeciclina</option></optgroup><optgroup label="Tuberculose"><option>RHZE</option><option>RH</option></optgroup><optgroup label="Antifúngicos"><option>Fluconazol</option><option>Anidulafungina</option><option>Caspofungina</option><option>Micafungina</option><option>Anfotericina B lipossomal</option><option>Flucitosina</option></optgroup><optgroup label="Antivirais"><option>Aciclovir</option><option>Oseltamivir</option></optgroup><option>Outro (digitar)</option></select></div>
+<sc-if value="{{atbOutro}}" hint-placeholder-val="{{ false }}"><div class="f"><label for="a-out">Nome</label><input id="a-out" class="in" value="{{atbOut}}" onChange="{{onAtbOut}}"></div></sc-if>
+<div class="f"><label for="a-d0">Início (D0)</label><input id="a-d0" class="in" placeholder="dd/mm/aaaa" value="{{atbD0}}" onChange="{{onAtbD0}}"></div>
+<div class="f w2"><label for="a-foco">Foco</label><select id="a-foco" class="in" value="{{atbFoco}}" onChange="{{onAtbFoco}}"><option></option><option>Pulmonar (comunitária)</option><option>Pulmonar (nosocomial ou PAV)</option><option>Urinário</option><option>Abdominal</option><option>Pele e partes moles</option><option>Corrente sanguínea</option><option>Endocardite</option><option>Sistema nervoso central</option><option>Osteomielite ou fratura exposta</option><option>Pé diabético</option><option>Foco indeterminado</option><option>Tuberculose</option><option>Fúngica</option><option>Profilaxia cirúrgica</option><option>Outro</option></select></div>
+<div class="f"><label for="a-prev">Previsto (dias)</label><input id="a-prev" class="in" placeholder="opcional" value="{{atbPrev}}" onChange="{{onAtbPrev}}"></div>
+</div>
+<sc-if value="{{atbRestrito}}" hint-placeholder-val="{{ false }}"><span class="lbl" style="color: #6E4300">Uso restrito: precisa de liberação da SCIH, pelo protocolo da CCIH.</span></sc-if>
+<div class="acts"><button class="btn p sm" onClick="{{addAtb}}">Adicionar</button><button class="btn sm" onClick="{{toggleAtb}}">Cancelar</button></div>
+</div>
+</sc-if>
+<div>
+<span class="lbl {{semAtb}}">Nenhum antimicrobiano ainda.</span>
+<div class="dvi {{ac1}}"><span>{{at1}}<span class="rtag {{ar1}}">uso restrito · SCIH</span></span><button class="lnk" onClick="{{sus1}}">Suspender</button></div>
+<div class="dvi {{ac2}}"><span>{{at2}}<span class="rtag {{ar2}}">uso restrito · SCIH</span></span><button class="lnk" onClick="{{sus2}}">Suspender</button></div>
+<div class="dvi {{ac3}}"><span>{{at3}}<span class="rtag {{ar3}}">uso restrito · SCIH</span></span><button class="lnk" onClick="{{sus3}}">Suspender</button></div>
+<div class="dvi {{ac4}}"><span>{{at4}}<span class="rtag {{ar4}}">uso restrito · SCIH</span></span><button class="lnk" onClick="{{sus4}}">Suspender</button></div>
+<span class="lbl {{prevC}}">Prévios: {{prevT}}</span>
+</div>
+<span class="lbl">D0 é o dia da 1ª dose, mesmo que tenha sido uma dose imediata ou de ataque antes da prescrição. Sem posologia: a dose fica na prescrição. Lista, focos e antibióticos de uso restrito tirados do protocolo de antibioticoterapia da CCIH.</span>
+</div>
+<div class="col" style="flex: 1 1 240px">
+<h3 class="sub">Culturas</h3>
+<div class="acts">
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Cultura</button>
+<button class="lnk">Importar resultado</button>
+</div>
+</div>
+<div class="col" style="flex: 1 1 200px">
+<h3 class="sub">Isolamento respiratório</h3>
+<div class="acts">
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Investigação</button>
+</div>
+<span class="lbl">Tuberculose, COVID-19, influenza e outros vírus respiratórios.</span>
+<span class="lbl">Saída do isolamento por TB, pela CCIH: 2 BAAR negativas em escarro espontâneo, ou 1 em escarro induzido ou lavado broncoalveolar, ou 14 dias de RHZE.</span>
+</div>
+<div class="col" style="flex: 1 1 200px">
+<h3 class="sub">Protocolo de sepse</h3>
+<div class="acts">
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Abrir protocolo</button>
+</div>
+</div>
+</div>
+</section>
+
+<div class="row">
+<section class="card" style="flex: 4 1 300px">
+<div class="ch">
+<h2 class="ct">Laboratório</h2>
+</div>
+<div class="acts">
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar PDF</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Digitar</button>
+</div>
+<div class="fg">
+<div class="f"><label for="b-cr">Creatinina (mg/dl)</label><input id="b-cr" class="in" value="{{cr}}" onChange="{{onCr}}"></div>
+<div class="f w2"><span class="fl">TFG (CKD-EPI 2021)</span><div class="in auto">{{tfg}}</div></div>
+</div>
+<span class="lbl">Painel fixo com os exames principais. Outros entram só quando colhidos. A TFG é calculada com a creatinina, a idade e o sexo.</span>
+</section>
+
+<section class="card" style="flex: 4 1 300px">
+<div class="ch">
+<h2 class="ct">Imagens e outros exames</h2>
+</div>
+<div class="acts">
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar laudo</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Exame</button>
+</div>
+</section>
+
+<div style="flex: 4 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<section class="card">
+<div class="ch">
+<h2 class="ct">Profilaxias e medicações-chave</h2>
+<button class="add" onClick="{{toggleProf}}" aria-expanded="{{profOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Adicionar</button>
+</div>
+<sc-if value="{{profOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="group" aria-label="Opções para adicionar">
+<button>Tromboprofilaxia mecânica</button>
+<button>Tromboprofilaxia química</button>
+<button>Profilaxia de LAMG</button>
+<button>Anticoagulação plena</button>
+<button>Antiagregação</button>
+<button>Corticoide</button>
+<button>Insulina contínua</button>
+<button>Outra medicação-chave</button>
+</div>
+</sc-if>
+</section>
+<section class="card">
+<div class="ch">
+<h2 class="ct">Nutrição e TGI</h2>
+</div>
+<div class="fg">
+<div class="f"><label for="b-die">Dieta</label><select id="b-die" class="in"><option></option><option>Zero</option><option>Oral</option><option>Enteral</option><option>Parenteral</option></select></div>
+<div class="f"><label for="b-met">Vazão ou meta</label><input id="b-met" class="in"></div>
+</div>
+</section>
+<section class="card">
+<div class="ch">
+<h2 class="ct">Pele</h2>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Lesão por pressão</button>
+</div>
+<span class="lbl">Braden e lesões vêm da folha da enfermagem e podem ser lançados pelo ADM.</span>
+</section>
+</div>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 5 1 380px">
+<div class="ch">
+<h2 class="ct">Plano do dia</h2>
+</div>
+<textarea class="in" aria-label="Plano do dia" rows="7" style="min-height: 160px" value="{{plano}}" onChange="{{onPlano}}"></textarea>
+<div class="acts"><span class="lbl">Tópicos, se quiser organizar por sistema:</span><button class="add" onClick="{{tp1}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Cirúrgico</button><button class="add" onClick="{{tp2}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Respiratório</button><button class="add" onClick="{{tp3}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Hemodinâmica</button><button class="add" onClick="{{tp4}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Infecção</button><button class="add" onClick="{{tp5}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Metabólico</button><button class="add" onClick="{{tp6}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Nutrição</button></div>
+</section>
+
+<section class="card" style="flex: 4 1 300px">
+<div class="ch">
+<h2 class="ct">Pendências</h2>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Pendência</button>
+</div>
+<span class="lbl">Cada pendência leva responsável e data. As feitas saem da lista no dia seguinte.</span>
+</section>
+
+<div style="flex: 3 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<section class="card">
+<div class="ch">
+<h2 class="ct">Família e destino</h2>
+</div>
+<div class="f"><label for="b-fam">Última conversa</label><input id="b-fam" class="in" placeholder="data · com quem · o que foi dito"></div>
+<div class="f"><label for="b-alta">Previsão de alta</label><input id="b-alta" class="in"></div>
+</section>
+<section class="card">
+<div class="ch">
+<h2 class="ct">Cuidados paliativos</h2>
+<button class="add" onClick="{{toggleCp}}" aria-expanded="{{cpOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Registrar</button>
+</div>
+<sc-if value="{{cpOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="group" aria-label="Registrar em cuidados paliativos">
+<button>Começar por um PDF<small>Evolução da comissão de CP, da psicologia ou do serviço social</small></button>
+<button>Acionar comissão de cuidados paliativos</button>
+<button>Reunião com a família</button>
+<button>Decisão sobre limitação de suporte</button>
+<button>Controle de sintomas</button>
+<button>Diretivas antecipadas de vontade</button>
+</div>
+</sc-if>
+</section>
+</div>
+</div>
+
+<footer style="display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 10px 2px 0; border-top: 1px solid #D3DCE0; font-size: 12px; color: #55666D">
+<span>{{hospital}} · {{unidade}} · Leito 06 · em preenchimento por Bruno Lima (plantonista)</span>
+<span>Documento interno com dados sensíveis. Descartar em fragmentadora.</span>
+</footer>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 2 · Pós-operatório"},"$preview":{"width":1366,"height":2520}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dn: '', peso: '', droga: 'Noradrenalina', conc: '', vaz: '10', dvt: '', mod: '', p3: '', devs: [], deb: {}, atbs: [], atbPrevs: [], atbOpen: true, atbNome: '', atbOut: '', atbD0: '', atbFoco: '', atbPrev: '', dvs: '', dvm: '', dvo: '', dvl: '', devData: '', cirData: '', neuroOn: false, cirOn: true, idosoOn: false, vascOpen: true, fxData: '', fxCir: '',
+      g1: '', g2: '', g3: '', p1: '', plano: '',
+      devOpen: true, isoOpen: false, dxOpen: false, escOpen: false, profOpen: false, cpOpen: false
+    };
+  }
+  renderVals() {
+    const s = this.state;
+    const REF = new Date(2026, 9, 28);
+    const HORAS = 15 + 40 / 60;
+    const dec = (v) => { const t = String(v || '').trim().replace(',', '.'); return t === '' ? NaN : Number(t); };
+    const ml = (v) => { const t = String(v || '').trim().replace(/\./g, '').replace(',', '.'); return t === '' ? NaN : Number(t); };
+    const ok = (n) => typeof n === 'number' && isFinite(n);
+    const f = (n, d) => n.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+    const fml = (n) => Math.round(n).toLocaleString('pt-BR');
+    const data = (v) => {
+      const m = String(v || '').trim().match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      if (!m) return null;
+      const d = new Date(+m[3], +m[2] - 1, +m[1]);
+      if (d.getDate() !== +m[1] || d.getMonth() !== +m[2] - 1) return null;
+      return d;
+    };
+
+    let idade = '';
+    let idadeN = null;
+    const nasc = data(s.dn);
+    if (nasc) {
+      let a = REF.getFullYear() - nasc.getFullYear();
+      if (REF.getMonth() < nasc.getMonth() || (REF.getMonth() === nasc.getMonth() && REF.getDate() < nasc.getDate())) a -= 1;
+      if (a >= 0 && a <= 120) { idade = a + (a === 1 ? ' ano' : ' anos'); idadeN = a; }
+    }
+
+    let devDias = '';
+    const ins = data(s.devData);
+    if (ins) {
+      const n = Math.round((REF - ins) / 86400000);
+      if (n >= 0 && n <= 365) devDias = 'D' + n;
+    }
+
+    let po = '';
+    const cd = data(s.cirData);
+    if (cd) {
+      const n = Math.round((REF - cd) / 86400000);
+      if (n >= 0 && n <= 365) po = 'PO D' + n;
+    }
+
+    const dh = (v) => {
+      const m = String(v || '').trim().match(/^(\d{1,2})\/(\d{1,2})(?:\/(\d{4}))?\s+(\d{1,2}):(\d{2})$/);
+      if (!m) return null;
+      const d = new Date(m[3] ? +m[3] : 2026, +m[2] - 1, +m[1], +m[4], +m[5]);
+      return isNaN(d.getTime()) ? null : d;
+    };
+    let fxTempo = '';
+    const fx1 = dh(s.fxData), fx2 = dh(s.fxCir);
+    if (fx1 && fx2) {
+      const hh = Math.round((fx2 - fx1) / 3600000);
+      if (hh >= 0 && hh <= 720) fxTempo = hh + ' h';
+    }
+
+    const DR = {
+      'Noradrenalina': [200, 'mcg/ml', ['mcg/kg/min']], 'Vasopressina': [0.2, 'UI/ml', ['UI/min']],
+      'Dobutamina': [12.5, 'mg/ml', ['mcg/kg/min']], 'Dopamina': [5, 'mg/ml', ['mcg/kg/min']],
+      'Nitroprussiato': [200, 'mcg/ml', ['mcg/kg/min']], 'Nitroglicerina': [100, 'mcg/ml', ['mcg/kg/min']],
+      'Amiodarona': [3.6, 'mg/ml', ['mg/h']], 'Fentanil': [50, 'mcg/ml', ['mcg/h', 'mcg/kg/h']],
+      'Morfina': [1, 'mg/ml', ['mg/h', 'mcg/kg/h']], 'Midazolam': [5, 'mg/ml', ['mg/h', 'mg/kg/h']],
+      'Propofol': [10, 'mg/ml', ['mcg/kg/min', 'mg/kg/h']], 'Dexmedetomidina': [4, 'mcg/ml', ['mcg/kg/h']],
+      'Cisatracúrio': [2, 'mg/ml', ['mcg/kg/min']], 'Rocurônio': [5, 'mg/ml', ['mcg/kg/min']]
+    };
+    const peso = dec(s.peso);
+    const vaz = dec(s.vaz);
+    const dr = DR[s.droga] || null;
+    const concTxt = s.conc !== '' && s.conc != null ? s.conc : (dr ? String(dr[0]).replace('.', ',') : '');
+    const conc = dec(concTxt);
+    let dose = '';
+    if (dr && ok(vaz) && vaz >= 0 && ok(conc) && conc > 0) {
+      const ui = dr[1] === 'UI/ml';
+      const mcgH = ui ? 0 : vaz * conc * (dr[1] === 'mg/ml' ? 1000 : 1);
+      const temPeso = ok(peso) && peso > 0;
+      const parts = dr[2].map((u) => {
+        if (u === 'UI/min') return f(vaz * conc / 60, 3) + ' UI/min';
+        if (u === 'mg/h') return f(mcgH / 1000, 1) + ' mg/h';
+        if (u === 'mcg/h') return f(mcgH, 0) + ' mcg/h';
+        if (!temPeso) return null;
+        if (u === 'mcg/kg/min') return f(mcgH / 60 / peso, 2) + ' mcg/kg/min';
+        if (u === 'mcg/kg/h') return f(mcgH / peso, 2) + ' mcg/kg/h';
+        if (u === 'mg/kg/h') return f(mcgH / 1000 / peso, 2) + ' mg/kg/h';
+        return null;
+      }).filter(Boolean);
+      dose = parts.length ? parts.join(' · ') : 'informe o peso';
+    }
+    let tfg = '';
+    {
+      const cr = dec(s.cr);
+      if (idadeN != null && idadeN >= 18 && ok(cr) && cr > 0 && (s.sexo === 'F' || s.sexo === 'M')) {
+        const fem = s.sexo === 'F', k = fem ? 0.7 : 0.9, al = fem ? -0.241 : -0.302, r = cr / k;
+        const v = 142 * Math.pow(Math.min(r, 1), al) * Math.pow(Math.max(r, 1), -1.2) * Math.pow(0.9938, idadeN) * (fem ? 1.012 : 1);
+        const cl = v >= 90 ? 'G1' : v >= 60 ? 'G2' : v >= 45 ? 'G3a' : v >= 30 ? 'G3b' : v >= 15 ? 'G4' : 'G5';
+        tfg = Math.round(v) + ' ml/min/1,73 m² · ' + cl;
+      }
+    }
+    const dvt = s.dvt || '';
+    const kind = /^(CVC|CDL)/.test(dvt) ? 'ven' : dvt === 'PICC' ? 'picc' : dvt === 'PAI' ? 'art' : dvt === 'Dreno torácico' ? 'tor'
+      : ['Hemovac', 'Dreno de cavidade', 'Dreno tubular/laminar'].includes(dvt) ? 'abd' : dvt === 'DVE' ? 'dve'
+      : dvt.startsWith('Outro') ? 'outro' : 'txt';
+    const mod = s.mod || '';
+
+    const gs = [ml(s.g1)].filter(ok);
+    const diu = ml(s.p1);
+    const devs = s.devs || [];
+    const DRENOS = ['Hemovac', 'Dreno de cavidade', 'Dreno tubular/laminar', 'Dreno torácico', 'DVE', 'SNG em sifonagem', 'Ostomia'];
+    const drs = devs.filter((d) => DRENOS.includes(d.nome)).slice(0, 4);
+    const dv = s.deb || {};
+    const ps = [diu, ml(s.p3)].concat(drs.map((d) => ml(dv[d.id]))).filter(ok);
+    const temG = gs.length > 0;
+    const temP = ps.length > 0;
+    const totG = temG ? gs.reduce((a, b) => a + b, 0) : 0;
+    const totP = temP ? ps.reduce((a, b) => a + b, 0) : 0;
+    let bh = '';
+    if (temG || temP) {
+      const b = totG - totP;
+      bh = (b > 0 ? '+' : b < 0 ? '−' : '') + fml(Math.abs(b)) + ' ml';
+    }
+    let mlkgh = '';
+    if (ok(diu) && ok(peso) && peso > 0) mlkgh = '· ' + f(diu / peso / HORAS, 1) + ' ml/kg/h';
+
+    const LOC = { 'Emergência': 'Emergência', 'Centro cirúrgico': 'CC', 'CTI': 'CTI', 'Enfermaria': 'Enfermaria', 'Outro hospital': 'outro hospital' };
+    const txtDev = (d) => {
+      const dt = data(d.data);
+      const n = dt ? Math.round((REF - dt) / 86400000) : null;
+      const d0 = dt ? String(dt.getDate()).padStart(2, '0') + '/' + String(dt.getMonth() + 1).padStart(2, '0') : '';
+      const pre = n != null && n >= 0 ? 'D' + n + ' (D0 ' + d0 + (d.local ? ' - ' + LOC[d.local] : '') + ') ' : '';
+      return pre + d.nome + (d.sitio ? ' ' + d.sitio : '');
+    };
+    const ATB_R = ['Linezolida', 'Tigeciclina', 'Daptomicina', 'Ceftazidima-avibactam', 'Anfotericina B lipossomal', 'Teicoplanina', 'Polimixina B', 'Aztreonam', 'RHZE', 'Amicacina', 'Ertapenem'];
+    const atbs = s.atbs || [];
+    const atbPrevs = s.atbPrevs || [];
+    const ddmm = (dt) => String(dt.getDate()).padStart(2, '0') + '/' + String(dt.getMonth() + 1).padStart(2, '0');
+    const minus = (t) => (t && t !== t.toUpperCase() ? t.charAt(0).toLowerCase() + t.slice(1) : t || '');
+    const txtAtb = (a) => {
+      const dt = data(a.d0);
+      const n = dt ? Math.round((REF - dt) / 86400000) : null;
+      const pre = n != null && n >= 0 ? 'D' + n + ' (D0 ' + ddmm(dt) + ') ' : '';
+      return pre + minus(a.nome) + (a.foco ? ' · ' + minus(a.foco) : '') + (a.prev ? ' · previsto ' + a.prev + ' dias' : '');
+    };
+    const susAtb = (i) => () => {
+      const l = (this.state.atbs || []).slice();
+      const a = l.splice(i, 1)[0];
+      if (!a) return;
+      const dt = data(a.d0);
+      this.setState({ atbs: l, atbPrevs: (this.state.atbPrevs || []).concat([minus(a.nome) + ' (' + (dt ? ddmm(dt) + ' a ' : 'até ') + ddmm(REF) + ')']) });
+    };
+    const rmDev = (i) => () => { const l = (this.state.devs || []).slice(); l.splice(i, 1); this.setState({ devs: l }); };
+    const setDeb = (d) => (e) => { if (!d) return; this.setState({ deb: Object.assign({}, this.state.deb, { [d.id]: e.target.value }) }); };
+    const set = (k) => (e) => this.setState({ [k]: e.target.value });
+    const tog = (k) => () => this.setState({ [k]: !this.state[k] });
+    const add = (t) => () => { const p = (this.state.plano || '').replace(/\s+$/, ''); this.setState({ plano: (p ? p + '\n' : '') + t + ': ' }); };
+
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 2 · Pós-operatório',
+      dn: s.dn, peso: s.peso, droga: s.droga, concV: concTxt, concU: dr ? dr[1] : '', vaz: s.vaz,
+      onDroga: (e) => this.setState({ droga: e.target.value, conc: '' }), onConc: set('conc'),
+      dvt: dvt, onDvt: set('dvt'), sVen: kind === 'ven', sArt: kind === 'art', sPicc: kind === 'picc', sTor: kind === 'tor', sAbd: kind === 'abd', sDve: kind === 'dve', sOutro: kind === 'outro', sTxt: kind === 'txt',
+      mod: mod, onMod: set('mod'), vPi: mod === 'PCV', vPs: ['PSV', 'CPAP'].includes(mod), vVc: ['', 'VCV', 'PCV', 'PSV'].includes(mod),
+      sv: s.sv, onSv: set('sv'), vO2: ['CN', 'Máscara', 'Macronebulização'].includes(s.sv), vCnaf: s.sv === 'CNAF', vMod: !s.sv || ['VNI', 'TOT + VM', 'TQT + VM'].includes(s.sv),
+      p3: s.p3, onP3: set('p3'),
+
+      dvs: s.dvs, onDvs: set('dvs'), dvm: s.dvm, onDvm: set('dvm'), dvo: s.dvo, onDvo: set('dvo'), dvl: s.dvl, onDvl: set('dvl'),
+      addDev: () => {
+        const t = this.state;
+        if (!t.dvt) return;
+        const nome = t.dvt.startsWith('Outro') ? (t.dvo || 'Outro') : t.dvt.replace(' (cateter de diálise)', '');
+        const d = { id: 'd' + Date.now() + Math.floor(Math.random() * 1000), nome: nome, sitio: [t.dvs, t.dvm].filter(Boolean).join(' '), data: t.devData || '', local: t.dvl || '' };
+        this.setState({ devs: (t.devs || []).concat([d]), dvt: '', dvs: '', dvm: '', dvo: '', devData: '', dvl: '', devOpen: false });
+      },
+      semDev: devs.length ? 'hid' : '',
+      dc1: devs[0] ? '' : 'hid', dt1: devs[0] ? txtDev(devs[0]) : '', rm1: rmDev(0),
+      dc2: devs[1] ? '' : 'hid', dt2: devs[1] ? txtDev(devs[1]) : '', rm2: rmDev(1),
+      dc3: devs[2] ? '' : 'hid', dt3: devs[2] ? txtDev(devs[2]) : '', rm3: rmDev(2),
+      dc4: devs[3] ? '' : 'hid', dt4: devs[3] ? txtDev(devs[3]) : '', rm4: rmDev(3),
+      dc5: devs[4] ? '' : 'hid', dt5: devs[4] ? txtDev(devs[4]) : '', rm5: rmDev(4),
+      dc6: devs[5] ? '' : 'hid', dt6: devs[5] ? txtDev(devs[5]) : '', rm6: rmDev(5),
+      rc1: drs[0] ? '' : 'hid', rn1: drs[0] ? drs[0].nome + (drs[0].sitio ? ' ' + drs[0].sitio : '') : '', ro1: drs[0] ? (drs[0].ontem || '— (novo)') : '', rv1: drs[0] ? (dv[drs[0].id] || '') : '', onR1: setDeb(drs[0]),
+      rc2: drs[1] ? '' : 'hid', rn2: drs[1] ? drs[1].nome + (drs[1].sitio ? ' ' + drs[1].sitio : '') : '', ro2: drs[1] ? (drs[1].ontem || '— (novo)') : '', rv2: drs[1] ? (dv[drs[1].id] || '') : '', onR2: setDeb(drs[1]),
+      rc3: drs[2] ? '' : 'hid', rn3: drs[2] ? drs[2].nome + (drs[2].sitio ? ' ' + drs[2].sitio : '') : '', ro3: drs[2] ? (drs[2].ontem || '— (novo)') : '', rv3: drs[2] ? (dv[drs[2].id] || '') : '', onR3: setDeb(drs[2]),
+      rc4: drs[3] ? '' : 'hid', rn4: drs[3] ? drs[3].nome + (drs[3].sitio ? ' ' + drs[3].sitio : '') : '', ro4: drs[3] ? (drs[3].ontem || '— (novo)') : '', rv4: drs[3] ? (dv[drs[3].id] || '') : '', onR4: setDeb(drs[3]),
+      atbOpen: s.atbOpen, toggleAtb: tog('atbOpen'), atbNome: s.atbNome, onAtbNome: set('atbNome'), atbOut: s.atbOut, onAtbOut: set('atbOut'),
+      atbOutro: (s.atbNome || '').startsWith('Outro'), atbD0: s.atbD0, onAtbD0: set('atbD0'), atbFoco: s.atbFoco, onAtbFoco: set('atbFoco'), atbPrev: s.atbPrev, onAtbPrev: set('atbPrev'),
+      atbRestrito: ATB_R.includes(s.atbNome),
+      addAtb: () => {
+        const t = this.state;
+        if (!t.atbNome) return;
+        const nome = t.atbNome.startsWith('Outro') ? (t.atbOut || 'outro') : t.atbNome;
+        const a = { id: 'a' + Date.now() + Math.floor(Math.random() * 1000), nome: nome, d0: t.atbD0 || '', foco: t.atbFoco || '', prev: t.atbPrev || '' };
+        this.setState({ atbs: (t.atbs || []).concat([a]), atbNome: '', atbOut: '', atbD0: '', atbFoco: '', atbPrev: '', atbOpen: false });
+      },
+      semAtb: atbs.length ? 'hid' : '', prevC: atbPrevs.length ? '' : 'hid', prevT: atbPrevs.join('; '),
+      ac1: atbs[0] ? '' : 'hid', at1: atbs[0] ? txtAtb(atbs[0]) : '', ar1: atbs[0] && ATB_R.includes(atbs[0].nome) ? '' : 'hid', sus1: susAtb(0),
+      ac2: atbs[1] ? '' : 'hid', at2: atbs[1] ? txtAtb(atbs[1]) : '', ar2: atbs[1] && ATB_R.includes(atbs[1].nome) ? '' : 'hid', sus2: susAtb(1),
+      ac3: atbs[2] ? '' : 'hid', at3: atbs[2] ? txtAtb(atbs[2]) : '', ar3: atbs[2] && ATB_R.includes(atbs[2].nome) ? '' : 'hid', sus3: susAtb(2),
+      ac4: atbs[3] ? '' : 'hid', at4: atbs[3] ? txtAtb(atbs[3]) : '', ar4: atbs[3] && ATB_R.includes(atbs[3].nome) ? '' : 'hid', sus4: susAtb(3),
+      sexo: s.sexo, onSexo: set('sexo'), cr: s.cr, onCr: set('cr'), tfg: tfg, devData: s.devData,
+      g1: s.g1, g2: s.g2, g3: s.g3, p1: s.p1,
+      idade: idade, devDias: devDias, dose: dose, po: po, cirData: s.cirData, onCirData: set('cirData'),
+      neuroOn: s.neuroOn, neuroOff: !s.neuroOn, toggleNeuro: tog('neuroOn'),
+      onNc: (e) => this.setState({ nc: e.target.value }),
+      ncData: !!s.nc && !s.nc.startsWith('Não'),
+      ncLbl: (s.nc || '').includes('conservadora') ? 'Conservadora desde' : (s.nc || '').startsWith('Alta') ? 'Alta em' : 'Acompanha desde',
+      cirOn: s.cirOn, cirOff: !s.cirOn, toggleCir: tog('cirOn'),
+      idosoOn: s.idosoOn, idosoOff: !s.idosoOn, toggleIdoso: tog('idosoOn'),
+      vascOpen: s.vascOpen, toggleVasc: tog('vascOpen'),
+      fxData: s.fxData, fxCir: s.fxCir, onFx: set('fxData'), onFxCir: set('fxCir'), fxTempo: fxTempo,
+      totG: temG ? fml(totG) : '', totP: temP ? fml(totP) : '', bh: bh, mlkgh: mlkgh,
+      onDn: set('dn'), onPeso: set('peso'), onVaz: set('vaz'), onDevData: set('devData'),
+      onG1: set('g1'), onG2: set('g2'), onG3: set('g3'), onP1: set('p1'),
+      plano: s.plano, onPlano: set('plano'), tp1: add('Cirúrgico'), tp2: add('Respiratório'), tp3: add('Hemodinâmica'), tp4: add('Infecção'), tp5: add('Metabólico'), tp6: add('Nutrição'),
+      isoOpen: s.isoOpen, toggleIso: tog('isoOpen'),
+      devOpen: s.devOpen, dxOpen: s.dxOpen, escOpen: s.escOpen, profOpen: s.profOpen, cpOpen: s.cpOpen,
+      toggleDev: tog('devOpen'), toggleDx: tog('dxOpen'), toggleEsc: tog('escOpen'), toggleProf: tog('profOpen'), toggleCp: tog('cpOpen')
+    };
+  }
+}
+</script>
+</body>
+</html>

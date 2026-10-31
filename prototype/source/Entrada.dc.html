@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – entrada</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ECEFF1;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:10px;padding:20px 22px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:14px;box-shadow:0 6px 24px rgba(38,58,68,.10)}
+.lbl{font-size:12px;color:#55666D;font-weight:500}
+.fl{font-size:12px;color:#3E5057;font-weight:600}
+.in{font:inherit;font-size:18px;letter-spacing:.04em;padding:10px 12px;border:1px solid #C9D4D9;border-radius:6px;min-height:48px;box-sizing:border-box;background:#FFFFFF;color:#1B2A30;width:100%;font-variant-numeric:tabular-nums}
+.in.sm{font-size:15px;letter-spacing:0;min-height:44px}
+.in:focus{outline:2px solid #1D4A8C;outline-offset:0;border-color:#1D4A8C}
+.in::placeholder{color:#9AA8AE;letter-spacing:0}
+.lk{font:inherit;font-size:13px;background:none;border:0;padding:6px 0;color:#1D4A8C;text-decoration:underline;cursor:pointer;align-self:flex-start;min-height:32px}
+.who{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:6px;background:#F1F6FC;border:1px solid #C3D6EA;font-size:15px;font-weight:600;color:#01234F}
+.who .lk{margin-left:auto;font-weight:500;font-size:12.5px;padding:0}
+.warn{padding:8px 12px;border-radius:6px;background:#FFF4DC;border:1px solid #E3B04B;color:#6E4300;font-size:13px}
+.note{padding:10px 12px;border-radius:6px;background:#F7FAFD;border:1px solid #C3D6EA;font-size:13px;line-height:1.45;color:#01234F}
+.box{border:1px solid #C3D6EA;background:#F7FAFD;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.seg{display:flex;border:1px solid #C9D4D9;border-radius:6px;overflow:hidden;background:#FFFFFF}
+.seg button{font:inherit;flex:1 1 0;font-size:14px;padding:10px 12px;border:0;border-right:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:46px;display:flex;flex-direction:column;align-items:center;gap:1px}
+.seg button small{font-size:11px;color:#55666D;font-weight:500}
+.seg button:last-child{border-right:0}
+.seg button.on{background:#1D4A8C;color:#FFFFFF;font-weight:600}
+.seg button.on small{color:#DAE8F6}
+.btn{font:inherit;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 16px;border-radius:6px;border:1px solid #1D4A8C;background:#1D4A8C;color:#FFFFFF;cursor:pointer;min-height:48px;box-sizing:border-box;font-weight:600;width:100%}
+.btn.off{background:#C9D4D9;border-color:#C9D4D9;color:#FFFFFF;cursor:not-allowed}
+.btn.sec{background:#FFFFFF;color:#1D4A8C;width:auto;font-size:14px;min-height:40px}
+.btn.adm{background:#FFFFFF;color:#01234F;border-color:#C9D4D9;font-weight:600}
+.or{display:flex;align-items:center;gap:10px;font-size:12px;color:#7A8A90}
+.or::before,.or::after{content:"";flex:1;height:1px;background:#E3E9EC}
+.beta{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:#FFF4DC;border:1px solid #E3B04B;color:#6E4300}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C9D6DC">CriticalEye · round dos CTIs adultos · quinta, 29/10/2026</span>
+</div>
+</div>
+<span class="beta">Fase de testes</span>
+</div>
+</header>
+
+<main style="width: 100%; max-width: 520px; margin: 0 auto; padding: 32px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<section class="card" aria-labelledby="e-t">
+<img src="assets/criticaleye-logo.png" alt="CriticalEye. Cada paciente, um olhar atento." style="display: block; width: 280px; max-width: 85%; align-self: center; margin: 0 0 4px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; border-left: 6px solid #1D4A8C; padding-left: 12px">
+<div style="display: flex; flex-direction: column">
+<h1 id="e-t" style="margin: 0; font-size: 20px; font-weight: 700; color: #01234F">CTI 1 · Neurológico</h1>
+<span class="lbl">Pasta conectada neste perfil do Windows</span>
+</div>
+<button class="lk" style="align-self: center">Trocar CTI</button>
+</div>
+
+<sc-if value="{{ehMedico}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="e-crm" class="fl">CRM</label>
+<input id="e-crm" class="in" placeholder="só números, com ou sem o 52" value="{{crm}}" onChange="{{onCrm}}" onBlur="{{conferir}}">
+<sc-if value="{{conhecido}}" hint-placeholder-val="{{ true }}">
+<div class="who"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>{{nome}}<button class="lk" onClick="{{limpar}}">Não é você?</button></div>
+</sc-if>
+<sc-if value="{{desconhecido}}" hint-placeholder-val="{{ false }}">
+<div class="warn">Este CRM ainda não está cadastrado no CTI 1. Use "Primeiro acesso?".</div>
+</sc-if>
+<button class="lk" onClick="{{togglePrim}}" aria-expanded="{{prim}}">Primeiro acesso?</button>
+<sc-if value="{{prim}}" hint-placeholder-val="{{ false }}">
+<div class="box">
+<div style="display: flex; flex-direction: column; gap: 4px"><label for="e-nome" class="fl">Nome e último nome</label><input id="e-nome" class="in sm" placeholder="ex.: Ana Costa"></div>
+<span class="lbl">Feito uma vez por CTI. Nas próximas entradas, basta o CRM.</span>
+<button class="btn sec" onClick="{{togglePrim}}">Cadastrar</button>
+</div>
+</sc-if>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="fl">Hoje você entra como</span>
+<div class="seg" role="group" aria-label="Papel nesta entrada">
+<button class="{{clsRot}}" aria-pressed="{{ehRot}}" onClick="{{setRot}}">Rotina</button>
+<button class="{{clsPla}}" aria-pressed="{{ehPla}}" onClick="{{setPla}}">Plantonista</button>
+</div>
+<span class="lbl">Escolhido a cada entrada: a mesma pessoa pode ser rotina aqui e plantonista em outro CTI.</span>
+</div>
+</sc-if>
+
+<sc-if value="{{ehAdm}}" hint-placeholder-val="{{ false }}">
+<div class="note"><strong>Entrada ADM.</strong> Lança laboratório, gasometria, laudos e os sinais das últimas 24 h. Balanço hídrico, dispositivos e as demais seções ficam com os médicos e aparecem só para leitura.</div>
+<button class="lk" onClick="{{sairAdm}}">Sou médico</button>
+</sc-if>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="fl">Posto</span>
+<div class="seg" role="group" aria-label="Posto">
+<button class="{{clsP1}}" aria-pressed="{{ehP1}}" onClick="{{setP1}}">Posto 1<small>leitos 1–5 e 16–20</small></button>
+<button class="{{clsP2}}" aria-pressed="{{ehP2}}" onClick="{{setP2}}">Posto 2<small>leitos 6–15</small></button>
+</div>
+</div>
+
+<button class="{{clsEntrar}}">{{rotEntrar}}</button>
+
+<sc-if value="{{ehMedico}}" hint-placeholder-val="{{ true }}">
+<div class="or">ou</div>
+<button class="btn adm" onClick="{{entrarAdm}}">Sou do administrativo · entrar como ADM</button>
+</sc-if>
+</section>
+
+<span class="lbl" style="text-align: center">Para testar: 521234567 ou 5245210 (CRM antigo, mais curto), ou "entrar como ADM".</span>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"$preview":{"width":1366,"height":1040}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { crm: '521234567', papel: '', posto: 'p1', prim: false, adm: false };
+  }
+  renderVals() {
+    const s = this.state;
+    const cadastro = { '521234567': 'Ana Costa', '529876543': 'Bruno Lima', '5245210': 'Carlos Moura' };
+    const id = String(s.crm || '').replace(/\D/g, '');
+    const nome = cadastro[id] || '';
+    const ehAdm = !!s.adm;
+    const conhecido = !ehAdm && !!nome;
+    const desconhecido = !ehAdm && !nome && id.length >= 4 && !!s.tentou;
+    const pronto = !!s.posto && (ehAdm || (conhecido && !!s.papel));
+    const papelTxt = ehAdm ? 'ADM' : s.papel === 'rot' ? 'rotina' : s.papel === 'pla' ? 'plantonista' : '';
+    const postoTxt = s.posto === 'p1' ? 'Posto 1' : s.posto === 'p2' ? 'Posto 2' : '';
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      crm: s.crm,
+      nome: nome,
+      conhecido: conhecido,
+      desconhecido: desconhecido,
+      ehAdm: ehAdm,
+      ehMedico: !ehAdm,
+      prim: s.prim,
+      onCrm: (e) => this.setState({ crm: e.target.value, tentou: false }),
+      conferir: () => this.setState({ tentou: true }),
+      limpar: () => this.setState({ crm: '', papel: '' }),
+      togglePrim: () => this.setState({ prim: !this.state.prim }),
+      entrarAdm: () => this.setState({ adm: true }),
+      sairAdm: () => this.setState({ adm: false }),
+      ehRot: s.papel === 'rot', ehPla: s.papel === 'pla',
+      clsRot: s.papel === 'rot' ? 'on' : '', clsPla: s.papel === 'pla' ? 'on' : '',
+      setRot: () => this.setState({ papel: 'rot' }),
+      setPla: () => this.setState({ papel: 'pla' }),
+      ehP1: s.posto === 'p1', ehP2: s.posto === 'p2',
+      clsP1: s.posto === 'p1' ? 'on' : '', clsP2: s.posto === 'p2' ? 'on' : '',
+      setP1: () => this.setState({ posto: 'p1' }),
+      setP2: () => this.setState({ posto: 'p2' }),
+      clsEntrar: pronto ? 'btn' : 'btn off',
+      rotEntrar: pronto ? 'Entrar no ' + postoTxt + ' como ' + papelTxt : 'Entrar'
+    };
+  }
+}
+</script>
+</body>
+</html>

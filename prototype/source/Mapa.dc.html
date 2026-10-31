@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – Mapa da unidade</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+a{color:#1D4A8C}a:hover{color:#01234F}
+.btn{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:40px;box-sizing:border-box}
+.btn.ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#FFFFFF}
+.bc{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-width:0;box-sizing:border-box}
+.bc.me{border:2px solid #1D4A8C;padding:11px 13px}
+.bc.lock{border-color:#E3B04B;background:#FFFCF4}
+.bc.empty{border-style:dashed;background:#F6F9FA}
+.bh{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.bn{font-size:12px;font-weight:700;letter-spacing:.06em;color:#1D4A8C}
+.nm{font-size:15px;font-weight:700}
+.dx{font-size:12.5px;color:#3E5057;line-height:1.35}
+.dp{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:#E3EEF8;color:#01234F;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tg{font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;background:#EEF3F9;border:1px solid #D3DCE0;color:#2E4148}
+.tg.r{background:#FDECEC;border-color:#E9A3A3;color:#8E1B1B}
+.tg.a{background:#FFF4DC;border-color:#E3B04B;color:#6E4300}
+.tg.k{background:#2E4148;border-color:#2E4148;color:#FFFFFF}
+.tg.p{background:#F2EFF9;border-color:#BDB2DE;color:#4B3A82}
+.bc.out{background:#F6F9FA}
+.tab{font:inherit;font-size:13px;padding:8px 14px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:40px}
+.tab.on{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF;font-weight:600}
+.ft{display:flex;flex-direction:column;gap:3px;border-top:1px solid #EFF3F5;padding-top:7px;font-size:11.5px;color:#55666D}
+.ft .w{color:#6E4300;font-weight:600}
+.stat{display:flex;flex-direction:column;gap:1px;padding:8px 14px;background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;min-width:120px}
+.stat b{font-size:20px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11.5px;color:#55666D}
+.day{font:inherit;display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;text-align:left;padding:9px 10px;border:1px solid #E3E9EC;border-radius:6px;background:#FFFFFF;color:#1B2A30;cursor:pointer;min-height:44px;font-size:13px}
+.day span{font-size:11.5px;color:#55666D}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Mapa</span>
+</div>
+</div>
+<nav aria-label="Navegação entre dias" style="display: flex; align-items: center; gap: 8px">
+<button class="btn ghost" aria-label="Round do dia anterior (26/10)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+<div style="display: flex; flex-direction: column; align-items: center; min-width: 190px">
+<span style="font-size: 15px; font-weight: 600">Terça, 27/10/2026</span>
+<span style="font-size: 11.5px; color: #C6DDF2">Round de hoje · aberto às 07:40</span>
+</div>
+<button class="btn ghost" aria-label="Próximo dia" disabled style="opacity: .45"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Passagem de plantão</button>
+<button class="btn" style="background: #FFFFFF; border-color: #FFFFFF; color: #01234F"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>Imprimir</button>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1440px; width: 100%; margin: 0 auto; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; flex: 1">
+
+<div role="tablist" aria-label="Postos" style="display: flex; gap: 6px; flex-wrap: wrap">
+<button class="tab on" role="tab" aria-selected="true">Posto 1 · leitos 1–5 e 16–20</button>
+<button class="tab" role="tab" aria-selected="false">Posto 2 · leitos 6–15</button>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<div class="stat"><b>9</b><span>leitos ocupados</span></div>
+<div class="stat"><b>1</b><span>leito vago</span></div>
+<div class="stat"><b>3</b><span>dispositivos acima do limite</span></div>
+<div class="stat"><b>8</b><span>pendências abertas</span></div>
+<div class="stat"><b>2</b><span>protocolos de sepse em curso</span></div>
+<div class="stat"><b>2</b><span>leitos com cuidados paliativos em discussão</span></div>
+<div class="stat" style="border-color: #E3B04B; background: #FFF9EC"><b style="color: #6E4300">1</b><span>leito sem atualização hoje</span></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start">
+
+<div style="flex: 999 1 760px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px">
+
+<article class="bc">
+<div class="bh"><span class="bn">LEITO 01</span><span class="dp">D5</span></div>
+<div><div class="nm">Maria L.</div><div class="dx">71 anos · HIP talâmica E · ICH 2</div></div>
+<div class="tags"><span class="tg">Leito de isolamento</span><span class="tg r">Alergia</span><span class="tg p">Reunião CP 28/10</span><span class="tg">VM</span></div>
+<div class="ft"><span>1 pendência aberta</span><span>Atualizado 07:55 · plantonista</span></div>
+</article>
+
+<article class="bc">
+<div class="bh"><span class="bn">LEITO 02</span><span class="dp">D9</span></div>
+<div><div class="nm">Carlos R.</div><div class="dx">34 anos · TCE grave · Marshall III</div></div>
+<div class="tags"><span class="tg k">Protocolo de ME</span><span class="tg a">Sepse 26/10</span><span class="tg">VM</span><span class="tg">PIC</span><span class="tg">DVA</span></div>
+<div class="ft"><span class="w">1 dispositivo acima do limite</span><span>2 pendências abertas</span><span>Atualizado 08:02 · plantonista</span></div>
+</article>
+
+<article class="bc">
+<div class="bh"><span class="bn">LEITO 03</span><span class="dp">D1</span></div>
+<div><div class="nm">Ana P.</div><div class="dx">52 anos · PO ressecção de meningioma frontal</div></div>
+<div class="tags"><span class="tg">Ar ambiente</span></div>
+<div class="ft"><span>Sem pendências</span><span>Atualizado 08:05 · plantonista</span></div>
+</article>
+
+<article class="bc me">
+<div class="bh"><span class="bn">LEITO 04</span><span class="dp">D7</span></div>
+<div><div class="nm">João S.</div><div class="dx">58 anos · HSA aneurismática · Hunt-Hess 3</div></div>
+<div class="tags"><span class="tg r">Alergia</span><span class="tg a">Contato + resp.</span><span class="tg a">Sepse 25/10</span><span class="tg">VM</span><span class="tg">DVA</span><span class="tg">DVE</span></div>
+<div class="ft"><span class="w">1 dispositivo acima do limite</span><span>2 pendências abertas</span><span style="color: #1D4A8C; font-weight: 600">Em edição por você · salvo 08:12</span></div>
+</article>
+
+<article class="bc">
+<div class="bh"><span class="bn">LEITO 05</span><span class="dp">D4</span></div>
+<div><div class="nm">Paulo T.</div><div class="dx">67 anos · AVCi maligno ACM D · PO craniectomia</div></div>
+<div class="tags"><span class="tg p">Paliativo · não escalonar</span><span class="tg">VM</span></div>
+<div class="ft"><span>1 pendência aberta</span><span>Atualizado 08:20 · plantonista</span></div>
+</article>
+
+<article class="bc">
+<div class="bh"><span class="bn">LEITO 16</span><span class="dp">D2</span></div>
+<div><div class="nm">Rita F.</div><div class="dx">79 anos · PO drenagem de HSDC E</div></div>
+<div class="tags"><span class="tg">CN</span></div>
+<div class="ft"><span>Sem pendências</span><span class="w">Sem atualização no round de hoje</span></div>
+</article>
+
+<article class="bc lock">
+<div class="bh"><span class="bn">LEITO 17</span><span class="dp">D3</span></div>
+<div><div class="nm">Luiz M.</div><div class="dx">45 anos · Estado de mal epiléptico</div></div>
+<div class="tags"><span class="tg">VM</span><span class="tg">EEG</span></div>
+<div class="ft"><span>1 pendência aberta</span><span class="w" style="display: inline-flex; align-items: center; gap: 5px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Em edição pela rotina · só leitura</span></div>
+</article>
+
+<article class="bc out">
+<div class="bh"><span class="bn">LEITO 18</span><span class="dp">D1</span></div>
+<div><div class="nm">Sônia B.</div><div class="dx">61 anos · PO artrodese lombar</div></div>
+<div class="tags"><span class="tg k">Alta 27/10 09:30 · enfermaria</span></div>
+<div class="ft"><span>Não entra no round de 28/10</span><span>Saída registrada · plantonista</span></div>
+</article>
+
+<article class="bc empty">
+<div class="bh"><span class="bn">LEITO 19</span></div>
+<div><div class="nm" style="color: #3E5057">Vago no round de hoje</div><div class="dx">Admissão às 11:40 · entra no round de 28/10</div></div>
+</article>
+
+<article class="bc">
+<div class="bh"><span class="bn">LEITO 20</span><span class="dp">D12</span></div>
+<div><div class="nm">Pedro A.</div><div class="dx">38 anos · Síndrome de Guillain-Barré</div></div>
+<div class="tags"><span class="tg">Leito de isolamento</span><span class="tg a">Contato</span><span class="tg">TQT + VM</span></div>
+<div class="ft"><span class="w">1 dispositivo acima do limite</span><span>1 pendência aberta</span><span>Atualizado 08:15 · plantonista</span></div>
+</article>
+
+</div>
+
+<aside style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #D3DCE0; border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; box-sizing: border-box">
+<h2 style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1D4A8C; border-bottom: 1px solid #E3E9EC; padding-bottom: 7px">Rounds anteriores</h2>
+<span style="font-size: 12px; color: #55666D">Um round por dia, guardado na pasta da rede. Dias passados abrem só para leitura.</span>
+<button class="day">Segunda, 26/10<span>10 leitos</span></button>
+<button class="day">Domingo, 25/10<span>10 leitos</span></button>
+<button class="day">Sábado, 24/10<span>9 leitos</span></button>
+<button class="day">Sexta, 23/10<span>10 leitos</span></button>
+<button class="day">Quinta, 22/10<span>10 leitos</span></button>
+<button class="btn" style="justify-content: center">Ver todos os dias</button>
+</aside>
+
+</div>
+
+<footer style="display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid #D3DCE0; font-size: 12px; color: #55666D">
+<span>Leitos com borda âmbar estão abertos por outro médico. Atualizações aparecem em poucos segundos.</span>
+<span>Documento interno com dados sensíveis.</span>
+</footer>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 1 · Neurológico'
+    };
+  }
+}
+</script>
+</body>
+</html>

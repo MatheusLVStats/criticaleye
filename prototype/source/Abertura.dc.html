@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – abrir o round do dia</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:14px 16px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1D4A8C}
+.sub{margin:0;font-size:12px;font-weight:600;color:#01234F}
+.lbl{font-size:12px;color:#55666D;font-weight:500}
+.btn{font:inherit;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 16px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:44px;box-sizing:border-box}
+.btn.p{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF;font-weight:600}
+.lnk{font:inherit;font-size:12px;display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:5px;border:1px solid #D3DCE0;background:#F6F9FA;color:#01234F;cursor:pointer;min-height:32px}
+.add{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px dashed #8FA5AD;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:32px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;font-weight:500;color:#55666D;font-size:11.5px;padding:4px 8px;border-bottom:1px solid #E3E9EC;white-space:nowrap}
+.tbl td{padding:7px 8px;border-bottom:1px solid #EFF3F5;vertical-align:middle}
+.tbl tr.out td{background:#F6F9FA;color:#55666D}
+.st{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;background:#E2EEF8;color:#1D4E7A;white-space:nowrap}
+.st.no{background:#E3EAEC;color:#3E5057}
+.st.new{background:#E3F2E6;color:#1F5A2E}
+.st.k{background:#2E4148;color:#FFFFFF}
+.grp{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:8px;border:1px solid #E3E9EC;background:#F9FBFC;flex:1 1 210px;min-width:0}
+.grp ul{margin:0;padding:0 0 0 16px;display:flex;flex-direction:column;gap:4px;font-size:13px;line-height:1.35}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Abrir o round do dia</span>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1120px; width: 100%; margin: 0 auto; padding: 22px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; flex-direction: column; gap: 3px">
+<h1 style="margin: 0; font-size: 22px; font-weight: 700; color: #01234F">Abrir o round de quarta, 28/10</h1>
+<span class="lbl" style="font-size: 13px">Base: round de terça, 27/10. Confira saídas e admissões antes de abrir.</span>
+</div>
+
+<section class="card">
+<div class="ch"><h2 class="ct">Pacientes do round de 27/10</h2><span class="lbl">9 leitos ocupados</span></div>
+<div style="overflow-x: auto">
+<table class="tbl">
+<thead><tr><th>Leito</th><th>Paciente</th><th>Situação em 27/10</th><th>No round de 28/10</th><th></th></tr></thead>
+<tbody>
+<tr><td><strong>01</strong></td><td>Maria L. · HIP talâmica E</td><td>Internada</td><td><span class="st">copiar</span></td><td></td></tr>
+<tr><td><strong>02</strong></td><td>Carlos R. · TCE grave</td><td>Internado</td><td><span class="st">copiar</span></td><td></td></tr>
+<tr><td><strong>03</strong></td><td>Ana P. · PO meningioma</td><td>Internada</td><td><span class="st">copiar</span></td><td></td></tr>
+<tr><td><strong>04</strong></td><td>João S. · HSA aneurismática</td><td>Internado</td><td><span class="st">copiar</span></td><td></td></tr>
+<tr><td><strong>05</strong></td><td>Paulo T. · AVCi maligno</td><td>Internado</td><td><span class="st">copiar</span></td><td></td></tr>
+<tr><td><strong>16</strong></td><td>Rita F. · PO HSDC</td><td>Internada</td><td><span class="st">copiar</span></td><td></td></tr>
+<tr><td><strong>17</strong></td><td>Luiz M. · Estado de mal epiléptico</td><td>Internado</td><td><span class="st">copiar</span></td><td></td></tr>
+<tr class="out"><td><strong>18</strong></td><td>Sônia B. · PO artrodese lombar</td><td><span class="st k">alta</span> 27/10 às 09:30 · enfermaria</td><td><span class="st no">não entra</span></td><td style="text-align: right"><button class="lnk">Desfazer saída</button></td></tr>
+<tr><td><strong>20</strong></td><td>Pedro A. · Guillain-Barré</td><td>Internado</td><td><span class="st">copiar</span></td><td></td></tr>
+</tbody>
+</table>
+</div>
+<span class="lbl">Alta, óbito e transferência são registrados no próprio dia, pelo botão "Saída do CTI" na tela do leito. Só médicos desfazem uma saída.</span>
+</section>
+
+<section class="card">
+<div class="ch"><h2 class="ct">Admissões de 27/10</h2><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Admissão não registrada</button></div>
+<table class="tbl">
+<tbody>
+<tr><td style="width: 60px"><strong>19</strong></td><td>Admitido em 27/10 às 11:40 · nome registrado na admissão</td><td style="text-align: right"><span class="st new">entra em branco para preencher</span></td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="card">
+<div class="ch"><h2 class="ct">O que acontece com os dados</h2></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<div class="grp">
+<h3 class="sub">Copiado</h3>
+<ul>
+<li>Identificação, diagnósticos e alertas</li>
+<li>Dispositivos e antibióticos, com um dia a mais</li>
+<li>Culturas, TB e protocolos de sepse</li>
+<li>Cuidados paliativos e família</li>
+<li>Pendências abertas</li>
+</ul>
+</div>
+<div class="grp">
+<h3 class="sub">O atual de ontem vira anterior</h3>
+<ul>
+<li>Laboratório</li>
+<li>Gasometria</li>
+<li>Balanço hídrico</li>
+</ul>
+</div>
+<div class="grp">
+<h3 class="sub">Copiado para conferir</h3>
+<ul>
+<li>Exame neurológico</li>
+<li>Infusões e ventilação</li>
+</ul>
+<span class="lbl">Ficam em cinza até alguém confirmar no round.</span>
+</div>
+<div class="grp">
+<h3 class="sub">Começa vazio</h3>
+<ul>
+<li>Últimas 24 h pela enfermagem</li>
+<li>Plano do dia, com botão para copiar o de ontem</li>
+<li>Pendências já feitas saem</li>
+</ul>
+</div>
+</div>
+</section>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<span class="lbl">Quem chegar primeiro, médico ou ADM, abre o round. O de 27/10 continua guardado na pasta do dia, só para leitura.</span>
+<div style="display: flex; gap: 8px">
+<button class="btn">Cancelar</button>
+<button class="btn p">Abrir round de 28/10</button>
+</div>
+</div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":1150}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      hospital: this.props.hospital ?? 'Hospital das Couves',
+      unidade: this.props.unidade ?? 'CTI 1 · Neurológico'
+    };
+  }
+}
+</script>
+</body>
+</html>

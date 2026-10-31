@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – Leito 04</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+a{color:#1D4A8C}a:hover{color:#01234F}
+.card{background:#FFFFFF;border:1px solid #D3DCE0;border-radius:8px;padding:12px 14px;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:10px}
+.ch{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #E3E9EC;padding-bottom:7px;flex-wrap:wrap}
+.ct{margin:0;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#1D4A8C}
+.sub{margin:0;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3E5057;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lbl{font-size:11px;color:#55666D;font-weight:500}
+.prev{color:#5F6F75}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.col{min-width:0;display:flex;flex-direction:column;gap:8px}
+.kv{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:5px 14px;margin:0;align-items:baseline}
+.kv dt{font-size:11px;color:#55666D;font-weight:500}
+.kv dd{margin:0;font-size:13px;line-height:1.4}
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;font-weight:500;color:#55666D;font-size:11px;padding:3px 6px;border-bottom:1px solid #E3E9EC;white-space:nowrap}
+.tbl td{padding:5px 6px;border-bottom:1px solid #EFF3F5;vertical-align:top}
+.scroll{overflow-x:auto}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 9px;border-radius:999px;background:#EEF3F9;border:1px solid #D3DCE0;color:#1B2A30}
+.dp{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:#E3EEF8;color:#01234F;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dp.w{background:#FFE8B8;color:#6E4300}
+.btn{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:7px;padding:8px 12px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:40px;box-sizing:border-box}
+.btn.p{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF}
+.btn.ghost{background:transparent;border-color:rgba(255,255,255,.35);color:#FFFFFF}
+.lnk{font:inherit;font-size:12px;display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:5px;border:1px solid #D3DCE0;background:#F6F9FA;color:#01234F;cursor:pointer;min-height:30px}
+.add{font:inherit;font-size:12.5px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px dashed #8FA5AD;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:32px}
+.alert{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:6px;border:1px solid #D3DCE0;background:#F6F9FA}
+.alert.crit{background:#FDECEC;border-color:#E9A3A3}
+.alert.crit .at{color:#8E1B1B}
+.alert.warn{background:#FFF4DC;border-color:#E3B04B}
+.alert.warn .at{color:#6E4300}
+.at{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#01234F;display:flex;align-items:center;gap:6px}
+.av{font-size:13.5px;font-weight:600}
+.as{font-size:12px;color:#55666D}
+.lab{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px 16px;font-size:13px;font-variant-numeric:tabular-nums}
+.lab .k{display:inline-block;min-width:52px;font-size:11px;color:#55666D;font-weight:500}
+.bed{font:inherit;display:flex;flex-direction:column;align-items:flex-start;gap:1px;min-width:108px;min-height:48px;padding:6px 10px;border-radius:6px;border:1px solid #D3DCE0;background:#FFFFFF;color:#1B2A30;cursor:pointer;text-align:left;flex:0 0 auto}
+.bed .n{font-weight:700;font-size:13px;display:flex;align-items:center;gap:5px}
+.bed .s{font-size:11px;color:#55666D}
+.bed.on{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF}
+.bed.on .s{color:#DAE8F6}
+.bed.lock{border-color:#E3B04B;background:#FFF9EC}
+.bed.empty{border-style:dashed;background:#F6F9FA}
+.pend{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #EFF3F5;font-size:13px}
+.st{flex:0 0 auto;font-size:11px;font-weight:600;padding:2px 7px;border-radius:4px;background:#FFE8B8;color:#6E4300;white-space:nowrap}
+.st.ok{background:#E3EAEC;color:#3E5057}
+.st.b{background:#E2EEF8;color:#1D4E7A}
+.plan{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.4}
+.plan b{display:inline-block;min-width:92px;color:#01234F;font-weight:600}
+.menu{display:flex;flex-direction:column;border:1px solid #C9D4D9;border-radius:8px;background:#FFFFFF;box-shadow:0 6px 18px rgba(1,35,79,.16);overflow:hidden}
+.menu button{font:inherit;font-size:13px;text-align:left;padding:9px 12px;border:0;border-bottom:1px solid #EFF3F5;background:#FFFFFF;color:#1B2A30;cursor:pointer;min-height:38px}
+.menu button:last-child{border-bottom:0}
+.inp{font:inherit;font-size:14px;padding:9px 10px;border:1px solid #C9D4D9;border-radius:6px;min-height:40px;box-sizing:border-box;background:#FFFFFF;color:#1B2A30;width:100%}
+.tbl tr.g td{font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#3E5057;background:#F6F9FA;padding-top:6px}
+.tbl tr.t td{font-weight:600;border-bottom:1px solid #D3DCE0}
+.bhx td+td{text-align:right;white-space:nowrap}
+.bhb{display:flex;flex-direction:column;gap:2px;padding:7px 12px;border-radius:6px;background:#E3EEF8;border:1px solid #C3D6EA;font-size:14px;font-variant-numeric:tabular-nums;flex:1 1 150px}
+.alert.pal{background:#F2EFF9;border-color:#BDB2DE}
+.alert.pal .at{color:#4B3A82}
+.chip.pal{background:#F2EFF9;border-color:#BDB2DE;color:#3A2C6B;font-weight:600}
+.st.pal{background:#E6E0F5;color:#4B3A82}
+.menu small{display:block;font-size:11px;color:#55666D}
+.ovl{position:absolute;inset:0;background:rgba(27,42,48,.45);display:flex;justify-content:center;align-items:flex-start;padding-top:90px;z-index:50}
+.dlg{width:100%;max-width:640px;margin:0 16px;background:#FFFFFF;border-radius:10px;box-shadow:0 18px 50px rgba(1,35,79,.35);display:flex;flex-direction:column;overflow:hidden}
+.dh{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #E3E9EC}
+.dh h2{margin:0;font-size:17px;color:#01234F}
+.dh span{font-size:12px;color:#55666D}
+.dh .x{font:inherit;border:1px solid transparent;background:none;border-radius:6px;width:40px;height:40px;cursor:pointer;color:#55666D;display:flex;align-items:center;justify-content:center}
+.dbody{padding:14px 18px;display:flex;flex-direction:column;gap:12px}
+.popts{display:flex;flex-direction:column;gap:8px}
+.po{font:inherit;display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:10px 14px;border-radius:8px;border:1px solid #C9D4D9;background:#FFFFFF;cursor:pointer;color:#1B2A30;min-height:56px}
+.po b{font-size:14px}
+.po span{font-size:12px;color:#55666D}
+.po.on{border:2px solid #1D4A8C;padding:9px 13px;background:#F1F6FC}
+.pbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}
+.pb{font:inherit;display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:7px 10px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;cursor:pointer;font-size:12px;color:#3E5057;min-height:48px;text-align:left}
+.pb b{font-size:14px;color:#1B2A30}
+.pb.on{background:#1D4A8C;border-color:#1D4A8C;color:#DAE8F6}
+.pb.on b{color:#FFFFFF}
+.pb.vago{border-style:dashed;background:#F6F9FA;color:#7A8A90;cursor:not-allowed}
+.df{display:flex;justify-content:flex-end;gap:8px;padding:12px 18px;border-top:1px solid #E3E9EC;background:#F9FBFC}
+.seg{display:inline-flex;border:1px solid #C9D4D9;border-radius:6px;overflow:hidden;background:#FFFFFF}
+.seg button{font:inherit;font-size:12.5px;padding:5px 12px;border:0;border-right:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:32px}
+.seg button:last-child{border-right:0}
+.seg button.on{background:#1D4A8C;color:#FFFFFF;font-weight:600}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; position: relative">
+
+<header style="background: #01234F; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 10px">
+<img src="assets/criticaleye-icone.png" alt="CriticalEye" width="32" height="32" style="display: block; border-radius: 6px">
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 16px; font-weight: 700; letter-spacing: .01em">{{hospital}}</span>
+<span style="font-size: 11.5px; color: #C6DDF2">{{unidade}} · Posto 1 · Round do dia</span>
+</div>
+<button class="btn ghost" onClick="{{toggleCfg}}" aria-expanded="{{cfgOpen}}" aria-label="Configurar nome do hospital e da unidade" style="padding: 8px 10px; margin-left: 4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg></button>
+</div>
+<nav aria-label="Navegação entre dias" style="display: flex; align-items: center; gap: 8px">
+<button class="btn ghost" aria-label="Round do dia anterior (26/10)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+<div style="display: flex; flex-direction: column; align-items: center; min-width: 190px">
+<span style="font-size: 15px; font-weight: 600">Terça, 27/10/2026</span>
+<span style="font-size: 11.5px; color: #C6DDF2">Round de hoje · aberto às 07:40</span>
+</div>
+<button class="btn ghost" aria-label="Próximo dia" disabled style="opacity: .45"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Rounds anteriores</button>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #C6DDF2"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8EC5F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14l-3-3"/></svg>Salvo às 08:12</span>
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar PDF</button>
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>Passagem de plantão</button>
+<button class="btn ghost"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copiar evolução</button>
+<button class="btn" onClick="{{togglePrint}}" style="background: #FFFFFF; border-color: #FFFFFF; color: #01234F"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="6" y="14" width="12" height="7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/></svg>Imprimir</button>
+</div>
+</div>
+</header>
+
+<sc-if value="{{cfgOpen}}" hint-placeholder-val="{{ false }}">
+<div style="background: #F2F6FB; border-bottom: 1px solid #C3D6EA">
+<div style="max-width: 1440px; margin: 0 auto; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+<h2 class="ct">Configuração da unidade</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 4px; flex: 2 1 260px">
+<label for="cfg-hosp" class="lbl">Nome do hospital</label>
+<input id="cfg-hosp" class="inp" value="{{hospital}}" onChange="{{onHosp}}">
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; flex: 2 1 220px">
+<label for="cfg-unid" class="lbl">Unidade</label>
+<input id="cfg-unid" class="inp" value="{{unidade}}" onChange="{{onUnid}}">
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto">
+<span class="lbl">Leitos</span>
+<span style="font-size: 14px; padding: 9px 0">20 · 2 postos · isolamento: 1 e 20</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px; flex: 0 1 auto">
+<span class="lbl">Cor do CTI</span>
+<div role="group" aria-label="Cor do CTI" style="display: flex; gap: 6px">
+<button aria-label="Azul" aria-pressed="true" style="width: 40px; height: 40px; border-radius: 6px; border: 3px solid #1B2A30; background: #1D4A8C; cursor: pointer"></button>
+<button aria-label="Verde" aria-pressed="false" style="width: 40px; height: 40px; border-radius: 6px; border: 3px solid #FFFFFF; outline: 1px solid #C9D4D9; background: #1B7353; cursor: pointer"></button>
+<button aria-label="Vinho" aria-pressed="false" style="width: 40px; height: 40px; border-radius: 6px; border: 3px solid #FFFFFF; outline: 1px solid #C9D4D9; background: #7A2E46; cursor: pointer"></button>
+<button aria-label="Grafite" aria-pressed="false" style="width: 40px; height: 40px; border-radius: 6px; border: 3px solid #FFFFFF; outline: 1px solid #C9D4D9; background: #3E4C59; cursor: pointer"></button>
+</div>
+</div>
+<button class="btn p" onClick="{{toggleCfg}}">Salvar</button>
+</div>
+<span class="lbl">Nome e cor aparecem na barra superior e no cabeçalho de cada página impressa. Cada CTI tem a sua cor.</span>
+</div>
+</div>
+</sc-if>
+
+<div style="background: #FFFFFF; border-bottom: 1px solid #D3DCE0">
+<nav aria-label="Leitos" style="max-width: 1440px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 8px; overflow-x: auto">
+<button class="bed"><span class="n">01</span><span class="s">Maria L. · HIP</span></button>
+<button class="bed"><span class="n">02</span><span class="s">Carlos R. · TCE grave</span></button>
+<button class="bed"><span class="n">03</span><span class="s">Ana P. · PO tumor</span></button>
+<button class="bed on" aria-current="true"><span class="n">04</span><span class="s">João S. · HSA</span></button>
+<button class="bed"><span class="n">05</span><span class="s">Paulo T. · AVCi</span></button>
+<button class="bed"><span class="n">16</span><span class="s">Rita F. · HSDC</span></button>
+<button class="bed lock"><span class="n">17 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6E4300" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span class="s" style="color: #6E4300">Rotina editando</span></button>
+<button class="bed"><span class="n">18</span><span class="s">Sônia B. · alta hoje</span></button>
+<button class="bed empty"><span class="n">19</span><span class="s">Vago · adm. entra 28/10</span></button>
+<button class="bed"><span class="n">20</span><span class="s">Pedro A. · Guillain-Barré</span></button>
+</nav>
+</div>
+
+<main style="max-width: 1440px; width: 100%; margin: 0 auto; padding: 14px 16px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; flex: 1">
+
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12.5px; color: #3E5057; background: #E3EEF8; border: 1px solid #C3D6EA; border-radius: 6px; padding: 7px 12px">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1D4A8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+<span>Você está editando o <strong>Leito 04</strong>. O Leito 17 está aberto pela rotina e aparece para você em modo leitura.</span>
+<div class="seg" role="group" aria-label="Visualização" style="margin-left: auto"><button aria-pressed="false">Resumida</button><button class="on" aria-pressed="true">Completa</button></div>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 4 1 300px">
+<div class="ch">
+<h2 class="ct">Identificação</h2>
+<div style="display: flex; align-items: center; gap: 8px">
+<span class="dp">D7 no CTI</span>
+<button class="lnk" onClick="{{toggleSaida}}" aria-expanded="{{saidaOpen}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Saída do CTI</button>
+</div>
+</div>
+<sc-if value="{{saidaOpen}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div class="menu" role="group" aria-label="Registrar saída do CTI">
+<button>Alta<small>Data e hora · destino (enfermaria, outro setor)</small></button>
+<button>Transferência<small>Data e hora · outro CTI ou outro hospital</small></button>
+<button>Óbito<small>Data e hora</small></button>
+</div>
+<span class="lbl">Com a saída registrada, o leito não é copiado para o round do dia seguinte.</span>
+</div>
+</sc-if>
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="flex: 0 0 auto; background: #1D4A8C; color: #FFFFFF; border-radius: 8px; padding: 6px 12px; text-align: center">
+<div style="font-size: 10.5px; letter-spacing: .08em; color: #D3E4F5">LEITO</div>
+<div style="font-size: 26px; font-weight: 700; line-height: 1">04</div>
+</div>
+<div style="display: flex; flex-direction: column; min-width: 0">
+<span style="font-size: 19px; font-weight: 700; letter-spacing: .01em">JOÃO DA SILVA</span>
+<span style="font-size: 12.5px; color: #55666D">58 anos · DN 14/03/1968 · Pront. 123456</span>
+</div>
+</div>
+<dl class="kv">
+<dt>Internação</dt><dd>20/10/2026</dd>
+<dt>Admissão CTI</dt><dd>20/10/2026</dd>
+<dt>Peso · altura</dt><dd>72 kg (real) · 1,70 m</dd>
+<dt>Origem</dt><dd>Emergência, depois centro cirúrgico</dd>
+<dt>Equipe</dt><dd>Neurocirurgia</dd>
+<dt>Antes da internação</dt><dd>Independente</dd>
+</dl>
+</section>
+
+<section class="card" style="flex: 5 1 360px">
+<div class="ch">
+<h2 class="ct">Diagnósticos e história</h2>
+</div>
+<ol style="margin: 0; padding: 0 0 0 18px; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; line-height: 1.35">
+<li><strong>HSA aneurismática</strong> · aneurisma de AComA · ictus 20/10 <span class="dp">D7 pós-ictus</span></li>
+<li>PO embolização de aneurisma de AComA · 21/10 <span class="dp">PO D6</span></li>
+<li>PO derivação ventricular externa frontal D · 20/10 <span class="dp">PO D7</span></li>
+<li>Pneumonia associada à ventilação · 25/10</li>
+</ol>
+<dl class="kv">
+<dt>Comorbidades</dt><dd>HAS · tabagismo</dd>
+<dt>Uso contínuo</dt><dd>Losartana 50 mg 12/12h (suspensa na admissão) · sinvastatina 20 mg à noite (mantida) <span class="chip" style="padding: 1px 7px; font-size: 11px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1D4A8C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>reconciliado</span></dd>
+<dt>História</dt><dd>Cefaleia súbita em 20/10, seguida de rebaixamento (ECG 9). TC com HSA difusa e hemoventrículo. DVE no mesmo dia e embolização em 21/10.</dd>
+</dl>
+</section>
+
+<section class="card" style="flex: 3 1 240px">
+<div class="ch">
+<h2 class="ct">Alertas</h2>
+</div>
+<div class="alert crit">
+<span class="at"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>Alergia</span>
+<span class="av">Dipirona</span>
+<span class="as">Urticária · confirmado com a esposa</span>
+</div>
+<div class="alert warn">
+<span class="at">Isolamento</span>
+<span class="av">Contato + respiratório</span>
+<span class="as">MRSA (swab 22/10) · TB em investigação</span>
+</div>
+<div class="alert">
+<span class="at">Nível de suporte</span>
+<span class="av">Pleno</span>
+<span class="as">Definido com a família em 21/10</span>
+</div>
+</section>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 7 1 520px">
+<div class="ch">
+<h2 class="ct">Neurológico</h2>
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><span class="lbl">Exame das 06:40 · Ana Costa (plantonista)</span><span class="dp w">Janela de vasoespasmo</span><button class="add" title="Abre o quadro do protocolo neste leito"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Protocolo de morte encefálica</button></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px 28px">
+<dl class="kv" style="flex: 1 1 300px">
+<dt>Exame</dt><dd>ECG 8T (O3 VT M5) · RASS −2</dd>
+<dt>Meta RASS</dt><dd>0 a −2</dd>
+<dt>Pupilas</dt><dd>Isocóricas, 3 mm, fotorreagentes</dd>
+<dt>Déficit focal</dt><dd>Hemiparesia E, força grau 3</dd>
+<dt>Escalas (admissão)</dt><dd>Hunt-Hess 3 · WFNS 4 · Fisher modificada 3 <button class="lnk" style="margin-left: 4px">calcular</button></dd>
+<dt>Alvos do dia</dt><dd>PAS &lt; 160 · PPC &gt; 60 · Na 140–150 · Tax &lt; 37,5 °C · Glicemia 140–180</dd>
+<dt>Restrições</dt><dd>Cabeceira 30° · fechar DVE ao mobilizar</dd>
+<dt>Neurocirurgia</dt><dd>Em acompanhamento desde 20/10</dd>
+</dl>
+<dl class="kv" style="flex: 1 1 300px">
+<dt>PIC (24 h)</dt><dd>8–14 mmHg</dd>
+<dt>PPC</dt><dd><strong>78 mmHg</strong> <span class="prev">(PAM 90 − PIC 12)</span></dd>
+<dt>DVE</dt><dd>Altura 15 cmH₂O · débito 180 ml/24 h · xantocrômico</dd>
+<dt>Nimodipino</dt><dd>60 mg 4/4h · <strong>dia 7 de 21</strong></dd>
+<dt>Anticonvulsivante</dt><dd>Levetiracetam 500 mg 12/12h desde 20/10 · sem crises em 24 h</dd>
+<dt>Hiperosmolar</dt><dd>NaCl 3% · Na 144 &gt; 147 · Osm 302</dd>
+<dt>Última TC</dt><dd>25/10 · sem novo sangramento, sem hidrocefalia</dd>
+</dl>
+</div>
+</section>
+
+<section class="card" style="flex: 5 1 380px">
+<div class="ch">
+<h2 class="ct">Dispositivos</h2>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Dispositivo</button>
+</div>
+<div class="scroll">
+<table class="tbl">
+<thead><tr><th>Dispositivo</th><th>Sítio</th><th>Inserção</th><th>Local</th><th>Dias</th></tr></thead>
+<tbody>
+<tr><td>TOT</td><td></td><td>20/10</td><td>Emergência</td><td><span class="dp">D7</span></td></tr>
+<tr><td>CVC</td><td>Jugular interna D</td><td>20/10</td><td>Centro cirúrgico</td><td><span class="dp">D7</span></td></tr>
+<tr><td>PAI</td><td>Radial E</td><td>21/10</td><td>CTI</td><td><span class="dp">D6</span></td></tr>
+<tr><td>DVE</td><td>Frontal D</td><td>20/10</td><td>Centro cirúrgico</td><td><span class="dp">D7</span></td></tr>
+<tr style="background: #FFF9EC"><td><strong>CVD</strong></td><td></td><td>20/10</td><td>Centro cirúrgico</td><td><span class="dp w">D7 · rever</span></td></tr>
+<tr><td>SNE</td><td></td><td>21/10</td><td>CTI</td><td><span class="dp">D6</span></td></tr>
+<tr><td>AVP</td><td>Antebraço E</td><td>26/10</td><td>CTI</td><td><span class="dp">D1</span></td></tr>
+</tbody>
+</table>
+</div>
+<span class="lbl">Dias contados automaticamente. Em âmbar: acima do limite definido com a CCIH.</span>
+</section>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 6 1 420px">
+<div class="ch">
+<h2 class="ct">Hemodinâmica e infusões</h2>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Infusão</button>
+</div>
+<div class="scroll">
+<table class="tbl">
+<thead><tr><th>Droga</th><th>Solução padrão</th><th>Vazão</th><th>Dose</th></tr></thead>
+<tbody>
+<tr><td>Noradrenalina</td><td>200 mcg/ml</td><td>3 ml/h</td><td><strong>0,14 mcg/kg/min</strong></td></tr>
+<tr><td>Fentanil</td><td>50 mcg/ml</td><td>2 ml/h</td><td><strong>100 mcg/h · 1,39 mcg/kg/h</strong></td></tr>
+<tr><td>Midazolam</td><td>5 mg/ml</td><td>2 ml/h</td><td><strong>10 mg/h · 0,14 mg/kg/h</strong></td></tr>
+<tr><td>Dexmedetomidina</td><td>4 mcg/ml</td><td>4 ml/h</td><td><strong>0,22 mcg/kg/h</strong></td></tr>
+<tr><td>NaCl 3%</td><td></td><td>21 ml/h</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<dl class="kv">
+<dt>Vasopressor</dt><dd>Noradrenalina desde 25/10 · em redução</dd>
+<dt>Sedoanalgesia</dt><dd>Fentanil + midazolam · dexmedetomidina desde 26/10</dd>
+</dl>
+</section>
+
+<section class="card" style="flex: 6 1 420px">
+<div class="ch">
+<h2 class="ct">Respiratório</h2>
+<span class="dp">D7 de VM</span>
+</div>
+<dl class="kv">
+<dt>Suporte</dt><dd>TOT + VM</dd>
+<dt>Parâmetros</dt><dd>PCV · Pinsp 14 · PEEP 8 · FiO₂ 35% · FR 18 · VC 450 ml</dd>
+<dt>Desmame</dt><dd>TRE adiado (nível de consciência) · TQT em discussão</dd>
+</dl>
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+<span class="sub">Gasometria arterial</span>
+<span class="lbl">26/10 06:00 &gt; 27/10 06:00</span>
+</div>
+<div class="lab" style="grid-template-columns: repeat(auto-fill, minmax(128px, 1fr))">
+<div><span class="k">pH</span><span class="prev">7,41</span> &gt; <strong>7,44</strong></div>
+<div><span class="k">pCO₂</span><span class="prev">38</span> &gt; <strong>35</strong></div>
+<div><span class="k">pO₂</span><span class="prev">92</span> &gt; <strong>104</strong></div>
+<div><span class="k">HCO₃</span><span class="prev">24,1</span> &gt; <strong>23,8</strong></div>
+<div><span class="k">Lactato</span><span class="prev">1,4</span> &gt; <strong>1,1</strong></div>
+<div><span class="k">SatO₂</span><span class="prev">97</span> &gt; <strong>98</strong></div>
+<div><span class="k">P/F</span><span class="prev">263</span> &gt; <strong>297</strong></div>
+</div>
+</section>
+</div>
+
+<section class="card">
+<div class="ch">
+<h2 class="ct">Últimas 24 h pela enfermagem</h2>
+<span class="lbl">26/10 07:00 a 27/10 07:00 · sinais lançados pelo ADM às 07:50 · balanço por Ana Costa</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px 28px">
+<div class="col" style="flex: 6 1 420px">
+<h3 class="sub">Sinais vitais e controles</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 28px">
+<dl class="kv" style="flex: 1 1 220px">
+<dt>Temperatura</dt><dd>máx 37,8 °C · <strong>1 pico</strong> (02:00)</dd>
+<dt>PAS / PAD</dt><dd>118–152 / 60–88 mmHg</dd>
+<dt>PAM</dt><dd>82–104 mmHg</dd>
+<dt>FC</dt><dd>72–98 bpm</dd>
+<dt>FR · SatO₂</dt><dd>16–20 irpm · 95–99%</dd>
+</dl>
+<dl class="kv" style="flex: 1 1 220px">
+<dt>Glicemia capilar</dt><dd>132–178 mg/dl · insulina regular 6 UI</dd>
+<dt>Dor</dt><dd>Sem dor</dd>
+<dt>Evacuação</dt><dd>26/10 · há 1 dia</dd>
+<dt>Intercorrências</dt><dd>Pico febril às 02:00 · DVE fechada 2x para mudança de decúbito</dd>
+</dl>
+</div>
+</div>
+<div class="col" style="flex: 5 1 360px">
+<h3 class="sub">Balanço hídrico <span class="lbl" style="text-transform: none; letter-spacing: 0">ml · 26/10 &gt; 27/10</span></h3>
+<table class="tbl bhx">
+<tbody>
+<tr class="g"><td colspan="2">Ganhos</td></tr>
+<tr class="t"><td>Total de ganhos</td><td><span class="prev">2.900</span> &gt; <strong>2.920</strong></td></tr>
+<tr class="g"><td colspan="2">Perdas</td></tr>
+<tr><td>Diurese <span class="lbl">· 1,1 &gt; 1,2 ml/kg/h</span></td><td><span class="prev">1.950</span> &gt; <strong>2.100</strong></td></tr>
+<tr><td>DVE frontal D</td><td><span class="prev">210</span> &gt; <strong>180</strong></td></tr>
+<tr class="t"><td>Total de perdas</td><td><span class="prev">2.160</span> &gt; <strong>2.280</strong></td></tr>
+</tbody>
+</table>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<div class="bhb"><span class="lbl">Balanço 24 h</span><span><span class="prev">+740</span> &gt; <strong>+640 ml</strong></span></div>
+<div class="bhb"><span class="lbl">Acumulado desde 20/10</span><span><span class="prev">+2.210</span> &gt; <strong>+2.850 ml</strong></span></div>
+</div>
+<span class="lbl">Ganho entra só pelo total, como vem da folha da enfermagem. Cada dreno da lista de dispositivos aparece sozinho nas perdas, com o débito de ontem &gt; hoje. Total de perdas, balanço e ml/kg/h calculados pelo app. Item sem valor não aparece na impressão.</span>
+</div>
+</div>
+</section>
+
+<div class="row">
+<section class="card" style="flex: 1 1 100%">
+<div class="ch">
+<h2 class="ct">Infecção</h2>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar prescrição</button>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar resultado de cultura</button>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Cultura</button>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px 28px">
+
+<div class="col" style="flex: 4 1 300px">
+<h3 class="sub">Antibióticos em uso</h3>
+<div class="scroll">
+<table class="tbl">
+<thead><tr><th>Antibiótico</th><th>Dose</th><th>Início</th><th>Dia</th><th>Previsto</th></tr></thead>
+<tbody>
+<tr><td><strong>Cefepime</strong></td><td>2 g 8/8h</td><td>25/10</td><td><span class="dp">D2</span></td><td>7 dias</td></tr>
+</tbody>
+</table>
+</div>
+<span class="lbl">Importado da prescrição de 27/10. Data de início editável.</span>
+<h3 class="sub" style="margin-top: 4px">Já fez</h3>
+<dl class="kv">
+<dt>Cefazolina</dt><dd>20/10 a 21/10</dd>
+</dl>
+</div>
+
+<div class="col" style="flex: 5 1 380px">
+<h3 class="sub">Culturas</h3>
+<div class="scroll">
+<table class="tbl">
+<thead><tr><th>Coleta</th><th>Material</th><th>Resultado</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>25/10</td><td>Hemocultura (2 amostras)</td><td>Sem crescimento em 48 h</td><td><span class="st b">parcial</span></td></tr>
+<tr><td>25/10</td><td>Secreção traqueal</td><td><em>Klebsiella pneumoniae</em> · sensível a cefepime</td><td><span class="st">positiva</span></td></tr>
+<tr><td>25/10</td><td>Urocultura</td><td>Sem crescimento</td><td><span class="st ok">negativa</span></td></tr>
+<tr><td>25/10</td><td>Líquor (DVE)</td><td>Sem crescimento · celularidade normal</td><td><span class="st ok">negativa</span></td></tr>
+<tr><td>22/10</td><td>Swab de vigilância</td><td>MRSA</td><td><span class="st">positiva</span></td></tr>
+</tbody>
+</table>
+</div>
+<span class="lbl">Ordem: coleta mais recente no topo. Parcial e pendente ficam até o resultado final.</span>
+</div>
+
+<div class="col" style="flex: 4 1 300px">
+<h3 class="sub">Tuberculose <span class="st">isolamento respiratório</span></h3>
+<dl class="kv">
+<dt>Motivo</dt><dd>Tabagismo e opacidade apical D no RX de 25/10</dd>
+<dt>GeneXpert</dt><dd>26/10 · MTB não detectado</dd>
+<dt>BAAR 1ª amostra</dt><dd>26/10 · negativa</dd>
+<dt>BAAR 2ª amostra</dt><dd>27/10 · <span class="st b">pendente</span></dd>
+</dl>
+<h3 class="sub" style="margin-top: 4px">Protocolos de sepse nesta internação <span class="dp">2</span></h3>
+<div style="display: flex; flex-direction: column">
+<div class="pend" style="padding: 5px 0"><span class="st">em tratamento</span><span>25/10 às 14:20 · foco pulmonar<br><span class="lbl">Iniciado cefepime</span></span></div>
+<div class="pend" style="padding: 5px 0; border-bottom: 0"><span class="st ok">encerrado</span><span>22/10 às 03:10 · suspeita de ventriculite<br><span class="lbl">Descartada em 23/10 · líquor negativo</span></span></div>
+</div>
+</div>
+
+</div>
+</section>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 5 1 380px">
+<div class="ch">
+<h2 class="ct">Laboratório</h2>
+<div style="display: flex; align-items: center; gap: 10px">
+<span class="lbl">26/10 &gt; 27/10</span>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar PDF</button>
+</div>
+</div>
+<div class="lab">
+<div><span class="k">Hb</span><span class="prev">9,8</span> &gt; <strong>9,4</strong></div>
+<div><span class="k">Leuc</span><span class="prev">14.200</span> &gt; <strong>12.800</strong></div>
+<div><span class="k">Plaq</span><span class="prev">210 mil</span> &gt; <strong>228 mil</strong></div>
+<div><span class="k">PCR</span><span class="prev">18,4</span> &gt; <strong>12,1</strong></div>
+<div><span class="k">INR</span><span class="prev">1,1</span> &gt; <strong>1,1</strong></div>
+<div><span class="k">Glicose</span><span class="prev">156</span> &gt; <strong>142</strong></div>
+<div><span class="k">Na</span><span class="prev">144</span> &gt; <strong>147</strong></div>
+<div><span class="k">K</span><span class="prev">3,8</span> &gt; <strong>3,4</strong></div>
+<div><span class="k">Mg</span><span class="prev">1,9</span> &gt; <strong>2,0</strong></div>
+<div><span class="k">Ureia</span><span class="prev">32</span> &gt; <strong>30</strong></div>
+<div><span class="k">Creat</span><span class="prev">0,82</span> &gt; <strong>0,79</strong></div>
+<div><span class="k">TFG</span><span class="prev">102</span> &gt; <strong>103</strong></div>
+<div><span class="k">Osm</span><span class="prev">298</span> &gt; <strong>302</strong></div>
+</div>
+<span class="lbl">Lançado pelo ADM às 07:20, do PDF do laboratório.</span>
+</section>
+
+<section class="card" style="flex: 4 1 300px">
+<div class="ch">
+<h2 class="ct">Imagens e outros exames</h2>
+<button class="lnk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M12 18v-6"/><path d="M9 15l3-3 3 3"/></svg>Importar laudo</button>
+</div>
+<div class="scroll">
+<table class="tbl">
+<thead><tr><th>Data</th><th>Exame</th><th>Conclusão</th></tr></thead>
+<tbody>
+<tr><td>26/10</td><td>Doppler transcraniano</td><td>VM ACM D 118 cm/s · Lindegaard 2,4 · vasoespasmo leve</td></tr>
+<tr><td>25/10</td><td>TC de crânio</td><td>Sem novo sangramento · sem hidrocefalia · DVE bem posicionada</td></tr>
+<tr><td>25/10</td><td>RX de tórax</td><td>Consolidação em base D · opacidade apical D</td></tr>
+<tr style="background: #FFF9EC"><td><span class="st">pedido</span></td><td>Angio-TC de crânio</td><td>Solicitada em 27/10</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<div style="flex: 3 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<section class="card">
+<div class="ch">
+<h2 class="ct">Profilaxias e medicações-chave</h2>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">
+<span class="chip">TEV mecânica · compressão pneumática</span>
+<span class="chip">LAMG · omeprazol 40 mg/dia</span>
+<button class="add" onClick="{{toggleMenu}}" aria-expanded="{{menuOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Adicionar</button>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ true }}">
+<div class="menu" role="group" aria-label="Opções para adicionar">
+<button>Tromboprofilaxia química</button>
+<button>Anticoagulação plena</button>
+<button>Antiagregação</button>
+<button>Corticoide</button>
+<button>Insulina contínua</button>
+<button>Outra medicação-chave</button>
+</div>
+</sc-if>
+</section>
+<section class="card">
+<div class="ch">
+<h2 class="ct">Nutrição e TGI</h2>
+</div>
+<dl class="kv">
+<dt>Dieta</dt><dd>Enteral 50 ml/h · 1.800 kcal/dia · 100% da meta</dd>
+<dt>TGI</dt><dd>Sem distensão · sem vômitos</dd>
+</dl>
+</section>
+<section class="card">
+<div class="ch">
+<h2 class="ct">Pele</h2>
+</div>
+<dl class="kv">
+<dt>Lesão por pressão</dt><dd>Nenhuma · Braden 12</dd>
+</dl>
+<span class="lbl">Lançado pelo ADM, da folha da enfermagem.</span>
+</section>
+</div>
+</div>
+
+<div class="row">
+<section class="card" style="flex: 5 1 380px">
+<div class="ch">
+<h2 class="ct">Plano do dia</h2>
+<button class="lnk" onClick="{{copiarPlano}}">Copiar o plano de ontem</button>
+</div>
+<textarea class="inp" aria-label="Plano do dia" rows="6" style="min-height: 150px; font-size: 13px; line-height: 1.5; resize: vertical" value="{{plano}}" onChange="{{onPlano}}"></textarea>
+<sc-if value="{{planoCop}}" hint-placeholder-val="{{ false }}"><span class="lbl" style="color: #6E4300">Plano de 26/10 copiado. Revise e atualize antes de sair do leito.</span></sc-if>
+</section>
+
+<section class="card" style="flex: 4 1 300px">
+<div class="ch">
+<h2 class="ct">Pendências</h2>
+<button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Pendência</button>
+</div>
+<div style="display: flex; flex-direction: column">
+<div class="pend"><span class="st">aberta</span><span style="flex: 1">Angio-TC de crânio de controle<br><span class="lbl">Pedida 27/10 · rotina</span></span></div>
+<div class="pend"><span class="st">aberta</span><span style="flex: 1">Parecer da neurocirurgia sobre tempo de DVE<br><span class="lbl">Pedido 27/10 · plantonista</span></span></div>
+<div class="pend" style="border-bottom: 0; color: #5F6F75"><span class="st ok">feita</span><span style="flex: 1; text-decoration: line-through">Conversar com a família sobre TQT<br><span class="lbl" style="text-decoration: none">Concluída 26/10 · sai da lista amanhã</span></span></div>
+</div>
+</section>
+
+<div style="flex: 3 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<section class="card">
+<div class="ch">
+<h2 class="ct">Família e destino</h2>
+</div>
+<dl class="kv">
+<dt>Última conversa</dt><dd>26/10 · esposa · gravidade e possibilidade de TQT</dd>
+<dt>Previsão de alta</dt><dd>Sem previsão · janela de vasoespasmo até D14</dd>
+</dl>
+</section>
+<section class="card">
+<div class="ch">
+<h2 class="ct">Cuidados paliativos</h2>
+<button class="add" onClick="{{toggleCp}}" aria-expanded="{{cpOpen}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Registrar</button>
+</div>
+<dl class="kv">
+<dt>Situação</dt><dd>Sem limitação de suporte</dd>
+</dl>
+<sc-if value="{{cpOpen}}" hint-placeholder-val="{{ false }}">
+<div class="menu" role="group" aria-label="Registrar em cuidados paliativos">
+<button>Começar por um PDF<small>Evolução da comissão de CP, da psicologia ou do serviço social</small></button>
+<button>Acionar comissão de cuidados paliativos</button>
+<button>Reunião com a família</button>
+<button>Decisão sobre limitação de suporte</button>
+<button>Controle de sintomas</button>
+<button>Diretivas antecipadas de vontade</button>
+</div>
+</sc-if>
+</section>
+</div>
+</div>
+
+<footer style="display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 10px 2px 0; border-top: 1px solid #D3DCE0; font-size: 12px; color: #55666D">
+<span>{{hospital}} · {{unidade}} · Leito 04 · última edição às 08:12 por Ana Costa (plantonista)</span>
+<span>Documento interno com dados sensíveis. Descartar em fragmentadora.</span>
+</footer>
+
+</main>
+<sc-if value="{{printOpen}}" hint-placeholder-val="{{ false }}">
+<div class="ovl">
+<div class="dlg" role="dialog" aria-labelledby="pr-t">
+<div class="dh"><div style="display: flex; flex-direction: column; gap: 2px"><h2 id="pr-t">Imprimir round</h2><span>Posto 1 · terça, 27/10 · A4 paisagem, preto e branco</span></div><button class="x" aria-label="Fechar" onClick="{{togglePrint}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+<div class="dbody">
+<div class="popts" role="group" aria-label="O que imprimir">
+<button class="{{clsTodos}}" onClick="{{setTodos}}"><b>Todos os leitos ocupados</b><span>9 leitos · os vagos ficam de fora</span></button>
+<button class="{{clsEste}}" onClick="{{setEste}}"><b>Só este leito</b><span>Leito 04 · João S.</span></button>
+<button class="{{clsEsc}}" onClick="{{setEsc}}"><b>Escolher leitos</b><span>Marque os que quer imprimir</span></button>
+</div>
+<sc-if value="{{escolher}}" hint-placeholder-val="{{ false }}">
+<div class="pbs">
+<button class="{{c01}}" onClick="{{t01}}" aria-pressed="{{a01}}"><b>01</b>Maria L.</button>
+<button class="{{c02}}" onClick="{{t02}}" aria-pressed="{{a02}}"><b>02</b>Carlos R.</button>
+<button class="{{c03}}" onClick="{{t03}}" aria-pressed="{{a03}}"><b>03</b>Ana P.</button>
+<button class="{{c04}}" onClick="{{t04}}" aria-pressed="{{a04}}"><b>04</b>João S.</button>
+<button class="{{c05}}" onClick="{{t05}}" aria-pressed="{{a05}}"><b>05</b>Paulo T.</button>
+<button class="{{c16}}" onClick="{{t16}}" aria-pressed="{{a16}}"><b>16</b>Rita F.</button>
+<button class="{{c17}}" onClick="{{t17}}" aria-pressed="{{a17}}"><b>17</b>Luiz M.</button>
+<button class="{{c18}}" onClick="{{t18}}" aria-pressed="{{a18}}"><b>18</b>Sônia B.</button>
+<button class="{{c19}}" onClick="{{t19}}" aria-pressed="{{a19}}"><b>19</b>vago</button>
+<button class="{{c20}}" onClick="{{t20}}" aria-pressed="{{a20}}"><b>20</b>Pedro A.</button>
+</div>
+</sc-if>
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap"><span class="lbl">Por folha</span><div class="seg" role="group" aria-label="Leitos por folha"><button class="{{cls1f}}" onClick="{{set1f}}">1 leito</button><button class="{{cls2f}}" onClick="{{set2f}}">2 leitos · economia</button></div></div>
+<span class="lbl">Sai em preto e branco, sem botões e sem campos vazios. Cada leito sempre cabe em uma folha, ou em meia folha na economia. Se a impressora fizer frente e verso, gasta ainda menos.</span>
+</div>
+<div class="df"><button class="btn" onClick="{{togglePrint}}">Cancelar</button><button class="btn p">{{rotImp}}</button></div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"hospital":{"editor":"text","default":"Hospital das Couves"},"unidade":{"editor":"text","default":"CTI 1 · Neurológico"},"$preview":{"width":1366,"height":2700}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { menuOpen: true, cfgOpen: false, cpOpen: false, saidaOpen: false, printOpen: false, porFolha: 1, planoCop: false, plano: 'Neuro: PAS < 160 e PPC > 60 / DTC hoje / nimodipino dia 7 de 21\nRespiratório: manter PCV / reavaliar TRE em 24 h\nInfecção: cefepime D2 de 7 / aguardar hemoculturas e BAAR 2\nMetabólico: manter NaCl 3% / Na alvo 140-150 / repor K\nNutrição: manter enteral plena', pmode: 'todos', sel: { '04': true }, hospital: null, unidade: null };
+  }
+  renderVals() {
+    const hospital = this.state.hospital ?? this.props.hospital ?? 'Hospital das Couves';
+    const unidade = this.state.unidade ?? this.props.unidade ?? 'CTI 1 · Neurológico';
+    const leitos = ['01', '02', '03', '04', '05', '16', '17', '18', '19', '20'];
+    const vagos = { '19': true };
+    const sel = this.state.sel;
+    const pm = this.state.pmode;
+    const out = {};
+    leitos.forEach((b) => {
+      out['c' + b] = vagos[b] ? 'pb vago' : (sel[b] ? 'pb on' : 'pb');
+      out['a' + b] = !!sel[b];
+      out['t' + b] = () => {
+        if (vagos[b]) return;
+        const n = Object.assign({}, this.state.sel);
+        n[b] = !n[b];
+        this.setState({ sel: n });
+      };
+    });
+    const ocupados = leitos.filter((b) => !vagos[b]).length;
+    const nImp = pm === 'todos' ? ocupados : pm === 'este' ? 1 : leitos.filter((b) => !vagos[b] && sel[b]).length;
+    return Object.assign(out, {
+      hospital: hospital,
+      unidade: unidade,
+      menuOpen: this.state.menuOpen,
+      cfgOpen: this.state.cfgOpen,
+      cpOpen: this.state.cpOpen,
+      toggleCp: () => this.setState({ cpOpen: !this.state.cpOpen }),
+      saidaOpen: this.state.saidaOpen,
+      toggleSaida: () => this.setState({ saidaOpen: !this.state.saidaOpen }),
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      toggleCfg: () => this.setState({ cfgOpen: !this.state.cfgOpen }),
+      onHosp: (e) => this.setState({ hospital: e.target.value }),
+      onUnid: (e) => this.setState({ unidade: e.target.value }),
+      plano: this.state.plano,
+      planoCop: this.state.planoCop,
+      onPlano: (e) => this.setState({ plano: e.target.value }),
+      copiarPlano: () => this.setState({ planoCop: true, plano: 'Neuro: PAS < 160 e PPC > 60 / nimodipino dia 6 de 21 / DTC amanhã\nRespiratório: manter PCV / sedação mantida\nInfecção: cefepime D1 de 7 / aguardar culturas\nMetabólico: NaCl 3% / Na alvo 140-150\nNutrição: progredir enteral até a meta' }),
+      printOpen: this.state.printOpen,
+      togglePrint: () => this.setState({ printOpen: !this.state.printOpen }),
+      setTodos: () => this.setState({ pmode: 'todos' }),
+      setEste: () => this.setState({ pmode: 'este' }),
+      setEsc: () => this.setState({ pmode: 'escolher' }),
+      clsTodos: pm === 'todos' ? 'po on' : 'po',
+      clsEste: pm === 'este' ? 'po on' : 'po',
+      clsEsc: pm === 'escolher' ? 'po on' : 'po',
+      escolher: pm === 'escolher',
+      cls1f: this.state.porFolha === 1 ? 'on' : '',
+      cls2f: this.state.porFolha === 2 ? 'on' : '',
+      set1f: () => this.setState({ porFolha: 1 }),
+      set2f: () => this.setState({ porFolha: 2 }),
+      rotImp: nImp === 0 ? 'Marque ao menos um leito' : 'Imprimir ' + nImp + (nImp === 1 ? ' leito' : ' leitos') + ' · ' + Math.ceil(nImp / this.state.porFolha) + (Math.ceil(nImp / this.state.porFolha) === 1 ? ' folha' : ' folhas')
+    });
+  }
+}
+</script>
+</body>
+</html>

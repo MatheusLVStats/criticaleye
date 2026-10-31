@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>CriticalEye – copiar evolução</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#8E9AA6;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#1B2A30}
+.lbl{font-size:12px;color:#55666D;font-weight:500}
+.btn{font:inherit;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 16px;border-radius:6px;border:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:44px;box-sizing:border-box}
+.btn.p{background:#1D4A8C;border-color:#1D4A8C;color:#FFFFFF;font-weight:600}
+.txt{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12.5px;line-height:1.55;color:#1B2A30;background:#FBFCFE;border:1px solid #D3DCE0;border-radius:6px;padding:14px 16px;overflow-wrap:anywhere}
+.txt pre{margin:0;font:inherit;white-space:pre-wrap}
+.ef{display:block;margin:2px 0 14px;border:1px dashed #8FA5AD;border-radius:6px;padding:10px 12px;font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:12px;color:#55666D;background:#FFFFFF}
+.seg{display:inline-flex;border:1px solid #C9D4D9;border-radius:6px;overflow:hidden;background:#FFFFFF}
+.seg button{font:inherit;font-size:12.5px;padding:6px 12px;border:0;border-right:1px solid #C9D4D9;background:#FFFFFF;color:#01234F;cursor:pointer;min-height:36px}
+.seg button:last-child{border-right:0}
+.seg button.on{background:#1D4A8C;color:#FFFFFF;font-weight:600}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 28px 16px; box-sizing: border-box">
+
+<div role="dialog" aria-labelledby="ev-t" style="width: 100%; max-width: 860px; background: #FFFFFF; border-radius: 10px; box-shadow: 0 18px 50px rgba(1,35,79,.35); display: flex; flex-direction: column; overflow: hidden">
+
+<div style="background: #01234F; color: #FFFFFF; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column">
+<h1 id="ev-t" style="margin: 0; font-size: 16px; font-weight: 700">Evolução padrão · Leito 04 · 27/10</h1>
+<span style="font-size: 12px; color: #C6DDF2">Gerada a partir do round de hoje · modelo do CTI 1</span>
+</div>
+<button class="btn" aria-label="Fechar" style="background: transparent; border-color: rgba(255,255,255,.35); color: #FFFFFF; padding: 8px 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+</div>
+
+<div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<span class="lbl">Um item por linha. Letras (com acento), números e só os sinais / - : &gt; &lt; + %, para colar no TI MED sem virar "?".</span>
+</div>
+
+<div class="txt"><pre>{{parte1}}</pre><span class="ef">Fica em branco no texto copiado, para você escrever na avaliação do plantão.</span><pre>{{parte2}}</pre></div>
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+<span class="lbl" style="max-width: 480px">Revise antes de colar: o texto vem do round, e o exame físico é do momento da sua avaliação.</span>
+<div style="display: flex; gap: 8px">
+<button class="btn">Fechar</button>
+<button class="btn p" onClick="{{copiar}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>{{rotulo}}</button>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1366,"height":2520}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { copiado: false };
+  }
+  renderVals() {
+    const p1 = [
+      'EVOLUÇÃO MÉDICA - CTI 1 NEUROLÓGICO - LEITO 04 - 27/10/2026',
+      'JOÃO DA SILVA - 58 anos - Pront. 123456',
+      'D7 de CTI (admissão em 20/10)',
+      '',
+      'DIAGNÓSTICOS:',
+      '1. HSA aneurismática (aneurisma de AComA), ictus 20/10 - D7 pós-ictus',
+      '2. PO embolização de aneurisma de AComA (21/10) - PO D6',
+      '3. PO DVE frontal D (20/10) - PO D7',
+      '4. Pneumonia associada à ventilação (25/10)',
+      '',
+      'COMORBIDADES:',
+      'HAS',
+      'Tabagismo',
+      '',
+      'MEDICAÇÕES DE USO CONTÍNUO:',
+      'Losartana 50 mg 12/12h - suspensa na admissão',
+      'Sinvastatina 20 mg à noite - mantida',
+      '',
+      'ALERGIAS:',
+      'Dipirona (urticária)',
+      '',
+      'ISOLAMENTO:',
+      'Contato (MRSA)',
+      'Respiratório (TB em investigação)',
+      '',
+      'DISPOSITIVOS:',
+      'D7 (D0 20/10 - Emergência) TOT',
+      'D7 (D0 20/10 - CC) PVP VJID',
+      'D6 (D0 21/10 - CTI) PAI radial E',
+      'D7 (D0 20/10 - CC) DVE frontal D',
+      'D7 (D0 20/10 - CC) CVD',
+      'D6 (D0 21/10 - CTI) SNE',
+      'D1 (D0 26/10 - CTI) AVP antebraço E',
+      '',
+      'ANTIMICROBIANOS:',
+      'D2 (D0 25/10) cefepime',
+      'Prévio: cefazolina (20/10 a 21/10)',
+      '',
+      'CULTURAS:',
+      'Secreção traqueal 25/10: Klebsiella pneumoniae, sensível a cefepime',
+      'Hemoculturas 25/10: sem crescimento em 48 h (parcial)',
+      'Urocultura 25/10: negativa',
+      'Líquor 25/10: negativo',
+      'Swab 22/10: MRSA',
+      'GeneXpert 26/10: não detectado',
+      'BAAR amostra 1 (26/10): negativa',
+      'BAAR amostra 2 (27/10): pendente',
+      '',
+      'INFUSÕES:',
+      'Noradrenalina 3 ml/h (0,14 mcg/kg/min)',
+      'Fentanil 2 ml/h (100 mcg/h - 1,39 mcg/kg/h)',
+      'Midazolam 2 ml/h (10 mg/h - 0,14 mg/kg/h)',
+      'Dexmedetomidina 4 ml/h (0,22 mcg/kg/h)',
+      'NaCl 3% 21 ml/h',
+      '',
+      'VENTILAÇÃO:',
+      'D7 (D0 20/10) TOT + VM',
+      'PCV / Pinsp 14 / PEEP 8 / FiO2 35% / FR 18 / VC 450 ml',
+      '',
+      'NEUROLÓGICO:',
+      'Neurocirurgia: em acompanhamento desde 20/10',
+      'PIC 8-14 mmHg',
+      'PPC 78 mmHg',
+      'DVE a 15 cmH2O - débito 180 ml/24 h',
+      'Nimodipino - dia 7 de 21',
+      '',
+      'ÚLTIMAS 24 H:',
+      'Tax máx 37,8 (1 pico)',
+      'PAS 118-152 / PAD 60-88',
+      'FC 72-98',
+      'Glicemia 132-178 (6 UI)',
+      'Diurese 2.100 ml (1,2 ml/kg/h)',
+      'BH +640 ml / acumulado +2.850 ml',
+      '',
+      'LABORATÓRIO (26/10 > 27/10):',
+      'Hb 9,8 > 9,4',
+      'Leuc 14.200 > 12.800',
+      'PCR 18,4 > 12,1',
+      'Na 144 > 147',
+      'K 3,8 > 3,4',
+      'Creat 0,82 > 0,79',
+      'TFG (CKD-EPI 2021) 102 > 103',
+      '',
+      'GASOMETRIA (26/10 > 27/10):',
+      'pH 7,41 > 7,44',
+      'pCO2 38 > 35',
+      'P/F 263 > 297',
+      'Lactato 1,4 > 1,1',
+      '',
+      'IMAGEM E OUTROS EXAMES:',
+      'DTC 26/10: vasoespasmo leve (VM ACM D 118 cm/s, Lindegaard 2,4)',
+      'TC de crânio 25/10: sem novo sangramento, sem hidrocefalia',
+      '',
+      'PROFILAXIAS:',
+      'TEV mecânica',
+      'Omeprazol 40 mg/dia',
+      '',
+      'NUTRIÇÃO E TGI:',
+      'Enteral 50 ml/h - 100% da meta',
+      'Sem distensão, sem vômitos',
+      'Última evacuação: 26/10',
+      '',
+      'PELE:',
+      'Sem lesão por pressão - Braden 12',
+      '',
+      'EXAME FÍSICO:'
+    ].join('\n');
+    const p2 = [
+      'PLANO:',
+      'Neuro: PAS < 160 e PPC > 60 / DTC hoje / nimodipino dia 7 de 21',
+      'Respiratório: manter PCV / reavaliar TRE em 24 h',
+      'Infecção: cefepime D2 de 7 / aguardar hemoculturas e BAAR 2',
+      'Metabólico: manter NaCl 3% / Na alvo 140-150 / repor K',
+      'Nutrição: manter enteral plena',
+      '',
+      'PENDÊNCIAS:',
+      'Angio-TC de crânio de controle',
+      'Parecer da neurocirurgia sobre tempo de DVE'
+    ].join('\n');
+    return {
+      parte1: p1,
+      parte2: p2,
+      rotulo: this.state.copiado ? 'Copiado' : 'Copiar texto',
+      copiar: () => this.setState({ copiado: true })
+    };
+  }
+}
+</script>
+</body>
+</html>
