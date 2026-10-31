@@ -48,6 +48,7 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 .at{margin-top:6px;padding:6px 9px;border-radius:6px;background:#FFF9EC;border:1px solid #F0D08A;font-size:12.5px}
 .at b{color:#6E4300}
 .txt{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:11.5px;line-height:1.55;white-space:pre-wrap;background:#FBFCFE;border:1px solid #D3DCE0;border-radius:6px;padding:10px 12px;margin:0;color:#1B2A30}
+.lnkb{font:inherit;font-size:12px;border:0;background:none;color:#1D4A8C;text-decoration:underline;cursor:pointer;padding:0}
 .in{font:inherit;font-size:15px;padding:8px 10px;border:1px solid #C9D4D9;border-radius:6px;min-height:42px;box-sizing:border-box;width:180px}
 @media (max-width: 900px){.bd{grid-template-columns:1fr}}
 </style>
@@ -79,10 +80,11 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap">
 <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
 <div class="seg" role="group" aria-label="Mostrar"><button class="{{clsTodos}}" onClick="{{verTodos}}">Todos os leitos (10)</button><button class="{{clsAt}}" onClick="{{verAt}}">Só instáveis e atenção (4)</button></div>
-<span class="lbl">Resumo, alertas e pendências vêm do round. A situação e "Atenção no plantão" são de quem passa.</span>
+<sc-if value="{{filtrado}}" hint-placeholder-val="{{ false }}"><span class="lbl">5 leitos ocultos (estáveis e alta de hoje) · <button class="lnkb" onClick="{{verTodos}}">mostrar todos</button></span></sc-if>
+<span class="lbl">Resumo, alertas e pendências vêm do round. A situação (estável, atenção ou instável) e "Atenção no plantão" são de quem passa; cuidados paliativos são uma etiqueta à parte.</span>
 </div>
 <div style="display: flex; gap: 6px; flex-wrap: wrap">
-<span class="sx i">2 instáveis</span><span class="sx a">2 atenção</span><span class="sx p">1 paliativo</span><span class="sx g">1 admissão</span><span class="sx">1 alta</span>
+<span class="sx i">2 instáveis</span><span class="sx a">2 atenção</span><span class="sx g">1 admissão</span><span class="sx">1 alta</span><span class="sx p">1 em cuidados paliativos</span>
 </div>
 </div>
 
@@ -101,7 +103,7 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 <article class="bd i">
 <div class="who"><span class="n">LEITO 02</span><span class="nm">Carlos R.</span><span class="dx">34 anos · TCE grave · D9</span><span class="sx i">instável</span></div>
 <div>Protocolo de ME aberto às 06:10 · 1º exame clínico e apneia compatíveis · DTC com fluxo residual<div class="tags"><span class="tg k">Protocolo de ME</span><span class="tg a">Sepse 26/10</span></div></div>
-<div><div class="h">Pendências</div><ul class="pd"><li>2º exame clínico (liberado desde 07:30)</li><li>EEG solicitado às 10:15</li></ul><div class="at"><b>Atenção no plantão:</b> manter PAM acima de 65 e Tax acima de 35 °C</div></div>
+<div><div class="h">Pendências</div><ul class="pd"><li>2º exame clínico (liberado desde 07:30)</li><li>EEG solicitado às 10:15</li></ul><div class="at"><b>Atenção no plantão:</b> manter PAM acima de 65 e temperatura central acima de 35 °C</div></div>
 </article>
 
 <sc-if value="{{todos}}" hint-placeholder-val="{{ true }}">
@@ -118,8 +120,8 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 <div><div class="h">Pendências</div><ul class="pd"><li>Angio-TC de crânio de controle</li><li>Parecer da neurocirurgia sobre tempo de DVE</li></ul><div class="at"><b>Atenção no plantão:</b> piora neurológica ou PAS acima de 160, avisar a neurocirurgia</div></div>
 </article>
 
-<article class="bd p">
-<div class="who"><span class="n">LEITO 05</span><span class="nm">Paulo T.</span><span class="dx">67 anos · AVCi maligno · D4</span><span class="sx p">paliativo</span></div>
+<article class="bd a">
+<div class="who"><span class="n">LEITO 05</span><span class="nm">Paulo T.</span><span class="dx">67 anos · AVCi maligno · D4</span><span class="sx a">atenção</span></div>
 <div>Cuidados proporcionais desde 26/10 · não RCP · não escalonar<div class="tags"><span class="tg p">Paliativo · não escalonar</span></div></div>
 <div><div class="h">Pendências</div><ul class="pd"><li>Nova reunião com a família · 29/10</li></ul><div class="at"><b>Atenção no plantão:</b> priorizar conforto; família com visita estendida</div></div>
 </article>
@@ -148,7 +150,7 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 
 <article class="bd new">
 <div class="who"><span class="n">LEITO 19</span><span class="nm">Marcos A. P.</span><span class="dx">45 anos · admitido às 11:40</span><span class="sx g">admissão</span></div>
-<div>Meningoencefalite, provável herpética · ceftriaxona e aciclovir D2 · veio da clínica médica<div class="tags"><span class="tg">Entra no round de 28/10</span></div></div>
+<div>Meningoencefalite, provável herpética · ceftriaxona e aciclovir D2 · veio da clínica médica<div class="tags"><span class="tg a">Admissão incompleta · completar no round de 28/10</span></div></div>
 <div><div class="h">Pendências</div><ul class="pd"><li>Completar o preenchimento do leito</li></ul><div class="at"><b>Atenção no plantão:</b> crise em 26/10, em levetiracetam</div></div>
 </article>
 
@@ -161,7 +163,7 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 </sc-if>
 
 <div class="card" style="flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px">
-<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Quem recebe confirma a passagem</span><span class="lbl">Fica registrado quem passou, quem recebeu e a hora.</span></div>
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">Quem recebe confirma a passagem</span><span class="lbl">Fica registrado quem passou, quem recebeu, a hora e a versão confirmada (versão das 18:52).</span></div>
 <div style="display: flex; align-items: center; gap: 8px"><label for="pp-crm" class="lbl">CRM</label><input id="pp-crm" class="in" placeholder="ex.: 529876543"><button class="btn p">Confirmar recebimento</button></div>
 </div>
 
@@ -179,7 +181,7 @@ Protocolo de ME aberto às 06:10
 Pendências:
 Segundo exame clínico (liberado desde 07:30)
 EEG solicitado às 10:15
-Atenção: manter PAM acima de 65 e Tax acima de 35
+Atenção: manter PAM acima de 65 e temperatura central acima de 35
 
 LEITO 04 - JOÃO S. - 58 anos - D7
 Situação: atenção
@@ -220,6 +222,7 @@ class Component extends DCLogic {
       hospital: this.props.hospital ?? 'Hospital das Couves',
       unidade: this.props.unidade ?? 'CTI 1 · Neurológico',
       todos: t,
+      filtrado: !t,
       clsTodos: t ? 'on' : '',
       clsAt: t ? '' : 'on',
       verTodos: () => this.setState({ todos: true }),

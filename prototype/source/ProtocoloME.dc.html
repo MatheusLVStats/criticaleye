@@ -52,7 +52,7 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 
 <div style="display: flex; flex-direction: column; gap: 3px">
 <span style="font-size: 18px; font-weight: 700">LEITO 02 · CARLOS R. · 34 anos · TCE grave</span>
-<span class="lbl" style="font-size: 13px">Este quadro só aparece quando o protocolo é aberto, em Neurológico → "+ Protocolo de morte encefálica".</span>
+<span class="lbl" style="font-size: 13px">Este quadro só aparece quando o protocolo é aberto, em Neurológico → "+ Protocolo de morte encefálica". Um protocolo aberto começa como “não avaliado”; aqui o leito 02 já foi avaliado.</span>
 </div>
 
 <section class="card">
@@ -61,16 +61,20 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><span class="st">{{status}}</span><span class="lbl">aberto em 27/10 às 06:10</span></div>
 </div>
 
-<div class="stp" style="padding-top: 0"><span class="st ok">desligada</span><span class="n">Sedação</span><span>25/10 às 08:00 · midazolam e fentanil <span class="rs">46 h até a abertura do protocolo</span></span></div>
+<div class="stp" style="padding-top: 0"><span class="st ok">desligada</span><span class="n">Sedação</span><span>25/10 às 08:00 · midazolam e fentanil <span class="rs w">46 h antes da abertura; o tempo sozinho não exclui efeito residual</span></span></div>
 
 <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap">
 <span class="n" style="font-size: 13px; font-weight: 600; color: #01234F">Elegibilidade</span>
-<div class="seg" role="group" aria-label="Elegibilidade"><button class="{{clsSim}}" aria-pressed="{{eleg}}" onClick="{{setSim}}">Elegível</button><button class="{{clsNao}}" aria-pressed="{{naoEleg}}" onClick="{{setNao}}">Não elegível</button></div>
+<div class="seg" role="group" aria-label="Elegibilidade"><button class="{{clsNA}}" aria-pressed="{{naoAval}}" onClick="{{setNA}}">Não avaliado</button><button class="{{clsSim}}" aria-pressed="{{eleg}}" onClick="{{setSim}}">Elegível</button><button class="{{clsNao}}" aria-pressed="{{naoEleg}}" onClick="{{setNao}}">Não elegível</button></div>
 </div>
 
+<sc-if value="{{eleg}}" hint-placeholder-val="{{ true }}"><span class="lbl">Avaliado por Ana Costa (plantonista) em 27/10 às 06:05.</span></sc-if>
+<sc-if value="{{naoAval}}" hint-placeholder-val="{{ false }}">
+<span class="lbl">Pré-requisitos (Res. CFM 2.173/2017, art. 1º): lesão de causa conhecida e irreversível; nenhum fator tratável de confusão; observação mínima de 6 h (24 h na encefalopatia hipóxico-isquêmica); temperatura esofágica, vesical ou retal acima de 35 °C; SatO₂ acima de 94%; PAS de 100 mmHg ou mais, ou PAM de 65 mmHg ou mais.</span>
+</sc-if>
 <sc-if value="{{naoEleg}}" hint-placeholder-val="{{ false }}">
 <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 10px 12px">
-<div class="f"><label for="me-mot">Motivo</label><select id="me-mot" class="in"><option></option><option>Causa da lesão não esclarecida</option><option>Sedação ou bloqueio neuromuscular recente</option><option>Tax ≤ 35 °C</option><option>Instabilidade hemodinâmica</option><option>SatO₂ ≤ 94%</option><option>Distúrbio metabólico grave</option><option>Tempo mínimo de observação não atingido</option><option>Outro</option></select></div>
+<div class="f"><label for="me-mot">Motivo</label><select id="me-mot" class="in"><option></option><option>Causa da lesão não esclarecida</option><option>Sedação ou bloqueio neuromuscular recente</option><option>Temperatura central ≤ 35 °C</option><option>Instabilidade hemodinâmica</option><option>SatO₂ ≤ 94%</option><option>Distúrbio metabólico grave</option><option>Tempo mínimo de observação não atingido</option><option>Outro</option></select></div>
 <div class="f"><label for="me-det">Detalhe</label><input id="me-det" class="in"></div>
 </div>
 <span class="lbl">O motivo fica no round e na passagem de plantão até o protocolo ser reaberto ou encerrado.</span>
@@ -86,10 +90,10 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 <div class="stp"><span class="st b">aguardando</span><span class="n">2º método gráfico</span><span>EEG · solicitado em 27/10 às 10:15</span></div>
 </div>
 <div><button class="add"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Outro método gráfico</button></div>
-<span class="lbl">Resultados possíveis: compatível ou não compatível (no teste de apneia, quando houve movimento respiratório; no método gráfico, quando houve fluxo ou atividade residual).</span>
+<span class="lbl">Resultados possíveis: compatível, não compatível (no teste de apneia, quando houve movimento respiratório; no método gráfico, quando houve fluxo ou atividade residual) ou inconclusivo. Uma etapa também pode ficar pendente ou ser interrompida, com o motivo.</span>
 </sc-if>
 
-<span class="lbl" style="border-top: 1px solid #EFF3F5; padding-top: 8px">Comunicação à família, notificações e termo de declaração de ME ficam com a CIHDOTT. Etapas conforme a Res. CFM 2.173/2017.</span>
+<span class="lbl" style="border-top: 1px solid #EFF3F5; padding-top: 8px">O médico assistente, ou seu substituto, esclarece a família e registra no prontuário (art. 8º). Os médicos examinadores registram as conclusões no termo de declaração de ME (art. 7º). A CIHDOTT coordena o processo e as notificações. Etapas conforme a Res. CFM 2.173/2017.</span>
 </section>
 
 </main>
@@ -99,18 +103,21 @@ body{margin:0;background:#E8EDF3;font-family:'IBM Plex Sans',system-ui,sans-seri
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { eleg: true };
+    this.state = { eleg: true }; // record already assessed; a new protocol starts with eleg: null (não avaliado)
   }
   renderVals() {
     const e = this.state.eleg;
     return {
       hospital: this.props.hospital ?? 'Hospital das Couves',
       unidade: this.props.unidade ?? 'CTI 1 · Neurológico',
-      eleg: e,
-      naoEleg: !e,
-      clsSim: e ? 'on' : '',
-      clsNao: e ? '' : 'on',
-      status: e ? 'em andamento' : 'não elegível',
+      eleg: e === true,
+      naoEleg: e === false,
+      naoAval: e === null,
+      clsNA: e === null ? 'on' : '',
+      clsSim: e === true ? 'on' : '',
+      clsNao: e === false ? 'on' : '',
+      status: e === true ? 'em andamento' : e === false ? 'não elegível' : 'não avaliado',
+      setNA: () => this.setState({ eleg: null }),
       setSim: () => this.setState({ eleg: true }),
       setNao: () => this.setState({ eleg: false })
     };

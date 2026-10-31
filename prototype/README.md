@@ -15,17 +15,19 @@ Entry, bed full view, bed summary view, blank bed CTI 1, blank bed CTI 2, copy p
 
 Things to try in the blank bed screens (`Branco`, `Cti2`):
 
-- Type a date of birth and a weight: age, infusion dose and urine output in ml/kg/h appear.
-- In Dispositivos, add a drain (Hemovac, chest drain, DVE): it gets its own loss line in the fluid balance.
-- Change the drug in Hemodinâmica: the unit's standard concentration fills in, and you can still edit it.
-- In Infecção, choose Linezolida: the restricted-antibiotic warning appears.
+- Type a date of birth and a weight: age and urine output in ml/kg/h appear.
+- In Hemodinâmica, the infusion starts empty. Choose a drug: the unit's standard concentration fills in (still editable), and the dose appears once you type the pump rate.
+- In Dispositivos, add any number of drains (Hemovac, chest drain, DVE): each gets its own loss line in the fluid balance. A drain removed today keeps its line and its output.
+- A device needs a valid insertion date, or "data desconhecida", which marks it "data a conferir".
+- In the fluid balance, leave a loss blank: the balance shows PARCIAL with what is missing. A negative volume or "1.5" is refused, not guessed.
+- In Infecção, choose Linezolida: the restricted-antibiotic warning appears. A missing, impossible or future D0 is refused.
 - In Respiratório, choose CN: only the O₂ flow field remains.
 
 ## How the source format works
 
 - `<x-dc>` wraps the screen; `<helmet>` holds the fonts and styles that go in the page head.
-- `{{name}}` is filled from `renderVals()`. `<sc-if value="{{name}}">` keeps its content only when that value is truthy.
-- `onClick`, `onChange` and `onBlur` take handlers returned by `renderVals()`. `this.setState()` triggers a new render.
+- `{{name}}` is filled from `renderVals()`; dotted lookups such as `{{item.name}}` work. `<sc-if value="{{name}}">` keeps its content only when that value is truthy, and `<sc-for list="{{items}}" as="item">` repeats its content per array element, with `{{$index}}`.
+- `onClick`, `onChange` and `onBlur` take handlers returned by `renderVals()`, also per loop item. `checked` and `disabled` take booleans. `this.setState()` triggers a new render.
 - `data-props` on the component script sets defaults such as the hospital and ICU names.
 
 `viewer/dc-lite.js` implements just this and rebuilds the screen's HTML on every state change, keeping focus and typed text. It is prototype tooling only.
